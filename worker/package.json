@@ -1,0 +1,16 @@
+{
+  "name": "estudio-video-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "migrar:local": "wrangler d1 migrations apply estudio-video --local",
+    "migrar": "wrangler d1 migrations apply estudio-video --remote"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20251001.0",
+    "typescript": "5.9.2",
+    "wrangler": "4.40.0"
+  }
+}

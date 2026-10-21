@@ -1,0 +1,871 @@
+[
+  {
+    "fecha": "2026-10-22", "pilar": "condor", "formato": "Anuncio del reto · a cámara",
+    "titulo": "Reto: 30 días, 30 videos, la IA edita",
+    "gancho": "Durante 30 días voy a subir un video diario. Yo solo grabo. Una IA edita todo.",
+    "datos": {
+      "origen": "evento (el reto mismo es la serie)",
+      "por_que": "Una serie con contador («Día 1/30») crea cita fija: la gente vuelve a ver si cumples. Y que la IA edite es el gancho: ellos van a juzgar la edición en cada video.",
+      "ganchos_alt": ["Le entregué la edición de mis videos a una IA. Este es el primero.", "Si este video está bien editado, no lo hizo un humano."],
+      "duracion": "40–60 s",
+      "grabar": { "plano": "Medio, a la altura de los ojos, celular vertical", "lugar": "Tu escritorio con el Mac encendido detrás", "luz": "Ventana de frente o de lado, nunca detrás", "ropa": "Lo que usas para trabajar; polera lisa" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Durante 30 días voy a subir un video diario. Yo solo grabo. Una IA edita todo." },
+        { "t": "QUIÉN", "dice": "Soy Max, COO de Cóndor. Hacemos marketing e inteligencia artificial para empresas.", "plano": "Mismo plano, más cerca" },
+        { "t": "LA REGLA", "dice": "Yo grabo uno o dos minutos con el celular, lo subo y la IA hace todo: cortes, subtítulos, música, efectos." },
+        { "t": "LA APUESTA", "dice": "Si la edición es mala, la culpa es de la IA. Si es buena… también." },
+        { "t": "CIERRE", "dice": "Día uno de treinta. Sígueme para ver si llego al treinta.", "plano": "Mirando a cámara, pausa de un segundo al final" }
+      ],
+      "broll": ["10 s de pantalla del calendario del estudio en tu celular (graba la pantalla)", "Tu mano dejando el celular en el trípode"],
+      "props": ["Trípode o algo para apoyar el celular"],
+      "edicion": {
+        "estilo": "Presentación de serie. Contador «DÍA 01/30» gigante detrás de ti que entra con golpe. La pantalla del calendario aparece flotando al lado cuando dices «la IA hace todo».",
+        "subtitulos": "Palabra activa en blanco, palabras clave («30 días», «IA») en color REC",
+        "musica": "Beat tenso que sube, 100–110 BPM; corte seco en «también»",
+        "efectos": ["Golpe grave + zoom punch en «Una IA edita todo»", "Clic de interfaz en cada palabra de la lista cortes/subtítulos/música", "Silencio de medio segundo antes de «también» (chiste)"],
+        "ritmo": "Corte o zoom cada 2 s"
+      },
+      "post": { "texto": "Día 1/30. Yo grabo, una IA edita. ¿Llego al día 30?", "hashtags": ["#reto30dias", "#inteligenciaartificial", "#marketingdigital", "#emprendimiento", "#chile"], "sonido": "Tendencia de la semana (te lo indico al editar)" }
+    }
+  },
+  {
+    "fecha": "2026-10-23", "pilar": "ia", "formato": "Storytime con pantalla",
+    "titulo": "Le di mi trabajo de COO a una IA por un día",
+    "gancho": "Le entregué mi trabajo de COO a una IA por un día completo. Esto es lo que rompió.",
+    "datos": {
+      "origen": "objeto (tu propio cargo como experimento)",
+      "por_que": "Curiosidad + miedo a ser reemplazado. La promesa «lo que rompió» obliga a esperar el final.",
+      "ganchos_alt": ["Hoy no trabajé. Trabajó una IA en mi lugar.", "Mi jefe no sabe que hoy trabajó una IA en vez de mí."],
+      "duracion": "60–90 s",
+      "grabar": { "plano": "A cámara + grabaciones de pantalla de lo que hizo", "lugar": "Escritorio", "luz": "De frente", "ropa": "Igual que el día 1 (continuidad de serie)" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Le entregué mi trabajo de COO a una IA por un día completo. Esto es lo que rompió." },
+        { "t": "LO QUE LE DI", "dice": "Le di tres tareas reales: [di tus 3 tareas reales, ej. revisar campañas, responder al equipo, ordenar la semana]." },
+        { "t": "LO QUE HIZO BIEN", "dice": "Lo que hizo mejor que yo: [lo real]." },
+        { "t": "LO QUE ROMPIÓ", "dice": "Y lo que rompió: [lo real, con detalle concreto]." },
+        { "t": "CONCLUSIÓN", "dice": "La IA no reemplaza al COO. Reemplaza al COO que no la usa." }
+      ],
+      "broll": ["Grabaciones de pantalla de cada tarea (30 s c/u)", "Tu cara mirando la pantalla con cara de «¿qué hizo?»"],
+      "props": [],
+      "edicion": {
+        "estilo": "Tú recortado delante de la pantalla grabada (estilo green screen sin pantalla verde). Marcador «TAREA 1/2/3» que avanza. En «lo que rompió»: glitch y pantalla en rojo.",
+        "subtitulos": "Palabra activa; palabra clave gigante en «rompió»",
+        "musica": "Lo-fi tecnológico, 90 BPM; cambia a tensión en «lo que rompió»",
+        "efectos": ["Glitch + error de sistema en «rompió»", "Ding de logro en «lo que hizo bien»", "Teclado rápido sobre las pantallas"],
+        "ritmo": "Pantalla y cara alternando cada 3 s"
+      },
+      "post": { "texto": "Día 2/30. Le di mi trabajo a una IA. Lo que rompió me sorprendió.", "hashtags": ["#ia", "#productividad", "#coo", "#reto30dias", "#chatgpt"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-10-24", "pilar": "chile", "formato": "Sketch · dos personajes",
+    "titulo": "El cliente que quiere una web «como Apple» para mañana",
+    "gancho": "«Quiero algo simple, como Apple, pero que esté para mañana y que no salga caro».",
+    "datos": {
+      "origen": "persona (el cliente chileno que todos conocen) + chiste",
+      "por_que": "Todo el que trabaja con clientes se siente identificado y lo comparte etiquetando a alguien. Los sketches de dos personajes con el mismo actor son de lo que más se comparte.",
+      "ganchos_alt": ["Cosas que dice un cliente chileno cuando pide una página web.", "POV: tu cliente te manda un audio de 4 minutos."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "Dos ángulos: CLIENTE mirando a la izquierda, TÚ (diseñador) mirando a la derecha", "lugar": "Mismo lugar, cambia solo un objeto", "luz": "La misma en las dos tomas", "ropa": "Cliente: lentes de sol en la cabeza o camisa; Diseñador: polerón con capucha" },
+      "beats": [
+        { "t": "CLIENTE", "dice": "Hola, quiero una página web. Algo simple, como Apple." },
+        { "t": "DISEÑADOR", "dice": "Perfecto. ¿Para cuándo?" },
+        { "t": "CLIENTE", "dice": "Para mañana. Ah, y que no salga caro, si es una página no más." },
+        { "t": "DISEÑADOR", "dice": "(mira a cámara en silencio, 2 segundos)" },
+        { "t": "CLIENTE", "dice": "Y que tenga inteligencia artificial. Mi sobrino dice que con IA se hace solo." },
+        { "t": "DISEÑADOR", "dice": "Tu sobrino tiene razón. Que la haga tu sobrino." }
+      ],
+      "broll": [],
+      "props": ["Lentes de sol", "Polerón con capucha"],
+      "edicion": {
+        "estilo": "Cada personaje con su color: cliente en tono cálido y diseñador en frío. Nombre del personaje al entrar. Zoom lento al diseñador durante el silencio.",
+        "subtitulos": "Burbujas de chat por personaje (izq./der.)",
+        "musica": "Sin música de fondo; en el silencio, grillos",
+        "efectos": ["Grillos en el silencio", "Sonido de «visto» de chat en «para mañana»", "Golpe de tambor + platillo en el remate"],
+        "ritmo": "Corte por cada línea, sin aire"
+      },
+      "post": { "texto": "Etiqueta a ese cliente 😅 Día 3/30.", "hashtags": ["#diseñoweb", "#clientes", "#humor", "#chile", "#freelance"], "sonido": "Ninguno: el chiste necesita silencio" }
+    }
+  },
+  {
+    "fecha": "2026-10-25", "pilar": "condor", "formato": "Vlog rápido",
+    "titulo": "Un día como COO de una empresa de IA en 60 segundos",
+    "gancho": "Así es un día real como COO de una empresa de inteligencia artificial. Sin filtro.",
+    "datos": {
+      "origen": "espacio (tu día real)",
+      "por_que": "«Un día en la vida» es un formato probado: curiosidad por un rol que pocos entienden. 20 tomas cortas dan ritmo solo.",
+      "ganchos_alt": ["Nadie sabe qué hace un COO. Así que te muestro mi día.", "Mi día empieza con 47 mensajes sin leer."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "Tomas de 3–5 s durante todo el día: café, pantalla, reuniones (sin datos sensibles), comida, cierre", "lugar": "Donde estés", "luz": "Natural", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Así es un día real como COO de una empresa de inteligencia artificial." },
+        { "t": "MAÑANA", "dice": "(narra encima) Primero reviso cómo amanecieron las campañas de los clientes." },
+        { "t": "MEDIODÍA", "dice": "Después, reuniones: lo que se lanza esta semana y quién hace qué." },
+        { "t": "TARDE", "dice": "En la tarde diseño: sitios, apps, lo que se ve." },
+        { "t": "NOCHE", "dice": "Y en la noche… grabo esto." }
+      ],
+      "broll": ["15–25 clips de 3–5 s a lo largo del día (lo más importante)", "Uno tuyo apagando el computador"],
+      "props": [],
+      "edicion": {
+        "estilo": "Montaje rápido al ritmo de la música con reloj en la esquina (hora real de cada toma). Narración en off encima.",
+        "subtitulos": "Apilados al centro, cortos",
+        "musica": "Popular con buen beat, ~120 BPM (de la app, en tendencia)",
+        "efectos": ["Tic de reloj en cada cambio de hora", "Whoosh en las transiciones de bloque", "Obturador de cámara en las fotos"],
+        "ritmo": "Corte cada 1–1,5 s, siempre al beat"
+      },
+      "post": { "texto": "Un día real de COO. ¿Qué parte te sorprendió? Día 4/30.", "hashtags": ["#diaenlavida", "#coo", "#startup", "#ia", "#reto30dias"], "sonido": "Canción en tendencia ~120 BPM (te digo cuál y desde qué segundo)" }
+    }
+  },
+  {
+    "fecha": "2026-10-26", "pilar": "diseno", "formato": "Antes / después en pantalla",
+    "titulo": "3 cosas que hacen que tu web se vea barata",
+    "gancho": "Tu página web se ve barata, y es por estas tres cosas.",
+    "datos": {
+      "origen": "objeto (una web real, sin nombrarla)",
+      "por_que": "Toca el ego («¿será la mía?») y da arreglos concretos. El antes/después se ve en un segundo sin audio.",
+      "ganchos_alt": ["Si tu web tiene esto, tus clientes creen que eres caro… o barato.", "Esto hace que una web de $5 millones parezca de $50 mil."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara (tú) + pantalla con el antes/después", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Tu página web se ve barata, y es por estas tres cosas." },
+        { "t": "UNO", "dice": "Uno: todo está centrado y apretado. El aire es lo que se ve caro." },
+        { "t": "DOS", "dice": "Dos: usas cinco colores. Las marcas caras usan uno y lo repiten." },
+        { "t": "TRES", "dice": "Tres: las fotos son de banco de imágenes. Todo el mundo las reconoce." },
+        { "t": "CIERRE", "dice": "Si quieres que revise la tuya, déjala en los comentarios." }
+      ],
+      "broll": ["Graba la pantalla de una web «antes» (inventada o de una plantilla) y el mismo diseño arreglado", "Scroll lento de una web premium que te guste"],
+      "props": [],
+      "edicion": {
+        "estilo": "Pantalla partida antes/después con una cortina que barre. Tú recortado abajo, apuntando. Números 1/2/3 detrás de ti.",
+        "subtitulos": "Palabra clave gigante: «AIRE», «UN COLOR», «REAL»",
+        "musica": "Elegante minimal, 95 BPM",
+        "efectos": ["Barrido (swoosh) en cada antes/después", "Buzzer suave en el «antes»; ding en el «después»", "Pop en cada número"],
+        "ritmo": "Cambio visual cada 2 s"
+      },
+      "post": { "texto": "¿Tu web pasa la prueba? Déjala en comentarios y elijo una para rediseñarla en vivo. Día 5/30.", "hashtags": ["#diseñoweb", "#branding", "#paginaweb", "#emprendedores", "#ux"], "sonido": "Instrumental elegante en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-10-27", "pilar": "ia", "formato": "Reto contra el reloj",
+    "titulo": "Construyo una app con IA contra el reloj",
+    "gancho": "Tengo [X] minutos para construir una app que funcione, solo con IA. Empieza el reloj.",
+    "datos": {
+      "origen": "objeto (el reloj en pantalla)",
+      "por_que": "El reloj crea tensión en todo el video: la gente se queda a ver si llegas. Muestra tu oficio sin explicarlo.",
+      "ganchos_alt": ["¿Se puede hacer una app en una hora sin escribir código? Vamos a ver.", "Mi récord: una app funcionando en [X] minutos."],
+      "duracion": "60–90 s",
+      "grabar": { "plano": "Graba la pantalla TODO el proceso + tu cara con el celular en 4–5 momentos (inicio, problema, casi, final)", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Tengo [X] minutos para construir una app que funcione, solo con IA. Empieza el reloj." },
+        { "t": "LA IDEA", "dice": "La app: [idea simple y útil, ej. un cotizador para tu negocio]." },
+        { "t": "PROBLEMA", "dice": "(a mitad) Okay, esto se rompió. [Di qué pasó de verdad.]" },
+        { "t": "FINAL", "dice": "Quedan [X] minutos… y funciona. Mira." },
+        { "t": "CIERRE", "dice": "¿Qué app hago la próxima vez? Te leo." }
+      ],
+      "broll": ["Grabación de pantalla completa (yo elijo los momentos)", "La app final usada en el celular"],
+      "props": ["Un reloj o el cronómetro del celular visible"],
+      "edicion": {
+        "estilo": "Cronómetro gigante arriba en todo el video, con cámara rápida entre beats. Pantalla de fondo y tú recortado en la esquina.",
+        "subtitulos": "Palabra activa",
+        "musica": "Electrónica que acelera, 120 → 140 BPM",
+        "efectos": ["Tic-tac constante bajo, que se acelera al final", "Alarma en el problema", "Golpe + confeti sonoro al funcionar"],
+        "ritmo": "Cámara rápida ×8 con cortes cada 1 s"
+      },
+      "post": { "texto": "Una app con IA contra el reloj. ¿La próxima? Día 6/30.", "hashtags": ["#nocode", "#ia", "#apps", "#reto", "#programacion"], "sonido": "Electrónica rápida en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-10-28", "pilar": "anuncios", "formato": "Demostración A/B",
+    "titulo": "El gancho es el 80% de tu anuncio",
+    "gancho": "Mismo video, misma oferta, tres primeras frases distintas. Una vendió y las otras no.",
+    "datos": {
+      "origen": "objeto (un anuncio real con 3 ganchos)",
+      "por_que": "Es tu aprendizaje real del Safetygate: el gancho es el 80/20. Mostrar los 3 ganchos uno al lado del otro enseña sin explicar.",
+      "ganchos_alt": ["Tu anuncio no es malo. Tus primeros 3 segundos sí.", "Gasté en aprender esto para que tú no tengas que hacerlo."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Mismo video, misma oferta, tres primeras frases distintas. Una funcionó y las otras no." },
+        { "t": "EL ERROR", "dice": "El error de casi todos: hablar del producto. Al cliente no le duele tu producto, le duele la plata." },
+        { "t": "EJEMPLO", "dice": "En vez de «Te presento el producto X», di el dolor: [ejemplo real, sin nombrar al cliente]." },
+        { "t": "LA REGLA", "dice": "Graba siempre tres ganchos para cada video y deja que el algoritmo elija." },
+        { "t": "CIERRE", "dice": "Comenta «gancho» y te digo cuál pondría en el tuyo." }
+      ],
+      "broll": ["Los 3 ganchos de un anuncio real (con permiso del cliente o anonimizado)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Tres celulares en pantalla, uno por gancho; el ganador se ilumina y los otros se apagan. Tú delante.",
+        "subtitulos": "Palabra clave gigante: «LA PLATA»",
+        "musica": "Hip-hop instrumental, 90 BPM",
+        "efectos": ["Caja registradora en «la plata»", "Clic en cada celular", "Whoosh cuando el ganador crece"],
+        "ritmo": "Zoom punch en cada idea"
+      },
+      "post": { "texto": "Comenta «gancho» y reviso el tuyo. Día 7/30.", "hashtags": ["#metaads", "#publicidad", "#marketingdigital", "#anuncios", "#ecommerce"], "sonido": "Instrumental hip-hop en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-10-29", "pilar": "chile", "formato": "Prueba en vivo",
+    "titulo": "¿La IA entiende el chileno?",
+    "gancho": "Le hablé en chileno a una inteligencia artificial. No entendió nada.",
+    "datos": {
+      "origen": "chiste (chilenismos) + objeto (la transcripción en pantalla)",
+      "por_que": "El orgullo local se comparte mucho. Que la IA transcriba mal es un chiste que se ve, y es verdad: Whisper escribió «Hauhen» en vez de «Howden».",
+      "ganchos_alt": ["La IA puede escribir código, pero no entiende «cachai».", "Le dije «al tiro» a la IA y me respondió esto."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara + pantalla con la transcripción", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Le hablé en chileno a una inteligencia artificial. No entendió nada." },
+        { "t": "PRUEBA 1", "dice": "(dicta) «Oye, ¿cachai que el pololo de la Javi llegó al tiro a la once?»" },
+        { "t": "RESULTADO", "dice": "(lee lo que escribió la IA, en voz alta, serio)" },
+        { "t": "PRUEBA 2", "dice": "(prueba otra frase más difícil, con «po», «weón» si quieres, o «fome»)" },
+        { "t": "CIERRE", "dice": "Dame una frase en chileno que la IA no entienda. La pruebo en el próximo video." }
+      ],
+      "broll": ["Grabación de pantalla con el dictado en vivo"],
+      "props": [],
+      "edicion": {
+        "estilo": "Lo que dijiste arriba y lo que entendió la IA abajo, con las palabras malas marcadas en rojo.",
+        "subtitulos": "Doble: arriba «lo que dije», abajo «lo que entendió»",
+        "musica": "Cumbia chilena instrumental, o la tendencia del momento",
+        "efectos": ["Error de Windows en cada palabra mal entendida", "Risa grabada corta en el remate", "Vine boom en la peor transcripción"],
+        "ritmo": "Cada prueba con pausa de reacción"
+      },
+      "post": { "texto": "Dame una frase en chileno que la IA no entienda 👇 Día 8/30.", "hashtags": ["#chilenismos", "#chile", "#ia", "#humor", "#cachai"], "sonido": "Cumbia o tendencia chilena" }
+    }
+  },
+  {
+    "fecha": "2026-10-30", "pilar": "anuncios", "formato": "Pizarra rápida",
+    "titulo": "Fin de mes: los 3 números que reviso de cada campaña",
+    "gancho": "Es fin de mes y estos son los únicos tres números que miro de una campaña.",
+    "datos": {
+      "origen": "evento (fin de mes / día de pago)",
+      "por_que": "Fin de mes es cuando el dueño de negocio mira la plata. Tres números es una promesa corta y guardable.",
+      "ganchos_alt": ["Si no sabes estos tres números, estás regalando plata en Meta.", "Tu agencia te muestra 20 métricas. Solo importan tres."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara, de pie si puedes", "lugar": "Frente a una pared o pizarra", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Es fin de mes y estos son los únicos tres números que miro de una campaña." },
+        { "t": "UNO", "dice": "Uno: cuánto me cuesta cada venta. No cada clic: cada venta." },
+        { "t": "DOS", "dice": "Dos: cuánto puedo pagar por venta sin perder plata. Mi CPA de equilibrio." },
+        { "t": "TRES", "dice": "Tres: si el primero es menor que el segundo, subo el presupuesto. Si no, cambio el anuncio, no la plata." },
+        { "t": "CIERRE", "dice": "Guárdalo para tu próximo fin de mes." }
+      ],
+      "broll": [],
+      "props": ["Opcional: pizarra o una hoja grande"],
+      "edicion": {
+        "estilo": "Calculadora gigante que aparece detrás de ti y escribe los números. Comparación final de < contra > con check verde o X roja.",
+        "subtitulos": "Palabra clave gigante en cada número",
+        "musica": "Tensa y elegante, 100 BPM",
+        "efectos": ["Teclas de calculadora", "Caja registradora en «subo el presupuesto»", "Buzzer en «cambio el anuncio»"],
+        "ritmo": "Un gráfico por idea"
+      },
+      "post": { "texto": "Guárdalo para el próximo cierre de mes. Día 9/30.", "hashtags": ["#metaads", "#emprendimiento", "#ventas", "#negocios", "#finanzas"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-10-31", "pilar": "chile", "formato": "Sketch disfrazado",
+    "titulo": "Halloween: lo que más miedo le da a un marketero",
+    "gancho": "Feliz Halloween. Estas son las cosas que de verdad le dan miedo a un marketero.",
+    "datos": {
+      "origen": "evento (Halloween) + disfraz",
+      "por_que": "El evento del día da contexto inmediato. Disfrazado de algo absurdo del rubro rompe el scroll en el primer cuadro.",
+      "ganchos_alt": ["Me disfracé de lo que más miedo le da a cualquier agencia.", "Esta es la historia de terror más corta del marketing: «después vemos el presupuesto»."],
+      "duracion": "40–55 s",
+      "grabar": { "plano": "A cámara, con luz baja y una linterna desde abajo", "lugar": "Pieza oscura", "luz": "Linterna del celular desde abajo (de terror)", "ropa": "Un disfraz simple: sábana, o un cartel que diga «Aprendizaje limitado»" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Feliz Halloween. Estas son las cosas que de verdad le dan miedo a un marketero." },
+        { "t": "CINCO", "dice": "Cinco: «después vemos el presupuesto»." },
+        { "t": "CUATRO", "dice": "Cuatro: el píxel que dejó de funcionar un viernes en la noche." },
+        { "t": "TRES", "dice": "Tres: «Aprendizaje limitado»." },
+        { "t": "DOS", "dice": "Dos: un cliente que pide «hazlo viral»." },
+        { "t": "UNO", "dice": "Y uno… (pausa larga, linterna se apaga) «¿Lo podemos ver en una llamada rapidita?»" }
+      ],
+      "broll": [],
+      "props": ["Linterna", "Sábana o cartel"],
+      "edicion": {
+        "estilo": "Grano de película antigua, tono verdoso, números con tipografía de terror. Susto final con pantalla en negro.",
+        "subtitulos": "Tipografía de terror, temblorosa",
+        "musica": "Ambiente de terror (drone grave + cajita de música)",
+        "efectos": ["Trueno en cada número", "Latido que se acelera hacia el uno", "Susto (jump scare) con grito corto en el final"],
+        "ritmo": "Lento y tenso; el remate rápido"
+      },
+      "post": { "texto": "¿Cuál te da más miedo? 🎃 Día 10/30.", "hashtags": ["#halloween", "#marketing", "#agencia", "#humor", "#metaads"], "sonido": "Sonido de terror en tendencia de Halloween" }
+    }
+  },
+  {
+    "fecha": "2026-11-01", "pilar": "condor", "formato": "Storytime",
+    "titulo": "El error que casi nos cuesta un cliente",
+    "gancho": "Este error casi nos cuesta un cliente, y fue culpa mía.",
+    "datos": {
+      "origen": "persona (tú, vulnerable)",
+      "por_que": "Admitir un error real da confianza más rápido que cualquier logro. Los storytime retienen hasta el final para saber cómo termina.",
+      "ganchos_alt": ["La peor llamada que he tenido con un cliente empezó así.", "Nunca le digas esto a un cliente. Yo lo hice."],
+      "duracion": "60–90 s",
+      "grabar": { "plano": "A cámara, sentado y cerca; tono de conversación", "lugar": "Un lugar tranquilo, distinto del escritorio (living, auto detenido)", "luz": "Suave", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Este error casi nos cuesta un cliente, y fue culpa mía." },
+        { "t": "CONTEXTO", "dice": "[Qué estaban haciendo, sin nombrar al cliente.]" },
+        { "t": "EL ERROR", "dice": "[Qué pasó exactamente.]" },
+        { "t": "CÓMO LO ARREGLAMOS", "dice": "[Qué hiciste después.]" },
+        { "t": "LECCIÓN", "dice": "[La regla que te dejó, en una frase.]" }
+      ],
+      "broll": ["2–3 tomas tuyas en silencio (mirando por la ventana, caminando) para cubrir"],
+      "props": [],
+      "edicion": {
+        "estilo": "Cinematográfico: barras negras, color más frío y zoom lento constante. Texto mínimo.",
+        "subtitulos": "Pequeños abajo, elegantes, sin color",
+        "musica": "Piano emotivo, ~70 BPM",
+        "efectos": ["Golpe sordo en «fue culpa mía»", "Silencio total antes de la lección"],
+        "ritmo": "Lento a propósito: contraste con el resto de la serie"
+      },
+      "post": { "texto": "El error que más me enseñó. Día 11/30.", "hashtags": ["#emprendimiento", "#liderazgo", "#errores", "#clientes", "#reto30dias"], "sonido": "Piano emotivo en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-02", "pilar": "diseno", "formato": "Pantalla + corrección",
+    "titulo": "Así se ve una página hecha por IA (y cómo arreglarla)",
+    "gancho": "Esta página la hizo una IA en 30 segundos. Y se nota.",
+    "datos": {
+      "origen": "objeto (una landing generada por IA)",
+      "por_que": "Todos están haciendo webs con IA y no saben por qué se ven genéricas. Tú sabes exactamente qué tiene: es tu pelea diaria contra lo «claudificado».",
+      "ganchos_alt": ["Todas las páginas hechas con IA se ven iguales. Te muestro por qué.", "Si tu web tiene esto, la hizo una IA."],
+      "duracion": "60–75 s",
+      "grabar": { "plano": "Pantalla + cara", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Esta página la hizo una IA en 30 segundos. Y se nota." },
+        { "t": "SEÑALES", "dice": "Las señales: [las 3 que más ves, ej. degradado morado, tarjetas con borde, «Desbloquea tu potencial»]." },
+        { "t": "ARREGLO", "dice": "Lo que cambio yo: [tus 2–3 arreglos]." },
+        { "t": "ANTES/DESPUÉS", "dice": "Mira la diferencia." },
+        { "t": "CIERRE", "dice": "La IA hace el 80%. El 20% que vende lo pones tú." }
+      ],
+      "broll": ["Pantalla generando la página", "Pantalla con tu versión corregida (scroll lento)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Círculos rojos dibujados a mano sobre cada señal de IA. Cortina de antes/después.",
+        "subtitulos": "Palabra activa; «se nota» gigante",
+        "musica": "Tendencia tranquila",
+        "efectos": ["Marcador dibujando (sonido de plumón)", "Buzzer por señal", "Whoosh en la cortina"],
+        "ritmo": "Un círculo cada 1,5 s"
+      },
+      "post": { "texto": "¿Tu web pasa el test? Día 12/30.", "hashtags": ["#diseñoweb", "#ia", "#landingpage", "#ux", "#webdesign"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-11-03", "pilar": "anuncios", "formato": "Reacción a anuncios",
+    "titulo": "3 anuncios que vi esta semana y les robaría la idea",
+    "gancho": "Vi tres anuncios esta semana que me dieron envidia. Les robaría la idea.",
+    "datos": {
+      "origen": "objeto (anuncios reales de la Biblioteca de anuncios de Meta)",
+      "por_que": "Formato repetible cada semana (puede ser serie fija). Aporta valor sin esfuerzo de producción.",
+      "ganchos_alt": ["Este anuncio es tan bueno que me enojé.", "Si vendes algo, copia esto (legalmente)."],
+      "duracion": "60–75 s",
+      "grabar": { "plano": "Tú delante de la pantalla con cada anuncio", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Vi tres anuncios esta semana que me dieron envidia. Les robaría la idea." },
+        { "t": "UNO", "dice": "Uno: [marca]. Lo bueno: [qué truco usa]." },
+        { "t": "DOS", "dice": "Dos: [marca]. [Truco.]" },
+        { "t": "TRES", "dice": "Tres: [marca]. [Truco.]" },
+        { "t": "CIERRE", "dice": "Todos tienen lo mismo: [patrón en común]. Úsalo." }
+      ],
+      "broll": ["Grabación de pantalla de cada anuncio (de la Biblioteca de anuncios de Meta)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Cada anuncio en un marco de celular flotando con un sello «ROBADO». Tú recortado delante, apuntando.",
+        "subtitulos": "Palabra activa",
+        "musica": "Beat de robo / heist, 95 BPM",
+        "efectos": ["Sello de goma en «ROBADO»", "Clic de captura de pantalla", "Whoosh entre anuncios"],
+        "ritmo": "Un anuncio cada ~15 s"
+      },
+      "post": { "texto": "¿Cuál le robarías tú? Día 13/30.", "hashtags": ["#publicidad", "#anuncios", "#metaads", "#creatividad", "#marketing"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-11-04", "pilar": "ia", "formato": "Lista con pantalla",
+    "titulo": "Lo que mi IA hace mientras yo duermo",
+    "gancho": "Mientras duermo, una IA trabaja para mí. Esto es lo que hace.",
+    "datos": {
+      "origen": "objeto (tus automatizaciones reales: el informe de Meta lunes, miércoles y viernes, etc.)",
+      "por_que": "«Trabaja mientras duermo» es una promesa poderosa, y lo puedes mostrar de verdad: el informe PDF automático existe.",
+      "ganchos_alt": ["Me despierto y el informe del cliente ya está hecho. Sin mí.", "Tengo un empleado que no duerme y no cobra sueldo."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "Tú en la cama o tomando café + pantallas", "lugar": "Casa, temprano", "luz": "Luz de la mañana", "ropa": "De casa (contraste)" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Mientras duermo, una IA trabaja para mí. Esto es lo que hace." },
+        { "t": "UNO", "dice": "Lunes, miércoles y viernes arma el informe de anuncios de un cliente y lo deja listo en PDF." },
+        { "t": "DOS", "dice": "[Otra automatización real.]" },
+        { "t": "TRES", "dice": "[Otra.]" },
+        { "t": "CIERRE", "dice": "No es magia: son tareas repetidas que alguien tenía que hacer igual." }
+      ],
+      "broll": ["Despertador sonando", "El PDF del informe abierto (difuminado si tiene datos)", "Café"],
+      "props": [],
+      "edicion": {
+        "estilo": "Noche → día: arranca azul oscuro con la hora 03:00 y avanza a 08:00 mientras aparecen las tareas hechas con check.",
+        "subtitulos": "Palabra activa; checks verdes al costado",
+        "musica": "Lo-fi suave, 80 BPM",
+        "efectos": ["Despertador al inicio", "Ding de check por tarea", "Notificación de correo"],
+        "ritmo": "Una tarea cada 8–10 s"
+      },
+      "post": { "texto": "¿Qué tarea le darías a una IA? Día 14/30.", "hashtags": ["#automatizacion", "#ia", "#productividad", "#negocios", "#reto30dias"], "sonido": "Lo-fi en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-05", "pilar": "chile", "formato": "Sketch POV",
+    "titulo": "POV: eres el único de la oficina que sabe usar IA",
+    "gancho": "POV: eres el único de la oficina que sabe usar inteligencia artificial.",
+    "datos": {
+      "origen": "persona (los compañeros de oficina) + espacio (la oficina)",
+      "por_que": "Muy identificable; la gente etiqueta a ese compañero. Varios personajes rápidos con el mismo actor.",
+      "ganchos_alt": ["Cuando en la oficina se enteran de que sabes usar ChatGPT.", "Mi nuevo cargo: soporte técnico de IA para toda la oficina."],
+      "duracion": "40–55 s",
+      "grabar": { "plano": "Tú a cámara (reacciones) + personajes con un accesorio cada uno", "lugar": "Oficina o escritorio", "luz": "Pareja", "ropa": "Un accesorio por personaje: corbata (jefe), lentes (contadora), audífonos (practicante)" },
+      "beats": [
+        { "t": "JEFE", "dice": "«Oye, ¿le puedes pedir a la IA que haga la presentación del directorio? Es para en una hora»." },
+        { "t": "CONTADORA", "dice": "«¿La IA puede hacer el balance? Pero que no se equivoque»." },
+        { "t": "PRACTICANTE", "dice": "«Ya le pedí todo a la IA, ¿por qué me sale en inglés?»" },
+        { "t": "TÚ", "dice": "(cara de cansancio a cámara, 2 s)" },
+        { "t": "JEFE", "dice": "«Y de paso, ¿le preguntas si me pueden subir el sueldo?»" }
+      ],
+      "broll": [],
+      "props": ["Corbata", "Lentes", "Audífonos"],
+      "edicion": {
+        "estilo": "Etiqueta con nombre de cada personaje al entrar; tu reacción con zoom lento.",
+        "subtitulos": "Burbujas por personaje",
+        "musica": "La canción viral del momento (desde la app)",
+        "efectos": ["Notificación de Teams/Slack genérica por cada pedido", "Suspiro largo en tu reacción", "Risa enlatada corta al final"],
+        "ritmo": "Una línea por corte"
+      },
+      "post": { "texto": "Etiqueta al de tu oficina 😂 Día 15/30.", "hashtags": ["#oficina", "#humor", "#ia", "#trabajo", "#chile"], "sonido": "Canción viral de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-11-06", "pilar": "anuncios", "formato": "Checklist a cámara",
+    "titulo": "Antes de subir el presupuesto, revisa esto",
+    "gancho": "No le subas el presupuesto a tu anuncio hasta revisar estas tres cosas.",
+    "datos": {
+      "origen": "objeto (el botón de presupuesto)",
+      "por_que": "Error carísimo y muy común. Un consejo que ahorra plata se guarda y se comparte.",
+      "ganchos_alt": ["Subirle el presupuesto a un anuncio malo es quemar plata más rápido.", "Tu anuncio no necesita más plata. Necesita esto."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "No le subas el presupuesto a tu anuncio hasta revisar estas tres cosas." },
+        { "t": "UNO", "dice": "Uno: la oferta. Si el precio no es atractivo, más gente va a ignorarlo más rápido." },
+        { "t": "DOS", "dice": "Dos: los primeros tres segundos. Si nadie se queda, no hay nada que escalar." },
+        { "t": "TRES", "dice": "Tres: la página a la que llegan. Si no carga rápido en el celular, pierdes la venta igual." },
+        { "t": "CIERRE", "dice": "Arregla eso y después escala." }
+      ],
+      "broll": ["Pantalla del Administrador de anuncios con el campo de presupuesto (sin datos de cliente)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Un billete que se quema al fondo durante el gancho. Checklist que se va marcando detrás de ti.",
+        "subtitulos": "Palabra clave gigante: «OFERTA», «3 SEGUNDOS», «PÁGINA»",
+        "musica": "Tendencia con buen bajo",
+        "efectos": ["Fuego en el billete", "Check por punto", "Freno de auto en «no le subas»"],
+        "ritmo": "Zoom punch por punto"
+      },
+      "post": { "texto": "Guárdalo antes de tocar el presupuesto. Día 16/30.", "hashtags": ["#metaads", "#facebookads", "#ecommerce", "#emprendedores", "#publicidad"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-11-07", "pilar": "diseno", "formato": "Comparación en pantalla",
+    "titulo": "Por qué las apps caras se sienten caras",
+    "gancho": "No es el color, ni el logo. Lo que hace que una app se sienta cara es cómo se mueve.",
+    "datos": {
+      "origen": "objeto (apps premium en tu celular)",
+      "por_que": "Revela un secreto de diseño que todos sienten y nadie sabe nombrar. Tu firma: «movimiento con sentido».",
+      "ganchos_alt": ["Haz esta prueba con cualquier app: si rebota así, es cara.", "Apple gasta millones en esto, y casi nadie lo nota."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "Graba la pantalla de tu celular usando apps premium vs. apps baratas + tu cara", "lugar": "Cualquiera", "luz": "Pareja", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "No es el color, ni el logo. Lo que hace que una app se sienta cara es cómo se mueve." },
+        { "t": "EJEMPLO", "dice": "Mira cómo abre esta ventana: no aparece, llega. Tiene peso." },
+        { "t": "CONTRASTE", "dice": "Ahora mira esta otra: aparece de golpe. Se siente barata y no sabes por qué." },
+        { "t": "EL SECRETO", "dice": "Se llama animación con resorte: todo lo que se mueve tiene masa, como en la vida real." },
+        { "t": "CIERRE", "dice": "Si diseñas algo, que se mueva como un objeto, no como una diapositiva." }
+      ],
+      "broll": ["Grabación de pantalla: abrir/cerrar apps de Apple", "Grabación de una app sin animación"],
+      "props": [],
+      "edicion": {
+        "estilo": "Las dos grabaciones lado a lado en cámara lenta, con una curva de movimiento dibujada encima.",
+        "subtitulos": "Palabra activa; «PESO» y «RESORTE» gigantes",
+        "musica": "Elegante minimal",
+        "efectos": ["Sonido de resorte suave", "Clics de interfaz premium", "Silencio en la cámara lenta"],
+        "ritmo": "Cámaras lentas largas, cortes limpios"
+      },
+      "post": { "texto": "Ahora no vas a poder dejar de notarlo. Día 17/30.", "hashtags": ["#uxdesign", "#uidesign", "#apple", "#diseño", "#apps"], "sonido": "Instrumental elegante en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-08", "pilar": "condor", "formato": "Tour de setup",
+    "titulo": "Mi setup: un PC y un Mac trabajando juntos",
+    "gancho": "Trabajo con dos computadores al mismo tiempo, y comparten el mismo cerebro.",
+    "datos": {
+      "origen": "espacio (tu escritorio) + objeto (el Mac M5 nuevo)",
+      "por_que": "Los tours de setup se ven mucho. Tu ángulo diferente: un cerebro sincronizado (Obsidian) entre los dos.",
+      "ganchos_alt": ["Mi Mac y mi PC se cuentan todo.", "Tengo un Mac nuevo y lo uso SOLO para trabajar. Esta es la regla."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "Plano general del escritorio + detalles cerca (manos, pantallas)", "lugar": "Tu escritorio ordenado", "luz": "La de siempre + una lámpara cálida", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Trabajo con dos computadores al mismo tiempo, y comparten el mismo cerebro." },
+        { "t": "EL PC", "dice": "El PC es para todo: edición pesada, experimentos." },
+        { "t": "EL MAC", "dice": "El Mac es solo trabajo. Nada personal, nada de juegos." },
+        { "t": "EL CEREBRO", "dice": "Y lo que aprendo en uno lo sabe el otro: todo queda en un cerebro de notas sincronizado." },
+        { "t": "CIERRE", "dice": "¿Equipo Mac o equipo PC?" }
+      ],
+      "broll": ["Detalles: teclado, mouse, pantalla encendiéndose", "Pantalla de Obsidian con el grafo de notas"],
+      "props": ["Escritorio ordenado"],
+      "edicion": {
+        "estilo": "Producto premium: tomas lentas con luz, etiquetas flotantes que señalan cada equipo y una línea de luz que une los dos computadores.",
+        "subtitulos": "Pequeños, elegantes",
+        "musica": "Tendencia tipo «setup tour»",
+        "efectos": ["Encendido de Mac", "Whoosh suave en las etiquetas", "Teclado ASMR"],
+        "ritmo": "Tomas de 1–2 s al beat"
+      },
+      "post": { "texto": "¿Equipo Mac o PC? 👇 Día 18/30.", "hashtags": ["#setup", "#mac", "#productividad", "#obsidian", "#deskSetup"], "sonido": "Tendencia de setup" }
+    }
+  },
+  {
+    "fecha": "2026-11-09", "pilar": "ia", "formato": "Storytime técnico",
+    "titulo": "Hice un bot que vende por WhatsApp: el error que cometí",
+    "gancho": "Hice un bot que vende por WhatsApp y empezó a inventar precios.",
+    "datos": {
+      "origen": "objeto (el bot) + error real (precios fuera del prompt)",
+      "por_que": "Es tu aprendizaje real («precios EN el prompt»). Que el bot invente precios es un miedo de cualquier dueño de negocio.",
+      "ganchos_alt": ["Mi bot de WhatsApp le ofreció un descuento que no existía a un cliente.", "Antes de poner un bot a vender, mira esto."],
+      "duracion": "60–75 s",
+      "grabar": { "plano": "A cámara + pantalla del chat (datos falsos)", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Hice un bot que vende por WhatsApp y empezó a inventar precios." },
+        { "t": "QUÉ PASÓ", "dice": "[Cuenta el caso real, sin nombrar al cliente.]" },
+        { "t": "POR QUÉ", "dice": "El bot no sabía los precios, entonces los adivinaba. Una IA nunca dice «no sé» si no se lo enseñas." },
+        { "t": "ARREGLO", "dice": "La regla: los precios van escritos en las instrucciones del bot, y cada vez que cambia un precio, se revisa todo." },
+        { "t": "CIERRE", "dice": "Un bot sin reglas es un vendedor sin jefe." }
+      ],
+      "broll": ["Chat de WhatsApp de ejemplo (simulado) con el precio inventado"],
+      "props": [],
+      "edicion": {
+        "estilo": "El chat de WhatsApp gigante detrás de ti. El precio inventado se marca en rojo y se tacha.",
+        "subtitulos": "Palabra activa",
+        "musica": "Tensión ligera, 95 BPM",
+        "efectos": ["Sonido de mensaje de WhatsApp genérico (no el original)", "Alarma en el precio inventado", "Sello de «ARREGLADO»"],
+        "ritmo": "Mensajes que entran al ritmo"
+      },
+      "post": { "texto": "Lección cara, video gratis. Día 19/30.", "hashtags": ["#whatsapp", "#chatbot", "#ia", "#ventas", "#automatizacion"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-11-10", "pilar": "anuncios", "formato": "Comparación",
+    "titulo": "El anuncio feo que le ganó al bonito",
+    "gancho": "Este anuncio es feo y vendió muchísimo más que este, que es precioso.",
+    "datos": {
+      "origen": "objeto (dos anuncios reales; pide permiso al cliente o anonimiza)",
+      "por_que": "Contradice lo que todos creen (lo bonito vende). Es un aprendizaje real de Tecnobox: el video de precio fue el que vendió.",
+      "ganchos_alt": ["Gastamos más en el anuncio bonito. Vendió el feo.", "Deja de hacer anuncios lindos."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara + los dos anuncios en pantalla", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Este anuncio es feo y vendió muchísimo más que este, que es precioso." },
+        { "t": "POR QUÉ", "dice": "El feo dice el precio en el primer segundo. El bonito te cuenta una historia que nadie pidió." },
+        { "t": "LA REGLA", "dice": "En productos baratos, el precio ES el gancho." },
+        { "t": "CUÁNDO NO", "dice": "En productos caros es al revés: primero confianza, después precio." },
+        { "t": "CIERRE", "dice": "¿Qué vendes tú? Te digo cuál te conviene." }
+      ],
+      "broll": ["Los dos anuncios (con permiso o difuminados)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Ring de boxeo: dos anuncios enfrentados con barra de vida; el feo gana por KO.",
+        "subtitulos": "Palabra clave gigante: «EL PRECIO»",
+        "musica": "Épica de pelea, 120 BPM",
+        "efectos": ["Campana de boxeo", "Golpes en cada argumento", "Público celebrando en el KO"],
+        "ritmo": "Rápido, como pelea"
+      },
+      "post": { "texto": "¿Bonito o feo? Te digo cuál te conviene 👇 Día 20/30.", "hashtags": ["#metaads", "#ecommerce", "#publicidad", "#ventas", "#marketing"], "sonido": "Épico en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-11", "pilar": "chile", "formato": "IA genera + reacción",
+    "titulo": "Le pedí a la IA un comercial chileno de los 90",
+    "gancho": "Le pedí a una inteligencia artificial que hiciera un comercial chileno de los noventa.",
+    "datos": {
+      "origen": "evento (nostalgia de los 90) + chiste",
+      "por_que": "La nostalgia local se comparte mucho; la IA haciéndolo mal o bien da risa. Muestra herramientas sin venderlas.",
+      "ganchos_alt": ["La IA intentó hacer un comercial chileno de los 90 y salió esto.", "Esto es lo más chileno que ha hecho una IA."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "Reacción a cámara mientras ves el resultado", "lugar": "Escritorio", "luz": "De frente", "ropa": "Si tienes algo noventero, mejor" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Le pedí a una inteligencia artificial que hiciera un comercial chileno de los noventa." },
+        { "t": "EL PEDIDO", "dice": "Le dije: [lee el pedido que le hiciste]." },
+        { "t": "RESULTADO", "dice": "(reacción real mientras se ve)" },
+        { "t": "VEREDICTO", "dice": "Nota: [de 1 a 7]." },
+        { "t": "CIERRE", "dice": "¿Qué comercial le pido la próxima vez?" }
+      ],
+      "broll": ["El comercial generado (video o imágenes)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Filtro VHS con fecha naranja en la esquina y franjas, sobre todo el video.",
+        "subtitulos": "Tipografía de los 90 (amarilla con sombra)",
+        "musica": "Jingle noventero (generado o libre)",
+        "efectos": ["Rebobinado de VHS al inicio", "Estática entre partes", "Tono de prueba al final"],
+        "ritmo": "Reacciones con zoom"
+      },
+      "post": { "texto": "¿Nota del 1 al 7? 📼 Día 21/30.", "hashtags": ["#chile", "#nostalgia", "#90s", "#ia", "#humor"], "sonido": "Jingle o tendencia retro" }
+    }
+  },
+  {
+    "fecha": "2026-11-12", "pilar": "diseno", "formato": "Comparación visual",
+    "titulo": "La misma marca con 3 tipografías: ¿cuál cobra más?",
+    "gancho": "Mismo logo, mismo color. Solo cambié la letra. ¿Cuál cobra más caro?",
+    "datos": {
+      "origen": "objeto (una marca ficticia en tres versiones)",
+      "por_que": "Pregunta participativa: la gente comenta su respuesta antes de que la digas. Demuestra criterio de diseño en 30 s.",
+      "ganchos_alt": ["La letra de tu logo le está diciendo a tus clientes cuánto cobrar.", "Adivina cuál de estas marcas es la más cara."],
+      "duracion": "30–45 s",
+      "grabar": { "plano": "A cámara + las 3 versiones", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Mismo logo, mismo color. Solo cambié la letra. ¿Cuál cobra más caro?" },
+        { "t": "PAUSA", "dice": "Piénsalo. Tres segundos." },
+        { "t": "RESPUESTA", "dice": "La [número]. [Por qué, en una frase.]" },
+        { "t": "CIERRE", "dice": "La letra habla antes que tú." }
+      ],
+      "broll": ["Las 3 versiones de la marca (yo las diseño si no tienes tiempo)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Tres tarjetas grandes 1/2/3; cuenta regresiva de 3 s; la ganadora sube con un precio.",
+        "subtitulos": "Mínimos",
+        "musica": "Tendencia de concurso",
+        "efectos": ["Tic de cuenta regresiva", "Ding de respuesta correcta", "Caja registradora en el precio"],
+        "ritmo": "Pausa real de 3 s (aumenta comentarios)"
+      },
+      "post": { "texto": "Comenta tu respuesta ANTES de ver el final 👀 Día 22/30.", "hashtags": ["#tipografia", "#branding", "#diseñografico", "#logo", "#marca"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-11-13", "pilar": "chile", "formato": "Historias de terror",
+    "titulo": "Viernes 13: historias de terror de agencia",
+    "gancho": "Es viernes 13, así que te voy a contar la peor historia de terror que he vivido en una agencia.",
+    "datos": {
+      "origen": "evento (viernes 13)",
+      "por_que": "Fecha real del calendario (13-nov-2026 cae viernes). Segundo capítulo de terror después de Halloween: continuidad.",
+      "ganchos_alt": ["Viernes 13. Esta historia todavía no me deja dormir.", "Lo más terrorífico que me ha pasado trabajando no tuvo fantasmas."],
+      "duracion": "45–75 s",
+      "grabar": { "plano": "Cerca, luz baja, linterna (igual que Halloween)", "lugar": "Pieza oscura", "luz": "Linterna desde abajo", "ropa": "Oscura" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Es viernes 13, así que te voy a contar la peor historia de terror que he vivido en una agencia." },
+        { "t": "LA HISTORIA", "dice": "[Historia real: el archivo que se borró, el lanzamiento que se cayó, el cliente a las 3 a. m.]" },
+        { "t": "EL GIRO", "dice": "[El peor momento.]" },
+        { "t": "CIERRE", "dice": "Cuéntame la tuya. La peor la leo en el próximo video." }
+      ],
+      "broll": [],
+      "props": ["Linterna"],
+      "edicion": {
+        "estilo": "Mismo tono que Halloween (serie de terror): grano, verdoso, sombras.",
+        "subtitulos": "Tipografía de terror",
+        "musica": "Ambiente de terror",
+        "efectos": ["Trueno al inicio", "Latido en el giro", "Puerta que cruje"],
+        "ritmo": "Lento y tenso"
+      },
+      "post": { "texto": "Cuéntame la tuya 👻 Día 23/30.", "hashtags": ["#viernes13", "#terror", "#agencia", "#marketing", "#storytime"], "sonido": "Terror en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-14", "pilar": "ia", "formato": "Opinión polémica",
+    "titulo": "La IA no te va a quitar la pega. El que la usa, sí.",
+    "gancho": "La inteligencia artificial no te va a quitar la pega. El que sabe usarla, sí.",
+    "datos": {
+      "origen": "persona (el «colega que usa IA»)",
+      "por_que": "Opinión con filo que genera debate en comentarios (el algoritmo lo premia). Directa y fácil de defender.",
+      "ganchos_alt": ["Deja de tenerle miedo a la IA. Tenle miedo a tu compañero.", "No te van a reemplazar por una IA. Te van a reemplazar por alguien como yo."],
+      "duracion": "40–55 s",
+      "grabar": { "plano": "A cámara, cerca y firme", "lugar": "Escritorio", "luz": "Contraste fuerte de lado", "ropa": "Oscura" },
+      "beats": [
+        { "t": "GANCHO", "dice": "La inteligencia artificial no te va a quitar la pega. El que sabe usarla, sí." },
+        { "t": "EJEMPLO", "dice": "[Algo que antes te tomaba X horas y ahora toma minutos, real.]" },
+        { "t": "LA REALIDAD", "dice": "Y quien no la usa sigue demorando horas. ¿A quién contratarías tú?" },
+        { "t": "LA SALIDA", "dice": "Lo bueno: aprender a usarla toma semanas, no años." },
+        { "t": "CIERRE", "dice": "¿Estás de acuerdo o no? Te leo." }
+      ],
+      "broll": [],
+      "props": [],
+      "edicion": {
+        "estilo": "Blanco y negro con contraste fuerte; solo la palabra clave en color REC. Texto detrás de ti.",
+        "subtitulos": "Palabra clave gigante",
+        "musica": "Beat oscuro, 85 BPM",
+        "efectos": ["Golpe grave en «el que sabe usarla, sí»", "Reloj en el ejemplo", "Silencio antes de la pregunta"],
+        "ritmo": "Zoom punch en cada frase"
+      },
+      "post": { "texto": "¿De acuerdo o no? 👇 Día 24/30.", "hashtags": ["#ia", "#trabajo", "#futurodeltrabajo", "#opinion", "#chatgpt"], "sonido": "Beat oscuro en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-15", "pilar": "condor", "formato": "Historia de marca",
+    "titulo": "Por qué nos llamamos Cóndor",
+    "gancho": "Nuestra empresa se llama Cóndor, y no es por lo que crees.",
+    "datos": {
+      "origen": "persona + espacio (el origen de la empresa)",
+      "por_que": "Historia de origen = conexión con la marca. Corto, emotivo y propio.",
+      "ganchos_alt": ["Le pusimos Cóndor a una empresa de IA. Esta es la razón.", "Todo empezó con [cómo empezó]."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara, tranquilo; si puedes, afuera con cerro o cielo", "lugar": "Exterior (cordillera si se puede)", "luz": "Hora dorada", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Nuestra empresa se llama Cóndor, y no es por lo que crees." },
+        { "t": "ORIGEN", "dice": "[Cómo nació el nombre, la historia real.]" },
+        { "t": "QUÉ SIGNIFICA", "dice": "[Qué representa hoy para el equipo.]" },
+        { "t": "CIERRE", "dice": "[Frase de misión, corta.]" }
+      ],
+      "broll": ["Cielo / cordillera", "El logo de Cóndor", "Equipo trabajando (si se puede)"],
+      "props": [],
+      "edicion": {
+        "estilo": "Cinematográfico épico: tomas abiertas, barras negras y el logo de Cóndor que aparece al final con luz.",
+        "subtitulos": "Elegantes, abajo",
+        "musica": "Épica andina / cinematográfica, 70–80 BPM",
+        "efectos": ["Viento", "Grito de cóndor (de banco libre)", "Golpe épico al logo"],
+        "ritmo": "Lento, cinematográfico"
+      },
+      "post": { "texto": "Por qué Cóndor 🦅 Día 25/30.", "hashtags": ["#condor", "#emprendimiento", "#chile", "#historia", "#startup"], "sonido": "Épico en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-16", "pilar": "anuncios", "formato": "Tutorial rápido",
+    "titulo": "Pruebo 3 ganchos sin grabar 3 videos",
+    "gancho": "Así pruebo tres anuncios distintos grabando un solo video.",
+    "datos": {
+      "origen": "objeto (el cuerpo del video + 3 cabezas)",
+      "por_que": "Truco concreto que ahorra tiempo y plata. Lo haces de verdad (Safetygate v3: 3 ganchos por cuerpo).",
+      "ganchos_alt": ["Deja de grabar 10 anuncios. Graba uno y cámbiale la cabeza.", "El truco que usan las marcas grandes para probar anuncios."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "A cámara + esquema simple", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Así pruebo tres anuncios distintos grabando un solo video." },
+        { "t": "EL TRUCO", "dice": "Grabo el cuerpo una vez, y tres comienzos distintos." },
+        { "t": "CÓMO", "dice": "Pego cada comienzo al mismo cuerpo, y subo los tres al mismo conjunto de anuncios." },
+        { "t": "RESULTADO", "dice": "Meta le da más plata al que funciona. Yo solo miro cuál ganó." },
+        { "t": "CIERRE", "dice": "Un video, tres pruebas. Guárdalo." }
+      ],
+      "broll": ["Línea de tiempo de edición mostrando las 3 cabezas + 1 cuerpo"],
+      "props": [],
+      "edicion": {
+        "estilo": "Esquema animado: 3 cabezas de colores que se enchufan a un cuerpo gris, como piezas de LEGO.",
+        "subtitulos": "Palabra activa",
+        "musica": "Tendencia",
+        "efectos": ["Clic de pieza encajando", "Ding en el ganador", "Whoosh"],
+        "ritmo": "Gráfico por idea"
+      },
+      "post": { "texto": "Un video, tres pruebas. Guárdalo. Día 26/30.", "hashtags": ["#metaads", "#publicidad", "#marketingdigital", "#creativos", "#anuncios"], "sonido": "Tendencia de la semana" }
+    }
+  },
+  {
+    "fecha": "2026-11-17", "pilar": "diseno", "formato": "Rediseño en vivo",
+    "titulo": "Rediseño en vivo la web de un seguidor",
+    "gancho": "Me dejaste tu página en los comentarios. La rediseñé.",
+    "datos": {
+      "origen": "persona (un seguidor real del día 5)",
+      "por_que": "Premia al que comentó (más comentarios en los próximos) y muestra tu oficio con un caso real. Cierra el ciclo abierto el día 5.",
+      "ganchos_alt": ["Elegí la peor web de los comentarios y la arreglé.", "[Nombre de la marca] me pidió ayuda. Esto hice."],
+      "duracion": "60–90 s",
+      "grabar": { "plano": "Pantalla del rediseño (cámara rápida) + cara al inicio y al final", "lugar": "Escritorio", "luz": "De frente", "ropa": "Normal" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Me dejaste tu página en los comentarios. La rediseñé." },
+        { "t": "ANTES", "dice": "Así estaba: [qué le fallaba, con respeto]." },
+        { "t": "PROCESO", "dice": "(cámara rápida, narra 2–3 decisiones)" },
+        { "t": "DESPUÉS", "dice": "Y así quedó." },
+        { "t": "CIERRE", "dice": "Déjame la tuya. Elijo otra la próxima semana." }
+      ],
+      "broll": ["Grabación de pantalla del rediseño completo"],
+      "props": [],
+      "edicion": {
+        "estilo": "Cámara rápida con un contador de tiempo; revelación final con cortina y cámara lenta.",
+        "subtitulos": "Palabra activa",
+        "musica": "Tendencia de transformación (before/after)",
+        "efectos": ["Rebobinado en la cámara rápida", "Whoosh + golpe en la revelación", "Aplausos cortos"],
+        "ritmo": "Cámara rápida ×12"
+      },
+      "post": { "texto": "Déjame tu web 👇 elijo otra la próxima semana. Día 27/30.", "hashtags": ["#rediseño", "#diseñoweb", "#beforeandafter", "#ux", "#landingpage"], "sonido": "Tendencia antes/después" }
+    }
+  },
+  {
+    "fecha": "2026-11-18", "pilar": "ia", "formato": "Pantalla + explicación",
+    "titulo": "Mi IA tiene memoria: así guardo todo lo que aprendo",
+    "gancho": "Mi inteligencia artificial se acuerda de todo lo que hemos trabajado juntos. Te muestro cómo.",
+    "datos": {
+      "origen": "objeto (el cerebro en Obsidian: el grafo)",
+      "por_que": "El grafo de notas se ve espectacular y la idea de «IA con memoria» es nueva para la mayoría. Lo tienes funcionando de verdad.",
+      "ganchos_alt": ["Le construí un cerebro a mi IA.", "Cada error que comete mi IA, lo anota para no repetirlo."],
+      "duracion": "45–60 s",
+      "grabar": { "plano": "Pantalla con el grafo de Obsidian moviéndose + cara", "lugar": "Escritorio", "luz": "Baja, que brille la pantalla", "ropa": "Oscura" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Mi inteligencia artificial se acuerda de todo lo que hemos trabajado juntos. Te muestro cómo." },
+        { "t": "EL CEREBRO", "dice": "Cada cosa que aprendemos queda escrita en una nota. Esto de acá son cientos de notas conectadas." },
+        { "t": "LOS ERRORES", "dice": "Incluso tiene una lista de sus propios errores, para no repetirlos." },
+        { "t": "EL RESULTADO", "dice": "Así no le explico lo mismo dos veces. Llega y sabe." },
+        { "t": "CIERRE", "dice": "¿Quieres que te muestre cómo armarlo?" }
+      ],
+      "broll": ["Grafo de Obsidian girando (pantalla)", "Scroll por la nota de errores (sin datos sensibles)"],
+      "props": [],
+      "edicion": {
+        "estilo": "El grafo detrás de ti a pantalla completa, con zoom hacia nodos mientras hablas. Brillo sutil.",
+        "subtitulos": "Palabra activa; «MEMORIA» gigante",
+        "musica": "Ambient tecnológico, 90 BPM",
+        "efectos": ["Sinapsis / chispa al conectar nodos", "Escritura de teclado", "Whoosh de zoom"],
+        "ritmo": "Zoom continuo"
+      },
+      "post": { "texto": "¿Te muestro cómo armarlo? Día 28/30.", "hashtags": ["#obsidian", "#ia", "#productividad", "#segundocerebro", "#claude"], "sonido": "Ambient en tendencia" }
+    }
+  },
+  {
+    "fecha": "2026-11-19", "pilar": "condor", "formato": "Mito vs realidad",
+    "titulo": "Lo que la gente cree que hace un COO vs. lo que hace",
+    "gancho": "Lo que la gente cree que hace un COO… y lo que hago de verdad.",
+    "datos": {
+      "origen": "chiste (mito vs realidad) + persona",
+      "por_que": "Formato de contraste rápido y repetible. Humaniza el cargo.",
+      "ganchos_alt": ["Lo que mi mamá cree que hago vs. lo que hago.", "COO: expectativa vs. realidad."],
+      "duracion": "30–45 s",
+      "grabar": { "plano": "Parejas de tomas: MITO (exagerado, elegante) y REALIDAD (tú real)", "lugar": "Escritorio", "luz": "MITO: dramática; REALIDAD: normal", "ropa": "MITO: chaqueta; REALIDAD: polerón" },
+      "beats": [
+        { "t": "MITO 1", "dice": "(firmando papeles con un café caro)" },
+        { "t": "REALIDAD 1", "dice": "(respondiendo 40 WhatsApps a la vez)" },
+        { "t": "MITO 2", "dice": "(dando un discurso)" },
+        { "t": "REALIDAD 2", "dice": "(arreglando un píxel a la 1 a. m.)" },
+        { "t": "CIERRE", "dice": "Y no lo cambiaría." }
+      ],
+      "broll": [],
+      "props": ["Chaqueta", "Café «caro»"],
+      "edicion": {
+        "estilo": "Pantalla dividida con etiquetas MITO / REALIDAD; el mito con brillo exagerado y la realidad con tonos normales.",
+        "subtitulos": "Solo las etiquetas",
+        "musica": "Canción viral de contraste (desde la app)",
+        "efectos": ["Disco rayado (record scratch) al pasar a la realidad", "Ding del mito"],
+        "ritmo": "Al beat de la canción"
+      },
+      "post": { "texto": "¿Cuál es tu mito vs. realidad? Día 29/30.", "hashtags": ["#coo", "#expectativavsrealidad", "#startup", "#humor", "#trabajo"], "sonido": "Canción viral de contraste" }
+    }
+  },
+  {
+    "fecha": "2026-11-20", "pilar": "condor", "formato": "Cierre del reto",
+    "titulo": "30 días después: lo que pasó",
+    "gancho": "Hace 30 días dije que iba a subir un video diario editado por una IA. Esto pasó.",
+    "datos": {
+      "origen": "evento (fin del reto)",
+      "por_que": "Cierra la promesa del día 1: quien siguió la serie quiere el resultado. Con números reales es el video más creíble del mes.",
+      "ganchos_alt": ["30 videos, 30 días, cero edición mía. Los números.", "¿Funcionó dejar que una IA edite mis videos? Te muestro los números."],
+      "duracion": "60–75 s",
+      "grabar": { "plano": "A cámara, mismo plano que el día 1 (para comparar)", "lugar": "El mismo del día 1", "luz": "La misma", "ropa": "La misma del día 1" },
+      "beats": [
+        { "t": "GANCHO", "dice": "Hace 30 días dije que iba a subir un video diario editado por una IA. Esto pasó." },
+        { "t": "NÚMEROS", "dice": "[Seguidores antes y después, vistas totales, el video que más funcionó: números REALES.]" },
+        { "t": "LO QUE APRENDÍ", "dice": "[2 aprendizajes reales.]" },
+        { "t": "LO QUE NO FUNCIONÓ", "dice": "[1 cosa honesta.]" },
+        { "t": "CIERRE", "dice": "¿Sigo otros 30?" }
+      ],
+      "broll": ["Capturas de las estadísticas reales"],
+      "props": [],
+      "edicion": {
+        "estilo": "Arranca con un clip del día 1 en pantalla partida (antes/ahora). Contadores animados con los números reales. Mosaico de los 30 videos al final.",
+        "subtitulos": "Palabra clave gigante en cada número",
+        "musica": "Épica de logro, 110 BPM",
+        "efectos": ["Contador que sube (tic rápido)", "Golpe en cada número", "Aplausos / celebración al final"],
+        "ritmo": "Sube de intensidad hasta el mosaico"
+      },
+      "post": { "texto": "30/30. ¿Sigo otros 30? 👇", "hashtags": ["#reto30dias", "#resultados", "#ia", "#contenido", "#marcapersonal"], "sonido": "Épico en tendencia" }
+    }
+  }
+]

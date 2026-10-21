@@ -1,0 +1,15 @@
+{
+  // Estudio · API del calendario de orgánicos de Max + subida de material por trozos + MCP para Claude.
+  // La página vive en GitHub Pages (../web); este Worker solo responde /api/* y /mcp.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "estudio-video",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "estudio-video", "database_id": "PENDIENTE", "migrations_dir": "migrations" }
+  ],
+  "r2_buckets": [{ "binding": "MATERIAL", "bucket_name": "estudio-video-material" }],
+  "vars": { "ORIGENES": "https://sudo-osito.github.io,http://localhost:8790" }
+  // Secreto (wrangler secret put FIRMA): firma de los enlaces de descarga.
+}
