@@ -55,14 +55,30 @@
   <div id="velo" class="velo" hidden></div>
   <aside id="detalle" class="cajon" aria-label="Detalle del video" hidden></aside>
 
+  <!-- Teleprompter: un párrafo a la vez, cada uno con su tiempo (como el estudio de voz) -->
   <div id="prompter" class="prompter" hidden>
-    <div class="prompter-texto" id="prompter-texto"></div>
-    <div class="prompter-mandos">
-      <button class="boton oscuro" data-p="cerrar">Cerrar</button>
-      <label class="velocidad">Velocidad <input type="range" min="10" max="120" value="42" id="prompter-vel"></label>
-      <button class="boton oscuro" data-p="espejo">Espejo</button>
-      <button class="boton blanco" data-p="play">Partir</button>
+    <header class="pr-arriba">
+      <button class="pr-volver" data-p="cerrar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 15l-5-5 5-5"/></svg>Volver</button>
+      <span class="pr-reloj" id="pr-reloj"></span>
+      <button class="pr-icono" data-p="espejo" aria-label="Espejo" title="Espejo (para teleprompter con vidrio)"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14M7 6L3 10l4 4M13 6l4 4-4 4"/></svg></button>
+    </header>
+    <div class="pr-escenario" id="pr-escenario">
+      <div class="pr-lista" id="pr-lista"></div>
+      <div class="pr-cuenta" id="pr-cuenta" hidden></div>
     </div>
+    <footer class="pr-abajo">
+      <div class="pr-controles">
+        <button class="pr-icono grande" data-p="anterior" aria-label="Párrafo anterior"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5.5v13L9.5 12z"/></svg></button>
+        <button class="pr-play" data-p="play" aria-label="Partir"><svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg><svg class="i-pausa" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg></button>
+        <button class="pr-icono grande" data-p="siguiente" aria-label="Párrafo siguiente"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5.5v13L14.5 12z"/></svg></button>
+      </div>
+      <div class="pr-ajustes">
+        <div class="pr-segmento" role="group" aria-label="Ritmo">
+          <button data-ritmo="lento">Lento</button><button data-ritmo="normal">Normal</button><button data-ritmo="rapido">Rápido</button>
+        </div>
+        <label class="pr-auto"><input type="checkbox" id="pr-auto"><span>Avance automático</span></label>
+      </div>
+    </footer>
   </div>
 
   <div id="aviso" class="aviso" role="status" aria-live="polite"></div>

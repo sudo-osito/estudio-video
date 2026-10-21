@@ -244,9 +244,9 @@ function guionHtml(v) {
   return `
     ${v.gancho ? `<div class="bloque"><h4>Primera frase</h4><p class="gancho">${esc(v.gancho)}</p></div>` : ""}
     <div class="acciones"><button class="boton primario" data-prompter="${v.id}">Abrir teleprompter</button><button class="boton" data-pestana-det="material">Subir material</button></div>
-    ${beats.length ? `<div class="bloque"><h4>Lo que dices, en orden</h4><div class="beats">${beats.map((b, i) => `
+    ${beats.length ? `<div class="bloque"><h4>Lo que dices, en orden · ≈ ${reloj(partesDe(v).reduce((a, p) => a + segundosDe(p.texto, "normal", p.fijo), 0))} en total, contando la primera frase</h4><div class="beats">${beats.map((b, i) => `
       <label class="beat"><input type="checkbox" data-beat="${i}" ${v.hechos.includes(i) ? "checked" : ""}>
-        <div>${b.t ? `<span class="beat-t">${esc(b.t)}</span>` : ""}<p class="beat-dice">${esc(b.dice)}</p>${b.plano ? `<p class="beat-plano">${esc(b.plano)}</p>` : ""}</div></label>`).join("")}</div></div>` : ""}
+        <div><span class="beat-t">${b.t ? `${esc(b.t)} · ` : ""}${Math.round(segundosDe(b.dice, "normal", b.seg))} s</span><p class="beat-dice">${esc(b.dice)}</p>${b.plano ? `<p class="beat-plano">${esc(b.plano)}</p>` : ""}</div></label>`).join("")}</div></div>` : ""}
     ${d.ganchos_alt?.length ? `<div class="bloque"><h4>Graba también estas primeras frases (para probar cuál funciona)</h4><div class="alt">${d.ganchos_alt.map((x) => `<div>${esc(x)}</div>`).join("")}</div></div>` : ""}
     ${Object.keys(g).length ? `<div class="bloque"><h4>Cómo grabarlo</h4><div class="datos">${[["plano", "Plano"], ["lugar", "Lugar"], ["luz", "Luz"], ["ropa", "Ropa"]].filter(([k]) => g[k]).map(([k, t]) => `<div><small>${t}</small><span>${esc(g[k])}</span></div>`).join("")}</div></div>` : ""}
     ${d.broll?.length ? `<div class="bloque"><h4>Graba aparte</h4><ul class="lista-simple">${d.broll.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
@@ -398,31 +398,148 @@ async function subirVarios(videoId, archivos) {
 }
 
 
-/* ── Teleprompter ── */
-let prompter = { corre: false, raf: 0, ultimo: 0 };
-function abrirPrompter(v) {
-  const beats = (v.datos?.beats ?? []).filter((b) => b.dice !== v.gancho);
-  $("#prompter-texto").innerHTML = (v.gancho ? `<p><span class="marca-beat">GANCHO</span>${esc(v.gancho)}</p>` : "") +
-    beats.map((b) => `<p>${b.t ? `<span class="marca-beat">${esc(b.t)}</span>` : ""}${esc(b.dice)}</p>`).join("");
-  $("#prompter").hidden = false;
-  $("#prompter-texto").scrollTop = 0;
-  pararPrompter();
+/* ── Teleprompter: un párrafo a la vez, cada uno con su tiempo (como el estudio de voz de Delta Force) ── */
+const RITMOS = { lento: 135, normal: 160, rapido: 185 }; // palabras por minuto
+const DIRECCION = /^\(.*\)$/s; // «(mira a cámara en silencio, 2 segundos)» es una indicación, no se dice
+
+/* Segundos de un párrafo: lo que dura decirlo al ritmo elegido + medio segundo de aire. Las indicaciones usan su propio número. */
+function segundosDe(texto, ritmo = "normal", fijo) {
+  if (fijo) return Number(fijo);
+  const t = String(texto).trim();
+  if (DIRECCION.test(t)) { const n = t.match(/(\d+(?:[.,]\d+)?)\s*seg/); return n ? Number(n[1].replace(",", ".")) : 2; }
+  const palabras = t.replace(/\[[^\]]*\]/g, "xx xx xx").split(/\s+/).filter(Boolean).length;
+  return Math.max(1.5, Math.round((palabras / (RITMOS[ritmo] / 60) + 0.5) * 10) / 10);
 }
-function pararPrompter() { prompter.corre = false; cancelAnimationFrame(prompter.raf); $('[data-p="play"]').textContent = "Partir"; }
+const reloj = (seg) => `${Math.floor(seg / 60)}:${String(Math.floor(seg % 60)).padStart(2, "0")}`;
+
+function partesDe(v) {
+  const beats = (v.datos?.beats ?? []).filter((b) => b.dice !== v.gancho);
+  return [
+    ...(v.gancho ? [{ t: "GANCHO", texto: v.gancho }] : []),
+    ...beats.map((b) => ({ t: b.t ?? "", texto: b.dice, fijo: b.seg })),
+  ];
+}
+
+let pr = {
+  partes: [], i: 0, hecho: 0, corre: false, raf: 0, ultimo: 0, cuenta: 0,
+  ritmo: leerLocal("estudio:ritmo") in RITMOS ? leerLocal("estudio:ritmo") : "normal",
+  auto: leerLocal("estudio:auto") !== "no",
+};
+const durPr = (k) => segundosDe(pr.partes[k].texto, pr.ritmo, pr.partes[k].fijo);
+const totalPr = () => pr.partes.reduce((a, _, k) => a + durPr(k), 0);
+
+function abrirPrompter(v) {
+  pr.partes = partesDe(v);
+  if (!pr.partes.length) return avisar("Este video todavía no tiene guion.");
+  pr.i = 0; pr.hecho = 0;
+  $("#pr-lista").innerHTML = pr.partes.map((p, k) => `
+    <div class="pr-parrafo${DIRECCION.test(p.texto.trim()) ? " direccion" : ""}" data-pi="${k}">
+      <span class="pr-etiqueta">${esc(p.t)}<em data-seg="${k}"></em></span>
+      <p>${esc(p.texto)}</p>
+      <i class="pr-progreso"><b></b></i>
+    </div>`).join("");
+  $("#prompter").classList.toggle("espejo", leerLocal("estudio:espejo") === "si");
+  $("#pr-auto").checked = pr.auto;
+  $("#prompter").hidden = false;
+  document.body.style.overflow = "hidden";
+  history.pushState({ prompter: true }, "");
+  mantenerPantalla(true);
+  pintarPrompter();
+}
+
+function cerrarPrompter(desdeHistorial = false) {
+  if ($("#prompter").hidden) return;
+  pausarPrompter();
+  clearInterval(pr.cuentaIntervalo); $("#pr-cuenta").hidden = true;
+  $("#prompter").hidden = true;
+  document.body.style.overflow = s.sel ? "hidden" : "";
+  if (!s.subidas.size) mantenerPantalla(false);
+  if (!desdeHistorial && history.state?.prompter) history.back();
+}
+
+function pintarPrompter() {
+  document.querySelectorAll(".pr-segmento button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ritmo === pr.ritmo)));
+  document.querySelectorAll(".pr-parrafo").forEach((el, k) => {
+    el.classList.toggle("actual", k === pr.i);
+    el.classList.toggle("pasado", k < pr.i);
+    el.querySelector("[data-seg]").textContent = ` · ${Math.round(durPr(k))} s`;
+    el.querySelector(".pr-progreso b").style.transform = `scaleX(${k < pr.i ? 1 : k === pr.i ? Math.min(1, pr.hecho / durPr(k)) : 0})`;
+  });
+  // El párrafo actual queda arriba, cerca del lente, para que no se note que lees.
+  const actual = document.querySelector(`.pr-parrafo[data-pi="${pr.i}"]`);
+  $("#pr-escenario").scrollTop = 0; // nada debe desplazar el escenario fuera del transform
+  if (actual) $("#pr-lista").style.transform = `translateY(${Math.round($("#pr-escenario").clientHeight * 0.22 - actual.offsetTop)}px)`;
+  pintarReloj();
+  $("#prompter").classList.toggle("corriendo", pr.corre);
+  $('[data-p="play"]').setAttribute("aria-label", pr.corre ? "Pausa" : "Partir");
+}
+
+function pintarReloj() {
+  let pasado = pr.hecho;
+  for (let k = 0; k < pr.i; k++) pasado += durPr(k);
+  $("#pr-reloj").textContent = `${reloj(pasado)} / ${reloj(totalPr())}`;
+  const b = document.querySelector(`.pr-parrafo[data-pi="${pr.i}"] .pr-progreso b`);
+  if (b) b.style.transform = `scaleX(${Math.min(1, pr.hecho / durPr(pr.i))})`;
+}
+
+function irA(k) {
+  pr.i = Math.max(0, Math.min(pr.partes.length - 1, k));
+  pr.hecho = 0;
+  pintarPrompter();
+}
+
+function partirPrompter() {
+  if (pr.corre || pr.cuenta) return;
+  // Cuenta regresiva antes de partir desde un párrafo nuevo (no al retomar una pausa).
+  if (pr.hecho === 0) {
+    pr.cuenta = 3;
+    $("#pr-cuenta").hidden = false;
+    $("#pr-cuenta").textContent = pr.cuenta;
+    pr.cuentaIntervalo = setInterval(() => {
+      pr.cuenta--;
+      if (pr.cuenta > 0) { $("#pr-cuenta").textContent = pr.cuenta; return; }
+      clearInterval(pr.cuentaIntervalo);
+      $("#pr-cuenta").hidden = true;
+      correrPrompter();
+    }, 800);
+    return;
+  }
+  correrPrompter();
+}
+
 function correrPrompter() {
-  prompter.corre = true; prompter.ultimo = performance.now();
-  $('[data-p="play"]').textContent = "Pausa";
-  const el = $("#prompter-texto");
-  let resto = 0;
+  pr.corre = true; pr.cuenta = 0; pr.ultimo = performance.now();
+  pintarPrompter();
   const paso = (t) => {
-    if (!prompter.corre) return;
-    resto += (Number($("#prompter-vel").value) * (t - prompter.ultimo)) / 1000;
-    prompter.ultimo = t;
-    const px = Math.floor(resto); resto -= px; el.scrollTop += px;
-    if (el.scrollTop + el.clientHeight >= el.scrollHeight - 1) return pararPrompter();
-    prompter.raf = requestAnimationFrame(paso);
+    if (!pr.corre) return;
+    pr.hecho += (t - pr.ultimo) / 1000;
+    pr.ultimo = t;
+    if (pr.hecho >= durPr(pr.i)) {
+      if (!pr.auto) { pr.hecho = durPr(pr.i); pintarReloj(); return pausarPrompter(); }
+      if (pr.i >= pr.partes.length - 1) { pr.hecho = durPr(pr.i); pausarPrompter(); return avisar(`Terminado · ${reloj(totalPr())}`); }
+      pr.i++; pr.hecho = 0;
+      pintarPrompter();
+    } else pintarReloj();
+    pr.raf = requestAnimationFrame(paso);
   };
-  prompter.raf = requestAnimationFrame(paso);
+  pr.raf = requestAnimationFrame(paso);
+}
+
+function pausarPrompter() {
+  if (pr.cuenta) { clearInterval(pr.cuentaIntervalo); pr.cuenta = 0; $("#pr-cuenta").hidden = true; }
+  pr.corre = false;
+  cancelAnimationFrame(pr.raf);
+  pintarPrompter();
+}
+
+function accionPrompter(p) {
+  if (p === "cerrar") return cerrarPrompter();
+  if (p === "espejo") { const on = $("#prompter").classList.toggle("espejo"); return guardarLocal("estudio:espejo", on ? "si" : null); }
+  if (p === "play") return pr.corre || pr.cuenta ? pausarPrompter() : partirPrompter();
+  const seguia = pr.corre;
+  if (p === "anterior") irA(pr.hecho > 1.5 ? pr.i : pr.i - 1); // como en un reproductor: primero vuelve al inicio del párrafo
+  if (p === "siguiente") irA(pr.i + 1);
+  if (seguia) { pr.ultimo = performance.now(); }
 }
 
 
@@ -437,7 +554,7 @@ async function cambiarEstado(estado, extra = {}) {
 
 /* ── Eventos ── */
 document.addEventListener("click", async (e) => {
-  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-dia]");
+  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-ritmo],[data-pi],[data-dia]");
   if (!t) { if (e.target.id === "velo") cerrarDetalle(); return; }
   const d = t.dataset;
   if (d.abrir) return abrir(d.abrir, d.pestana || (s.sel === d.abrir ? s.pestana : "guion"));
@@ -458,9 +575,9 @@ document.addEventListener("click", async (e) => {
     const v = s.detalle?.id === d.prompter ? s.detalle : await api(`/api/videos/${d.prompter}`);
     return abrirPrompter(v);
   }
-  if (d.p === "cerrar") { pararPrompter(); $("#prompter").hidden = true; return; }
-  if (d.p === "espejo") return $("#prompter").classList.toggle("espejo");
-  if (d.p === "play") return prompter.corre ? pararPrompter() : correrPrompter();
+  if (d.p) return accionPrompter(d.p);
+  if (d.ritmo) { pr.ritmo = d.ritmo; guardarLocal("estudio:ritmo", d.ritmo); pr.hecho = Math.min(pr.hecho, durPr(pr.i) - 0.1); return pintarPrompter(); }
+  if (d.pi) { const seguia = pr.corre; irA(Number(d.pi)); if (seguia) pr.ultimo = performance.now(); return; }
   try {
     if ("listo" in d) {
       t.disabled = true;
@@ -485,7 +602,9 @@ document.addEventListener("click", async (e) => {
   } catch (err) { avisar(err.message); t.disabled = false; }
 });
 
-$("#prompter-texto").addEventListener("click", () => (prompter.corre ? pararPrompter() : correrPrompter()));
+$("#pr-auto").addEventListener("change", (e) => { pr.auto = e.target.checked; guardarLocal("estudio:auto", pr.auto ? null : "no"); });
+window.addEventListener("popstate", () => cerrarPrompter(true));
+window.addEventListener("resize", () => { if (!$("#prompter").hidden) pintarPrompter(); });
 
 document.addEventListener("input", (e) => { if (e.target.id === "nota") s.borrador = e.target.value; });
 
@@ -512,11 +631,13 @@ document.addEventListener("drop", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
-  if (e.target.matches?.("input, textarea")) return;
-  if (e.key === "Escape") {
-    if (!$("#prompter").hidden) { pararPrompter(); $("#prompter").hidden = true; }
-    else if (s.sel) cerrarDetalle();
+  if (e.target.matches?.("textarea, input[type=password], input[type=text]")) return;
+  if (!$("#prompter").hidden) {
+    const tecla = { Escape: "cerrar", " ": "play", ArrowLeft: "anterior", ArrowUp: "anterior", ArrowRight: "siguiente", ArrowDown: "siguiente" }[e.key];
+    if (tecla) { e.preventDefault(); accionPrompter(tecla); }
+    return;
   }
+  if (e.key === "Escape" && s.sel) cerrarDetalle();
   if (s.sel || s.vista !== "mes" || !$("#prompter").hidden) return;
   if (e.key === "ArrowLeft") $('[data-mes="-1"]').click();
   if (e.key === "ArrowRight") $('[data-mes="1"]').click();
