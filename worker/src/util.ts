@@ -1,6 +1,6 @@
 export interface Env {
   DB: D1Database;
-  MATERIAL: R2Bucket;
+  MATERIAL?: R2Bucket; // R2: falta activarlo en la cuenta
   ORIGENES: string;
   FIRMA?: string;
 }

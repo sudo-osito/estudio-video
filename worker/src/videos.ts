@@ -68,7 +68,7 @@ export async function editar(env: Env, id: string, c: Cambios, quien: string) {
 
 export async function borrar(env: Env, id: string, quien: string) {
   const { results } = await env.DB.prepare("SELECT clave FROM archivos WHERE video_id = ?").bind(id).all<{ clave: string }>();
-  if (results.length) await env.MATERIAL.delete(results.map((r) => r.clave));
+  if (results.length && env.MATERIAL) await env.MATERIAL.delete(results.map((r) => r.clave));
   await env.DB.prepare("DELETE FROM videos WHERE id = ?").bind(id).run();
   await anotar(env, null, quien, `Borró el video ${id}.`);
   return { ok: true };

@@ -4,12 +4,14 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "estudio-video",
   "main": "src/index.ts",
+  "account_id": "5d7a415836e98f7f0afa31fc11cf16a0", // cuenta personal de Max (maximilianopinocv)
   "compatibility_date": "2026-10-01",
   "observability": { "enabled": true },
   "d1_databases": [
-    { "binding": "DB", "database_name": "estudio-video", "database_id": "PENDIENTE", "migrations_dir": "migrations" }
+    { "binding": "DB", "database_name": "estudio-video", "database_id": "41183023-4af6-4928-9331-5397c8a5b16e", "migrations_dir": "migrations" }
   ],
-  "r2_buckets": [{ "binding": "MATERIAL", "bucket_name": "estudio-video-material" }],
+  // R2 se enciende al activarlo en el panel (error 10042): descomentar y `wrangler r2 bucket create estudio-video-material`.
+  // "r2_buckets": [{ "binding": "MATERIAL", "bucket_name": "estudio-video-material" }],
   "vars": { "ORIGENES": "https://sudo-osito.github.io,http://localhost:8790" }
   // Secreto (wrangler secret put FIRMA): firma de los enlaces de descarga.
 }

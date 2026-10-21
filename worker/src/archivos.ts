@@ -21,7 +21,7 @@ export async function iniciar(env: Env, videoId: string, c: { nombre?: string; m
   const id = nuevoId();
   const clave = `${v.fecha}/${videoId.slice(0, 8)}/${tipo}/${id.slice(0, 8)}-${nombre}`;
   const mime = String(c.mime || "application/octet-stream");
-  const sub = await env.MATERIAL.createMultipartUpload(clave, { httpMetadata: { contentType: mime } });
+  const sub = await r2(env).createMultipartUpload(clave, { httpMetadata: { contentType: mime } });
   await env.DB.prepare("INSERT INTO archivos (id, video_id, tipo, nombre, mime, bytes, clave, subida) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
     .bind(id, videoId, tipo, nombre, mime, Number(c.bytes) || 0, clave, sub.uploadId).run();
   if (tipo === "entrega") await anotar(env, videoId, quien, `Empezó a subir la entrega «${nombre}».`);
@@ -40,7 +40,7 @@ export async function subirParte(env: Env, id: string, n: number, req: Request) 
   if (!(n >= 1 && n <= 10000)) throw new ErrorHttp(400, "Número de trozo inválido.");
   const cuerpo = await req.arrayBuffer();
   if (!cuerpo.byteLength) throw new ErrorHttp(400, "Trozo vacío.");
-  const parte = await env.MATERIAL.resumeMultipartUpload(f.clave, f.subida).uploadPart(n, cuerpo);
+  const parte = await r2(env).resumeMultipartUpload(f.clave, f.subida).uploadPart(n, cuerpo);
   await env.DB.prepare("INSERT OR REPLACE INTO partes (archivo_id, n, etag) VALUES (?, ?, ?)").bind(id, n, parte.etag).run();
   return { n, ok: true };
 }
@@ -52,7 +52,7 @@ export async function cerrar(env: Env, id: string, quien: string) {
   if (!results.length) throw new ErrorHttp(400, "No hay trozos subidos.");
   const esperadas = Math.max(1, Math.ceil(f.bytes / PARTE));
   if (f.bytes && results.length !== esperadas) throw new ErrorHttp(409, `Faltan trozos: hay ${results.length} de ${esperadas}.`);
-  const obj = await env.MATERIAL.resumeMultipartUpload(f.clave, f.subida!).complete(results.map((r) => ({ partNumber: r.n, etag: r.etag })));
+  const obj = await r2(env).resumeMultipartUpload(f.clave, f.subida!).complete(results.map((r) => ({ partNumber: r.n, etag: r.etag })));
   await env.DB.batch([
     env.DB.prepare("UPDATE archivos SET estado = 'ok', bytes = ?, subida = NULL WHERE id = ?").bind(obj.size, id),
     env.DB.prepare("DELETE FROM partes WHERE archivo_id = ?").bind(id),
@@ -68,14 +68,20 @@ export async function cerrar(env: Env, id: string, quien: string) {
 
 export async function borrar(env: Env, id: string, quien: string) {
   const f = await archivo(env, id);
-  if (f.subida) await env.MATERIAL.resumeMultipartUpload(f.clave, f.subida).abort().catch(() => {});
-  else await env.MATERIAL.delete(f.clave);
+  if (f.subida) await r2(env).resumeMultipartUpload(f.clave, f.subida).abort().catch(() => {});
+  else await r2(env).delete(f.clave);
   await env.DB.batch([
     env.DB.prepare("UPDATE archivos SET estado = 'borrado', subida = NULL WHERE id = ?").bind(id),
     env.DB.prepare("DELETE FROM partes WHERE archivo_id = ?").bind(id),
   ]);
   await anotar(env, f.video_id, quien, `Borró «${f.nombre}».`);
   return { ok: true };
+}
+
+/* Mientras R2 no esté activado en la cuenta, el calendario funciona y solo la subida avisa. */
+function r2(env: Env): R2Bucket {
+  if (!env.MATERIAL) throw new ErrorHttp(503, "La subida todavía no está activa (falta activar R2 en Cloudflare).");
+  return env.MATERIAL;
 }
 
 function secreto(env: Env) {
@@ -97,7 +103,7 @@ export async function bajar(req: Request, env: Env, id: string, url: URL) {
   const f = url.searchParams.get("f") ?? "";
   if (!exp || exp < Date.now() / 1000 || f !== (await hmac(secreto(env), `${id}.${exp}`))) throw new ErrorHttp(403, "Enlace vencido o inválido.");
   const a = await archivo(env, id);
-  const obj = await env.MATERIAL.get(a.clave, { range: req.headers, onlyIf: req.headers });
+  const obj = await r2(env).get(a.clave, { range: req.headers, onlyIf: req.headers });
   if (!obj) throw new ErrorHttp(404, "El archivo no está en el almacenamiento.");
   const h = new Headers();
   obj.writeHttpMetadata(h);
