@@ -4,36 +4,42 @@ const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
 const PILARES = {
-  ia: { nombre: "Construyo con IA", corto: "IA", color: "var(--p-ia)" },
-  anuncios: { nombre: "Anuncios que venden", corto: "Anuncios", color: "var(--p-anuncios)" },
-  diseno: { nombre: "Diseño que cobra caro", corto: "Diseño", color: "var(--p-diseno)" },
-  condor: { nombre: "Cóndor por dentro", corto: "Cóndor", color: "var(--p-condor)" },
-  chile: { nombre: "Chile + IA", corto: "Chile", color: "var(--p-chile)" },
+  ia: { nombre: "Construyo con IA", var: "ia" },
+  anuncios: { nombre: "Anuncios que venden", var: "anuncios" },
+  diseno: { nombre: "Diseño que cobra caro", var: "diseno" },
+  condor: { nombre: "Cóndor por dentro", var: "condor" },
+  chile: { nombre: "Chile + IA", var: "chile" },
 };
-const pilar = (k) => PILARES[k] ?? { nombre: k || "Sin pilar", corto: k || "—", color: "var(--texto-3)" };
+const pilar = (k) => PILARES[k] ?? { nombre: k || "Sin pilar", var: null };
+const tono = (k) => { const p = pilar(k); return p.var ? `--evento:var(--p-${p.var});--evento-suave:var(--p-${p.var}-suave)` : "--evento:var(--texto-3);--evento-suave:var(--sup-2)"; };
 const ESTADO = {
-  grabar: "Por grabar", material: "Subiendo material", listo: "Listo para editar", editando: "En edición",
+  grabar: "Por grabar", material: "Con material", listo: "Listo para editar", editando: "En edición",
   entregado: "Entregado", publicado: "Publicado", descartado: "Descartado",
 };
 const HECHO = new Set(["listo", "editando", "entregado", "publicado"]);
 
 const DIAS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
 const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
-const MESES_LARGO = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const MESES_LARGO = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 const aFecha = (s) => { const [a, m, d] = s.split("-").map(Number); return new Date(a, m - 1, d); };
 const aTexto = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 const hoyTexto = () => aTexto(new Date());
 const sumarDias = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const lunes = (d) => sumarDias(d, -((d.getDay() + 6) % 7));
 const mb = (b) => (b >= 1073741824 ? `${(b / 1073741824).toFixed(2)} GB` : `${Math.max(1, Math.round(b / 1048576))} MB`);
+const FLECHA = `<svg class="flecha" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 5l5 5-5 5"/></svg>`;
+const CHECK = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg>`;
 
 let s = {
   llave: leerLocal("estudio:llave"),
   videos: [],
-  vista: leerLocal("estudio:vista") || "lista",
+  vista: leerLocal("estudio:vista") === "agenda" ? "agenda" : "mes",
+  mes: hoyTexto().slice(0, 7),
+  dia: hoyTexto(),
   sel: null,
   detalle: null,
   pestana: "guion",
+  recien: false,
   subidas: new Map(), // id temporal → { nombre, bytes, hecho, estado }
 };
 
@@ -85,25 +91,24 @@ async function cargar() {
 
 /* ── Vista principal ── */
 function pintar() {
-  pintarHoy();
-  pintarSemana();
-  s.vista === "mes" ? pintarMes() : pintarLista();
-  document.querySelectorAll(".vista-selector button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.vista === s.vista)));
+  const [a, m] = s.mes.split("-").map(Number);
+  const agenda = s.vista === "agenda";
+  $("#titulo-mes").textContent = agenda ? "Próximos videos" : `${MESES_LARGO[m - 1]} ${a}`;
+  document.querySelectorAll(".nav-mes .icono-boton, .nav-mes .boton").forEach((b) => (b.hidden = agenda));
+  document.querySelectorAll(".segmento button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.vista === s.vista)));
   const hechos = s.videos.filter((v) => HECHO.has(v.estado)).length;
-  $("#racha").hidden = !s.videos.length;
-  $("#racha").textContent = `${hechos}/${s.videos.length} GRABADOS`;
+  $("#progreso").innerHTML = s.videos.length ? `<b>${hechos}</b> de ${s.videos.length} grabados` : "";
+  pintarHoy();
+  agenda ? pintarAgenda() : pintarMes();
 }
-
-function numeroToma(v) { return s.videos.findIndex((x) => x.id === v.id) + 1; }
 
 function videoDeHoy() {
   const hoy = hoyTexto();
-  return s.videos.find((v) => v.fecha === hoy) ?? s.videos.find((v) => v.fecha > hoy && !HECHO.has(v.estado) && v.estado !== "descartado");
+  return s.videos.find((v) => v.fecha === hoy && !HECHO.has(v.estado)) ?? s.videos.find((v) => v.fecha >= hoy && !HECHO.has(v.estado) && v.estado !== "descartado");
 }
 
 function cuandoTexto(fecha) {
-  const hoy = hoyTexto();
-  if (fecha === hoy) return "Hoy se graba";
+  if (fecha === hoyTexto()) return "Hoy";
   if (fecha === aTexto(sumarDias(new Date(), 1))) return "Mañana";
   const d = aFecha(fecha);
   return `${DIAS[d.getDay()]} ${d.getDate()} ${MESES[d.getMonth()]}`;
@@ -112,60 +117,68 @@ function cuandoTexto(fecha) {
 function pintarHoy() {
   const v = videoDeHoy();
   const el = $("#hoy");
-  if (!v) { el.innerHTML = s.videos.length ? `<p class="vacio">No queda nada por grabar. Pídele a Claude la próxima tanda.</p>` : `<p class="vacio">El calendario está vacío.</p>`; return; }
-  const p = pilar(v.pilar);
+  if (!v) { el.innerHTML = ""; return; }
   const d = aFecha(v.fecha);
-  const cerrada = HECHO.has(v.estado);
   el.innerHTML = `
-    <article class="claqueta${cerrada ? " cerrada" : ""}" id="claqueta-hoy">
-      <div class="claqueta-brazo" aria-hidden="true"></div>
-      <div class="claqueta-cuerpo">
-        <div class="pizarra">
-          <div><small>Escena</small><b style="color:${p.color}">${esc(p.corto)}</b></div>
-          <div><small>Toma</small><b>${String(numeroToma(v)).padStart(2, "0")}/${s.videos.length}</b></div>
-          <div><small>Fecha</small><b>${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}</b></div>
-        </div>
-        <div class="claqueta-contenido">
-          <div class="claqueta-cuando">${cerrada ? `<span class="estado e-${v.estado}">${ESTADO[v.estado]}</span>` : `<span class="rec"></span>${cuandoTexto(v.fecha)}`}</div>
-          <h2>${esc(v.titulo)}</h2>
-          ${v.gancho ? `<p class="gancho">${esc(v.gancho)}</p>` : ""}
-          <div class="fichas">${v.formato ? `<span class="ficha">${esc(v.formato)}</span>` : ""}${v.material ? `<span class="ficha">${v.material} archivo${v.material > 1 ? "s" : ""}</span>` : ""}</div>
-          <div class="acciones">
-            <button class="boton primario" data-abrir="${v.id}" data-pestana="guion">Ver guion</button>
-            <button class="boton" data-prompter="${v.id}">Teleprompter</button>
-            <button class="boton" data-abrir="${v.id}" data-pestana="material">Subir material</button>
-          </div>
-        </div>
+    <div class="hoy-toca" style="${tono(v.pilar)}">
+      <div class="hoy-cuando"><small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b></div>
+      <div class="hoy-texto">
+        <div class="hoy-etiqueta">${v.fecha === hoyTexto() ? "Hoy toca grabar" : `Próximo · ${cuandoTexto(v.fecha)}`}<span class="pilar">${esc(pilar(v.pilar).nombre)}</span></div>
+        <h2>${esc(v.titulo)}</h2>
+        ${v.gancho ? `<p>«${esc(v.gancho)}»</p>` : ""}
       </div>
-    </article>`;
+      <div class="hoy-acciones">
+        <button class="boton primario" data-abrir="${v.id}" data-pestana="guion">Ver guion</button>
+        <button class="boton" data-prompter="${v.id}">Teleprompter</button>
+        <button class="boton" data-abrir="${v.id}" data-pestana="material">Subir</button>
+      </div>
+    </div>`;
 }
 
-function pintarSemana() {
-  const inicio = lunes(new Date());
+function pintarMes() {
+  const [a, m] = s.mes.split("-").map(Number);
+  const inicio = lunes(new Date(a, m - 1, 1));
   const hoy = hoyTexto();
-  $("#semana").innerHTML = Array.from({ length: 7 }, (_, i) => {
+  const porDia = new Map();
+  for (const v of s.videos) { if (!porDia.has(v.fecha)) porDia.set(v.fecha, []); porDia.get(v.fecha).push(v); }
+  const semanas = Math.ceil(((new Date(a, m - 1, 1).getDay() + 6) % 7 + new Date(a, m, 0).getDate()) / 7);
+  const celdas = Array.from({ length: semanas * 7 }, (_, i) => {
     const d = sumarDias(inicio, i);
     const f = aTexto(d);
-    const v = s.videos.find((x) => x.fecha === f);
-    return `<button class="dia${f === hoy ? " hoy" : ""}${v && v.id === s.sel ? " activo" : ""}" ${v ? `data-abrir="${v.id}"` : "disabled"} aria-label="${DIAS[d.getDay()]} ${d.getDate()}${v ? ": " + esc(v.titulo) : ""}">
-      <small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b><span class="punto ${v ? "e-" + v.estado : ""}"></span></button>`;
+    const vs = porDia.get(f) ?? [];
+    const clases = ["cal-dia", d.getMonth() !== m - 1 && "fuera", f === hoy && "hoy", f === s.dia && "elegido"].filter(Boolean).join(" ");
+    return `<div class="${clases}" data-dia="${f}">
+      <span class="cal-num">${d.getDate()}</span>
+      ${vs.map((v) => `<button class="evento${HECHO.has(v.estado) ? " hecho" : ""}${v.id === s.sel ? " activo" : ""}" style="${tono(v.pilar)}" data-abrir="${v.id}"><b>${esc(v.titulo)}</b><span class="estado e-${v.estado}">${ESTADO[v.estado]}</span></button>`).join("")}
+      ${vs.length ? `<i class="punto-ev${vs.every((v) => HECHO.has(v.estado)) ? " hecho" : ""}" style="${tono(vs[0].pilar)}"></i>` : ""}
+    </div>`;
   }).join("");
+  const delDia = porDia.get(s.dia) ?? [];
+  const dd = aFecha(s.dia);
+  $("#vista").innerHTML = `
+    <div class="calendario">
+      <div class="cal-cabeza">${["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((x) => `<div>${x}</div>`).join("")}</div>
+      <div class="cal-grilla">${celdas}</div>
+    </div>
+    <div class="dia-panel">
+      <h3>${s.dia === hoy ? "Hoy" : `${DIAS[dd.getDay()]} ${dd.getDate()} de ${MESES_LARGO[dd.getMonth()].toLowerCase()}`}</h3>
+      ${delDia.length ? delDia.map(tarjetaHtml).join("") : `<p class="vacio">Sin video este día.</p>`}
+    </div>`;
 }
 
-function filaHtml(v) {
-  const d = aFecha(v.fecha);
-  const p = pilar(v.pilar);
-  const pasada = v.fecha < hoyTexto() && HECHO.has(v.estado);
-  return `<button class="fila${v.id === s.sel ? " activa" : ""}${pasada ? " pasada" : ""}" data-abrir="${v.id}">
-    <span class="fecha-mini"><small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b></span>
-    <span class="fila-titulo"><b>${esc(v.titulo)}</b><span><i class="pilar-punto" style="background:${p.color}"></i>${esc(p.nombre)}${v.formato ? " · " + esc(v.formato) : ""}</span></span>
-    <span class="estado e-${v.estado}">${ESTADO[v.estado] ?? v.estado}</span>
+function tarjetaHtml(v) {
+  return `<button class="tarjeta-video${HECHO.has(v.estado) ? " hecho" : ""}" style="${tono(v.pilar)}" data-abrir="${v.id}">
+    <span class="tono"></span>
+    <span><b>${esc(v.titulo)}</b><span class="meta"><span class="pilar">${esc(pilar(v.pilar).nombre)}</span><span class="estado e-${v.estado}">${ESTADO[v.estado] ?? v.estado}</span></span></span>
+    ${FLECHA}
   </button>`;
 }
 
-function pintarLista() {
-  if (!s.videos.length) { $("#listado").innerHTML = ""; return; }
+function pintarAgenda() {
+  if (!s.videos.length) { $("#vista").innerHTML = `<p class="vacio">El calendario está vacío.</p>`; return; }
   const esta = aTexto(lunes(new Date()));
+  const prox = aTexto(sumarDias(lunes(new Date()), 7));
+  const hoy = hoyTexto();
   const grupos = new Map();
   const anteriores = [];
   for (const v of s.videos) {
@@ -174,74 +187,53 @@ function pintarLista() {
     if (!grupos.has(l)) grupos.set(l, []);
     grupos.get(l).push(v);
   }
-  const prox = aTexto(sumarDias(lunes(new Date()), 7));
-  const nombre = (l) => (l === esta ? "Esta semana" : l === prox ? "Próxima semana" : `Semana del ${aFecha(l).getDate()} ${MESES[aFecha(l).getMonth()]}`);
-  let html = [...grupos].map(([l, vs]) => `<div class="grupo"><h3>${nombre(l)}</h3><div class="filas">${vs.map(filaHtml).join("")}</div></div>`).join("");
-  if (anteriores.length) html += `<div class="grupo"><h3>Anteriores</h3><div class="filas">${anteriores.reverse().map(filaHtml).join("")}</div></div>`;
-  $("#listado").innerHTML = html;
+  const nombre = (l) => (l === esta ? "Esta semana" : l === prox ? "La próxima semana" : `Semana del ${aFecha(l).getDate()} de ${MESES_LARGO[aFecha(l).getMonth()].toLowerCase()}`);
+  const fila = (v) => { const d = aFecha(v.fecha); return `<div class="agenda-fila${v.fecha === hoy ? " hoy" : ""}"><div class="agenda-fecha"><small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b></div>${tarjetaHtml(v)}</div>`; };
+  let html = [...grupos].map(([l, vs]) => `<div class="agenda-grupo"><h3>${nombre(l)}</h3><div class="agenda-filas">${vs.map(fila).join("")}</div></div>`).join("");
+  if (anteriores.length) html += `<div class="agenda-grupo"><h3>Anteriores</h3><div class="agenda-filas">${anteriores.reverse().map(fila).join("")}</div></div>`;
+  $("#vista").innerHTML = `<div class="agenda">${html}</div>`;
 }
 
-function pintarMes() {
-  const meses = [...new Set(s.videos.map((v) => v.fecha.slice(0, 7)))];
-  if (!meses.length) { $("#listado").innerHTML = ""; return; }
-  const hoy = hoyTexto();
-  $("#listado").innerHTML = meses.map((ym) => {
-    const [a, m] = ym.split("-").map(Number);
-    const primero = new Date(a, m - 1, 1);
-    const huecos = (primero.getDay() + 6) % 7;
-    const total = new Date(a, m, 0).getDate();
-    const celdas = [];
-    for (let i = 0; i < huecos; i++) celdas.push(`<div class="celda vacia"></div>`);
-    for (let d = 1; d <= total; d++) {
-      const f = `${ym}-${String(d).padStart(2, "0")}`;
-      const v = s.videos.find((x) => x.fecha === f);
-      celdas.push(v
-        ? `<button class="celda${f === hoy ? " hoy" : ""}" data-abrir="${v.id}" title="${esc(v.titulo)}"><b>${d}</b><span>${esc(v.titulo)}</span><i class="barra-pilar" style="background:${HECHO.has(v.estado) ? "var(--verde)" : pilar(v.pilar).color}"></i></button>`
-        : `<div class="celda${f === hoy ? " hoy" : ""}"><b>${d}</b></div>`);
-    }
-    return `<section class="mes"><h3 class="mes-titulo">${MESES_LARGO[m - 1]} ${a}</h3><div class="mes-grilla">${["lun", "mar", "mié", "jue", "vie", "sáb", "dom"].map((x) => `<small>${x}</small>`).join("")}${celdas.join("")}</div></section>`;
-  }).join("");
-}
-
-/* ── Detalle ── */
+/* ── Detalle (cajón) ── */
 async function abrir(id, pestana) {
-  if (s.sel !== id) s.borrador = null;
+  if (s.sel !== id) { s.borrador = null; s.recien = false; }
   s.sel = id;
   if (pestana) s.pestana = pestana;
   history.replaceState(null, "", `#v=${id}`);
-  $(".lienzo").classList.add("con-detalle");
   $("#detalle").hidden = false;
-  if (!s.detalle || s.detalle.id !== id) $("#detalle").innerHTML = `<div class="detalle-cuerpo"><p class="vacio">Cargando…</p></div>`;
+  $("#velo").hidden = false;
+  document.body.style.overflow = "hidden";
+  if (!s.detalle || s.detalle.id !== id) $("#detalle").innerHTML = `<div class="cajon-cuerpo"><p class="vacio">Cargando…</p></div>`;
   pintar();
   try { s.detalle = await api(`/api/videos/${id}`); pintarDetalle(); }
   catch (e) { avisar(e.message); }
 }
 function cerrarDetalle() {
-  s.sel = null; s.detalle = null;
+  s.sel = null; s.detalle = null; s.recien = false;
   history.replaceState(null, "", location.pathname);
   $("#detalle").hidden = true;
-  $(".lienzo").classList.remove("con-detalle");
+  $("#velo").hidden = true;
+  document.body.style.overflow = "";
   pintar();
 }
 
 function pintarDetalle() {
   const v = s.detalle;
   if (!v) return;
-  const p = pilar(v.pilar);
   const material = v.archivos.filter((a) => a.tipo === "material" && a.estado === "ok");
   const entregas = v.archivos.filter((a) => a.tipo === "entrega" && a.estado === "ok");
-  const pest = [["guion", "Guion"], ["material", `Material${material.length ? `<span class="cuenta">${material.length}</span>` : ""}`], ["edicion", "Edición"], ["entrega", `Entrega${entregas.length ? `<span class="cuenta">●</span>` : ""}`]];
+  const pest = [["guion", "Guion"], ["material", `Material${material.length ? `<span class="cuenta">${material.length}</span>` : ""}`], ["edicion", "Edición"], ["entrega", `Entrega${entregas.length ? `<span class="cuenta">${entregas.length}</span>` : ""}`]];
   $("#detalle").innerHTML = `
-    <div class="detalle-cabeza">
-      <div class="detalle-arriba">
+    <div class="cajon-cabeza" style="${tono(v.pilar)}">
+      <div class="cajon-arriba">
         <span class="estado e-${v.estado}">${ESTADO[v.estado]}</span>
-        <button class="cerrar" data-cerrar aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+        <button class="icono-boton" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
       </div>
-      <div class="fichas" style="margin:0"><span class="ficha" style="color:${p.color}">${esc(p.nombre)}</span>${v.formato ? `<span class="ficha">${esc(v.formato)}</span>` : ""}<span class="ficha">${cuandoTexto(v.fecha)}</span>${v.datos.duracion ? `<span class="ficha">${esc(v.datos.duracion)}</span>` : ""}</div>
       <h2>${esc(v.titulo)}</h2>
+      <div class="meta-fila"><span class="pilar">${esc(pilar(v.pilar).nombre)}</span><span>${cuandoTexto(v.fecha)}</span>${v.formato ? `<span>${esc(v.formato)}</span>` : ""}${v.datos.duracion ? `<span>${esc(v.datos.duracion)}</span>` : ""}</div>
       <div class="pestanas" role="tablist">${pest.map(([k, t]) => `<button role="tab" data-pestana-det="${k}" aria-selected="${s.pestana === k}">${t}</button>`).join("")}</div>
     </div>
-    <div class="detalle-cuerpo">${({ guion: guionHtml, material: materialHtml, edicion: edicionHtml, entrega: entregaHtml })[s.pestana](v)}</div>`;
+    <div class="cajon-cuerpo">${({ guion: guionHtml, material: materialHtml, edicion: edicionHtml, entrega: entregaHtml })[s.pestana](v)}</div>`;
   if (s.pestana === "entrega") cargarEntregas(v);
 }
 
@@ -250,17 +242,19 @@ function guionHtml(v) {
   const g = d.grabar ?? {};
   const beats = d.beats ?? [];
   return `
-    ${v.gancho ? `<div class="bloque"><p class="gancho">${esc(v.gancho)}</p></div>` : ""}
-    ${d.ganchos_alt?.length ? `<div class="bloque"><h4>Graba también estos ganchos (para probar)</h4><div class="alt">${d.ganchos_alt.map((x) => `<div>${esc(x)}</div>`).join("")}</div></div>` : ""}
-    ${d.por_que ? `<div class="bloque"><h4>Por qué funciona</h4><div class="tarjeta"><p>${esc(d.por_que)}</p></div></div>` : ""}
-    ${Object.keys(g).length ? `<div class="bloque"><h4>Cómo grabarlo</h4><div class="datos-grabar">${[["plano", "Plano"], ["lugar", "Lugar"], ["luz", "Luz"], ["ropa", "Ropa"]].filter(([k]) => g[k]).map(([k, t]) => `<div><small>${t}</small><span>${esc(g[k])}</span></div>`).join("")}</div></div>` : ""}
+    ${v.gancho ? `<div class="bloque"><h4>Primera frase</h4><p class="gancho">${esc(v.gancho)}</p></div>` : ""}
+    <div class="acciones"><button class="boton primario" data-prompter="${v.id}">Abrir teleprompter</button><button class="boton" data-pestana-det="material">Subir material</button></div>
     ${beats.length ? `<div class="bloque"><h4>Lo que dices, en orden</h4><div class="beats">${beats.map((b, i) => `
       <label class="beat"><input type="checkbox" data-beat="${i}" ${v.hechos.includes(i) ? "checked" : ""}>
         <div>${b.t ? `<span class="beat-t">${esc(b.t)}</span>` : ""}<p class="beat-dice">${esc(b.dice)}</p>${b.plano ? `<p class="beat-plano">${esc(b.plano)}</p>` : ""}</div></label>`).join("")}</div></div>` : ""}
-    ${d.broll?.length ? `<div class="bloque"><h4>Graba aparte (b-roll y pantalla)</h4><ul class="lista-simple">${d.broll.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+    ${d.ganchos_alt?.length ? `<div class="bloque"><h4>Graba también estas primeras frases (para probar cuál funciona)</h4><div class="alt">${d.ganchos_alt.map((x) => `<div>${esc(x)}</div>`).join("")}</div></div>` : ""}
+    ${Object.keys(g).length ? `<div class="bloque"><h4>Cómo grabarlo</h4><div class="datos">${[["plano", "Plano"], ["lugar", "Lugar"], ["luz", "Luz"], ["ropa", "Ropa"]].filter(([k]) => g[k]).map(([k, t]) => `<div><small>${t}</small><span>${esc(g[k])}</span></div>`).join("")}</div></div>` : ""}
+    ${d.broll?.length ? `<div class="bloque"><h4>Graba aparte</h4><ul class="lista-simple">${d.broll.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
     ${d.props?.length ? `<div class="bloque"><h4>Ten a mano</h4><ul class="lista-simple">${d.props.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
-    <div class="acciones"><button class="boton primario" data-prompter="${v.id}">Abrir teleprompter</button><button class="boton" data-pestana-det="material">Subir material</button></div>`;
+    ${d.por_que ? `<div class="bloque"><h4>Por qué funciona</h4><div class="caja">${esc(d.por_que)}</div></div>` : ""}`;
 }
+
+const ICONO_ARCHIVO = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="2" y="3.5" width="9" height="9" rx="2"/><path d="M11 7l3-2v6l-3-2"/></svg>`;
 
 function materialHtml(v) {
   const material = v.archivos.filter((a) => a.tipo === "material");
@@ -270,33 +264,29 @@ function materialHtml(v) {
   return `
     <label class="zona-subir" id="zona-subir">
       <input type="file" id="campo-archivos" multiple accept="video/*,audio/*,image/*,.mov,.mp4,.m4a,.wav" hidden>
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
-      <b>Sube las tomas tal cual salen del celular</b>
-      <span>Todas las que quieras: tomas, ganchos extra, b-roll, capturas. Sin comprimir.</span>
+      <span class="icono"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13V3.5m0 0L6.5 7M10 3.5L13.5 7"/><path d="M3.5 12.5v2a2 2 0 002 2h9a2 2 0 002-2v-2"/></svg></span>
+      <b>Sube tus tomas</b>
+      <span>Tal cual salen del celular: tomas, primeras frases extra, b-roll, capturas.</span>
     </label>
-    <div class="archivos">
-      ${subiendo.map((x) => `<div class="archivo"><b>${esc(x.nombre)}</b><small>${Math.floor((x.hecho / x.bytes) * 100)}%</small><div class="progreso"><i style="width:${(x.hecho / x.bytes) * 100}%"></i></div></div>`).join("")}
-      ${material.filter((a) => a.estado === "ok").map((a) => `<div class="archivo"><b>${esc(a.nombre)}</b><button class="quitar" data-quitar="${a.id}">Quitar</button><small>${mb(a.bytes)}</small></div>`).join("")}
-    </div>
+    <div class="archivos">${subiendo.map((x) => `<div class="archivo"><span class="ic">${ICONO_ARCHIVO}</span><b>${esc(x.nombre)}</b><small>Subiendo · ${Math.floor((x.hecho / x.bytes) * 100)}%</small><div class="progreso-barra"><i style="width:${(x.hecho / x.bytes) * 100}%"></i></div></div>`).join("")}${material.filter((a) => a.estado === "ok").map((a) => `<div class="archivo"><span class="ic">${ICONO_ARCHIVO}</span><b>${esc(a.nombre)}</b><button class="quitar" data-quitar="${a.id}">Quitar</button><small>${mb(a.bytes)}</small></div>`).join("")}</div>
     ${yaListo ? `
-      <div class="tarjeta"><p><b style="color:var(--texto)">Claude ya lo tiene en la cola.</b> ${v.nota ? `Tu nota: «${esc(v.nota)}»` : ""}</p></div>
+      <div class="en-cola${s.recien ? " recien" : ""}"><span class="check">${CHECK}</span><div><b>${v.estado === "listo" ? "Listo para editar" : ESTADO[v.estado]}</b><span>${v.nota ? `Tu nota: «${esc(v.nota)}»` : "Claude ya lo tiene en la cola."}</span></div></div>
       ${v.estado === "listo" ? `<button class="boton" data-estado="material">Espera, quiero agregar algo</button>` : ""}` : `
       <div class="bloque listo-caja">
-        <h4>Para Claude (opcional)</h4>
-        <textarea class="nota-campo" id="nota" placeholder="La toma 3 es la buena, el gancho B me salió mejor, bota el final…">${esc(s.borrador ?? v.nota)}</textarea>
-        <div class="claqueta mini" id="claqueta-listo"><div class="claqueta-brazo" aria-hidden="true"></div></div>
-        <button class="boton rec-boton" data-listo ${puedeAvisar ? "" : "disabled"}>Listo para editar</button>
-        ${!puedeAvisar ? `<p style="font-size:13px">${subiendo.length ? "Espera a que terminen de subir." : "Sube al menos una toma."}</p>` : ""}
+        <h4>Nota para Claude (opcional)</h4>
+        <textarea class="nota-campo" id="nota" placeholder="La toma 3 es la buena, la segunda primera frase me salió mejor…">${esc(s.borrador ?? v.nota)}</textarea>
+        <button class="boton primario ancho" data-listo ${puedeAvisar ? "" : "disabled"}>Listo para editar</button>
+        ${!puedeAvisar ? `<p class="ayuda">${subiendo.length ? "Espera a que terminen de subir." : "Sube al menos una toma."}</p>` : ""}
       </div>`}
-    ${v.bitacora.length ? `<div class="bloque"><h4>Bitácora</h4><div class="bitacora">${v.bitacora.map((b) => `<div><b>${esc(b.quien)}</b> ${esc(b.texto)}<time>${esc(b.creado.slice(5, 16).replace("T", " "))}</time></div>`).join("")}</div></div>` : ""}`;
+    ${v.bitacora.length ? `<div class="bloque"><h4>Actividad</h4><div class="bitacora">${v.bitacora.map((b) => `<div><b>${esc(b.quien)}</b> ${esc(b.texto)}<time>${esc(b.creado.slice(5, 16).replace("T", " "))}</time></div>`).join("")}</div></div>` : ""}`;
 }
 
 function edicionHtml(v) {
   const e = v.datos.edicion ?? {};
   if (!Object.keys(e).length) return `<p class="vacio">Claude todavía no arma el plan de edición.</p>`;
   return `
-    ${e.estilo ? `<div class="bloque"><h4>La idea</h4><div class="tarjeta"><p>${esc(e.estilo)}</p></div></div>` : ""}
-    <div class="datos-grabar">
+    ${e.estilo ? `<div class="bloque"><h4>La idea</h4><div class="caja">${esc(e.estilo)}</div></div>` : ""}
+    <div class="datos">
       ${e.subtitulos ? `<div><small>Subtítulos</small><span>${esc(e.subtitulos)}</span></div>` : ""}
       ${e.musica ? `<div><small>Música</small><span>${esc(e.musica)}</span></div>` : ""}
       ${e.ritmo ? `<div><small>Ritmo</small><span>${esc(e.ritmo)}</span></div>` : ""}
@@ -309,15 +299,15 @@ function entregaHtml(v) {
   const post = v.datos.post ?? {};
   const tags = (post.hashtags ?? []).join(" ");
   return `
-    ${entregas.length ? entregas.map((a) => `<div class="bloque"><video class="video-entrega" controls playsinline preload="metadata" data-video="${a.id}"></video><div class="acciones" style="margin-top:10px"><a class="boton primario" data-bajar="${a.id}" href="#" download>Descargar ${esc(a.nombre)}</a></div></div>`).join("")
+    ${entregas.length ? entregas.map((a) => `<div class="bloque"><video class="video-entrega" controls playsinline preload="metadata" data-video="${a.id}"></video><div class="acciones" style="margin-top:10px"><a class="boton primario" data-bajar="${a.id}" href="#" download>Descargar video</a></div></div>`).join("")
       : `<p class="vacio">${v.estado === "editando" ? "Claude lo está editando." : "Todavía no hay video editado."}</p>`}
-    ${post.texto ? `<div class="bloque"><h4>Texto del post</h4><div class="tarjeta copiable">${esc(post.texto)}<button class="boton" data-copiar="texto">Copiar</button></div></div>` : ""}
-    ${tags ? `<div class="bloque"><h4>Hashtags</h4><div class="tarjeta copiable">${esc(tags)}<button class="boton" data-copiar="tags">Copiar</button></div></div>` : ""}
-    ${post.sonido ? `<div class="bloque"><h4>Sonido para agregar en la app</h4><div class="tarjeta"><p><b style="color:var(--texto)">${esc(post.sonido)}</b>${post.inicio_sonido ? ` · desde el segundo ${esc(post.inicio_sonido)}` : ""}</p><p>Agrégalo dentro de TikTok o Instagram (no viene en el archivo, así no te silencian el video).</p></div></div>` : ""}
-    ${v.estado === "entregado" ? `<button class="boton rec-boton" data-estado="publicado">Ya lo publiqué</button>` : ""}`;
+    ${post.texto ? `<div class="bloque"><h4>Texto del post</h4><div class="caja copiable">${esc(post.texto)}<button class="boton chico" data-copiar="texto">Copiar</button></div></div>` : ""}
+    ${tags ? `<div class="bloque"><h4>Hashtags</h4><div class="caja copiable">${esc(tags)}<button class="boton chico" data-copiar="tags">Copiar</button></div></div>` : ""}
+    ${post.sonido ? `<div class="bloque"><h4>Sonido para agregar en la app</h4><div class="caja"><b style="color:var(--texto);font-weight:600">${esc(post.sonido)}</b>${post.inicio_sonido ? ` · desde el segundo ${esc(post.inicio_sonido)}` : ""}<br>Agrégalo dentro de TikTok o Instagram: no viene en el archivo, así no te silencian el video.</div></div>` : ""}
+    ${v.estado === "entregado" ? `<button class="boton primario ancho" data-estado="publicado">Ya lo publiqué</button>` : ""}`;
 }
 
-async function cargarEntregas(v) {
+async function cargarEntregas() {
   for (const el of document.querySelectorAll("[data-video]")) {
     try {
       const { url } = await api(`/api/archivos/${el.dataset.video}/enlace`);
@@ -407,36 +397,6 @@ async function subirVarios(videoId, archivos) {
   pintar();
 }
 
-/* ── Claqueta: golpe + sonido + vibración al avisar ── */
-function claquetazo() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const golpe = (t, vol) => {
-      const largo = Math.floor(ctx.sampleRate * 0.06);
-      const buf = ctx.createBuffer(1, largo, ctx.sampleRate);
-      const d = buf.getChannelData(0);
-      for (let i = 0; i < largo; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / largo, 6);
-      const src = ctx.createBufferSource(); src.buffer = buf;
-      const f = ctx.createBiquadFilter(); f.type = "bandpass"; f.frequency.value = 2400; f.Q.value = 0.7;
-      const g = ctx.createGain(); g.gain.value = vol;
-      src.connect(f).connect(g).connect(ctx.destination);
-      src.start(ctx.currentTime + t);
-    };
-    golpe(0.22, 0.9);
-    golpe(0.28, 0.25);
-  } catch {}
-  navigator.vibrate?.([0, 220, 30]);
-  for (const c of document.querySelectorAll("#claqueta-hoy, #claqueta-listo")) { c.classList.remove("golpe"); void c.offsetWidth; c.classList.add("golpe", "cerrada"); }
-}
-
-async function cambiarEstado(estado, extra = {}) {
-  const v = s.detalle;
-  s.detalle = await api(`/api/videos/${v.id}`, { method: "PATCH", body: JSON.stringify({ estado, ...extra }) });
-  const i = s.videos.findIndex((x) => x.id === v.id);
-  if (i >= 0) s.videos[i] = { ...s.videos[i], estado };
-  pintar();
-  pintarDetalle();
-}
 
 /* ── Teleprompter ── */
 let prompter = { corre: false, raf: 0, ultimo: 0 };
@@ -465,15 +425,35 @@ function correrPrompter() {
   prompter.raf = requestAnimationFrame(paso);
 }
 
+
+async function cambiarEstado(estado, extra = {}) {
+  const v = s.detalle;
+  s.detalle = await api(`/api/videos/${v.id}`, { method: "PATCH", body: JSON.stringify({ estado, ...extra }) });
+  const i = s.videos.findIndex((x) => x.id === v.id);
+  if (i >= 0) s.videos[i] = { ...s.videos[i], estado };
+  pintar();
+  pintarDetalle();
+}
+
 /* ── Eventos ── */
 document.addEventListener("click", async (e) => {
-  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-p]");
-  if (!t) return;
+  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-dia]");
+  if (!t) { if (e.target.id === "velo") cerrarDetalle(); return; }
   const d = t.dataset;
   if (d.abrir) return abrir(d.abrir, d.pestana || (s.sel === d.abrir ? s.pestana : "guion"));
+  if (d.dia) {
+    s.dia = d.dia;
+    if (d.dia.slice(0, 7) !== s.mes) s.mes = d.dia.slice(0, 7);
+    return pintar();
+  }
   if ("cerrar" in d) return cerrarDetalle();
   if (d.pestanaDet) { s.pestana = d.pestanaDet; return pintarDetalle(); }
   if (d.vista) { s.vista = d.vista; guardarLocal("estudio:vista", d.vista); return pintar(); }
+  if (d.mes) {
+    if (d.mes === "hoy") { s.mes = hoyTexto().slice(0, 7); s.dia = hoyTexto(); }
+    else { const [a, m] = s.mes.split("-").map(Number); const x = new Date(a, m - 1 + Number(d.mes), 1); s.mes = aTexto(x).slice(0, 7); }
+    return pintar();
+  }
   if (d.prompter) {
     const v = s.detalle?.id === d.prompter ? s.detalle : await api(`/api/videos/${d.prompter}`);
     return abrirPrompter(v);
@@ -484,15 +464,13 @@ document.addEventListener("click", async (e) => {
   try {
     if ("listo" in d) {
       t.disabled = true;
-      const nota = $("#nota")?.value.trim() ?? "";
-      claquetazo();
-      await Promise.all([new Promise((r) => setTimeout(r, 650)), api(`/api/videos/${s.sel}`, { method: "PATCH", body: JSON.stringify({ estado: "listo", nota }) }).then((d) => (s.detalle = d))]);
-      const i = s.videos.findIndex((x) => x.id === s.sel);
-      if (i >= 0) s.videos[i] = { ...s.videos[i], estado: "listo" };
-      s.borrador = null;
-      pintar(); pintarDetalle();
-      avisar("Listo. Claude ya lo ve en la cola 🎬");
+      await cambiarEstado("listo", { nota: $("#nota")?.value.trim() ?? "" });
+      s.recien = true; s.borrador = null;
+      pintarDetalle();
+      navigator.vibrate?.(18);
+      avisar("Listo. Claude ya lo ve en la cola");
     } else if (d.estado) {
+      s.recien = false;
       await cambiarEstado(d.estado);
     } else if (d.quitar) {
       if (!confirm("¿Quitar este archivo?")) return;
@@ -534,9 +512,14 @@ document.addEventListener("drop", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
-  if (e.key !== "Escape") return;
-  if (!$("#prompter").hidden) { pararPrompter(); $("#prompter").hidden = true; }
-  else if (s.sel) cerrarDetalle();
+  if (e.target.matches?.("input, textarea")) return;
+  if (e.key === "Escape") {
+    if (!$("#prompter").hidden) { pararPrompter(); $("#prompter").hidden = true; }
+    else if (s.sel) cerrarDetalle();
+  }
+  if (s.sel || s.vista !== "mes" || !$("#prompter").hidden) return;
+  if (e.key === "ArrowLeft") $('[data-mes="-1"]').click();
+  if (e.key === "ArrowRight") $('[data-mes="1"]').click();
 });
 
 window.addEventListener("beforeunload", (e) => { if ([...s.subidas.values()].some((x) => x.estado !== "ok")) e.preventDefault(); });
