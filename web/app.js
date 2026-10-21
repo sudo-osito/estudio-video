@@ -206,7 +206,7 @@ async function abrir(id, pestana) {
   if (!s.detalle || s.detalle.id !== id) $("#detalle").innerHTML = `<div class="cajon-cuerpo"><p class="vacio">Cargando…</p></div>`;
   pintar();
   try { s.detalle = await api(`/api/videos/${id}`); pintarDetalle(); }
-  catch (e) { avisar(e.message); }
+  catch (e) { cerrarDetalle(); avisar(e.message); }
 }
 function cerrarDetalle() {
   s.sel = null; s.detalle = null; s.recien = false;
@@ -256,17 +256,71 @@ function guionHtml(v) {
 
 const ICONO_ARCHIVO = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="2" y="3.5" width="9" height="9" rx="2"/><path d="M11 7l3-2v6l-3-2"/></svg>`;
 
+/* Lo que tiene que venir en el material para poder editar. Claude puede fijarlo por MCP en datos.tomas;
+   si no, se arma solo desde el guion. Cada ítem se marca y queda en «hechos» como "t:<id>". */
+function tomasDe(v) {
+  const d = v.datos ?? {};
+  if (Array.isArray(d.tomas) && d.tomas.length) return d.tomas.map((t, k) => ({ id: t.id ?? `c${k}`, que: t.que, detalle: t.detalle ?? "", grupo: t.grupo ?? "Tomas" }));
+  const lista = [{ id: "principal", grupo: "Tomas", que: "La toma completa, de corrido", detalle: "Todo el guion de principio a fin con el teleprompter. Si te equivocas, no pares: repite la frase y sigue, yo corto." }];
+  const cita = (x) => `«${String(x).trim().replace(/^[«"]|[»"]$/g, "").replace(/[.]$/, "")}»`;
+  if (v.gancho) lista.push({ id: "gancho", grupo: "Tomas", que: "La primera frase, 3 veces", detalle: `${cita(v.gancho)}. Cada vez con más energía: es lo que decide si se quedan.` });
+  (d.ganchos_alt ?? []).forEach((g, k) => lista.push({ id: `alt${k}`, grupo: "Tomas", que: `Primera frase alternativa ${k + 1}`, detalle: `${cita(g)}. Para probar cuál funciona mejor.` }));
+  (d.broll ?? []).forEach((b, k) => lista.push({ id: `broll${k}`, grupo: "Aparte", que: b, detalle: "" }));
+  lista.push(
+    { id: "reacciones", grupo: "Aparte", que: "4 reacciones sin hablar (2 s cada una)", detalle: "Mirar a cámara serio, sonreír, cara de sorpresa y negar con la cabeza. Sirven para cortes, remates y transiciones." },
+    { id: "ambiente", grupo: "Aparte", que: "10 segundos de silencio en el mismo lugar", detalle: "Sin hablar ni moverte, con la misma cámara. Con eso limpio el ruido de fondo." },
+  );
+  return lista;
+}
+
+function antesDeGrabar(v) {
+  const g = v.datos?.grabar ?? {};
+  const min = (x) => String(x).charAt(0).toLowerCase() + String(x).slice(1).replace(/\.$/, "");
+  return [
+    "Graba con el celular en vertical, con la cámara trasera, en 4K a 30 fps (Ajustes → Cámara → Grabar video).",
+    "Abre el teleprompter en el Mac o en un iPad, justo debajo del lente, para que se vea que miras a cámara.",
+    "Lente limpio, modo «No molestar» y la batería sobre 50 %.",
+    g.luz ? `Luz: ${min(g.luz)}.` : "Luz de frente (la ventana delante tuyo, nunca detrás).",
+    g.plano ? `Plano: ${min(g.plano)}.` : "Plano medio, a la altura de los ojos, con aire sobre la cabeza.",
+    g.lugar ? `Lugar: ${min(g.lugar)}.` : "",
+    g.ropa ? `Ropa: ${min(g.ropa)}.` : "",
+    "Micrófono de solapa si tienes; si no, el celular a menos de un metro y sin eco.",
+    "Deja 2 segundos quieto y en silencio antes y después de cada toma.",
+    ...(v.datos?.props?.length ? [`Ten a mano: ${v.datos.props.join(", ")}.`] : []),
+  ].filter(Boolean);
+}
+
+function listaGrabarHtml(v) {
+  const tomas = tomasDe(v);
+  const hechas = tomas.filter((t) => v.hechos.includes(`t:${t.id}`)).length;
+  const grupos = [...new Set(tomas.map((t) => t.grupo))];
+  return `
+    <div class="bloque">
+      <div class="titulo-lista"><h4>Qué necesito para editar</h4><span class="contador${hechas === tomas.length ? " completo" : ""}">${hechas} de ${tomas.length}</span></div>
+      ${grupos.map((gr) => `
+        ${grupos.length > 1 ? `<p class="subgrupo">${gr === "Tomas" ? "Tomas a cámara" : "Graba aparte"}</p>` : ""}
+        <div class="beats">${tomas.filter((t) => t.grupo === gr).map((t) => `
+          <label class="beat"><input type="checkbox" data-toma="${esc(t.id)}" ${v.hechos.includes(`t:${t.id}`) ? "checked" : ""}>
+            <div><p class="beat-dice">${esc(t.que)}</p>${t.detalle ? `<p class="beat-plano">${esc(t.detalle)}</p>` : ""}</div></label>`).join("")}</div>`).join("")}
+    </div>
+    <details class="antes">
+      <summary>Antes de grabar <span>${antesDeGrabar(v).length} cosas</span></summary>
+      <ul class="lista-simple">${antesDeGrabar(v).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+    </details>`;
+}
+
 function materialHtml(v) {
   const material = v.archivos.filter((a) => a.tipo === "material");
   const subiendo = [...s.subidas.values()].filter((x) => x.video === v.id && x.estado !== "ok");
   const puedeAvisar = material.some((a) => a.estado === "ok") && !subiendo.length;
   const yaListo = HECHO.has(v.estado);
   return `
+    ${listaGrabarHtml(v)}
     <label class="zona-subir" id="zona-subir">
       <input type="file" id="campo-archivos" multiple accept="video/*,audio/*,image/*,.mov,.mp4,.m4a,.wav" hidden>
       <span class="icono"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13V3.5m0 0L6.5 7M10 3.5L13.5 7"/><path d="M3.5 12.5v2a2 2 0 002 2h9a2 2 0 002-2v-2"/></svg></span>
       <b>Sube tus tomas</b>
-      <span>Tal cual salen del celular: tomas, primeras frases extra, b-roll, capturas.</span>
+      <span>Tal cual salen del celular, sin comprimir ni renombrar. Todas juntas está bien.</span>
     </label>
     <div class="archivos">${subiendo.map((x) => `<div class="archivo"><span class="ic">${ICONO_ARCHIVO}</span><b>${esc(x.nombre)}</b><small>Subiendo · ${Math.floor((x.hecho / x.bytes) * 100)}%</small><div class="progreso-barra"><i style="width:${(x.hecho / x.bytes) * 100}%"></i></div></div>`).join("")}${material.filter((a) => a.estado === "ok").map((a) => `<div class="archivo"><span class="ic">${ICONO_ARCHIVO}</span><b>${esc(a.nombre)}</b><button class="quitar" data-quitar="${a.id}">Quitar</button><small>${mb(a.bytes)}</small></div>`).join("")}</div>
     ${yaListo ? `
@@ -610,10 +664,16 @@ document.addEventListener("input", (e) => { if (e.target.id === "nota") s.borrad
 
 document.addEventListener("change", (e) => {
   if (e.target.id === "campo-archivos") { subirVarios(s.sel, [...e.target.files]); e.target.value = ""; }
-  if (e.target.dataset.beat != null) {
-    const hechos = [...document.querySelectorAll("[data-beat]:checked")].map((x) => Number(x.dataset.beat));
+  if (e.target.dataset.beat != null || e.target.dataset.toma != null) {
+    const visibles = new Set([...document.querySelectorAll("[data-beat],[data-toma]")].map((x) => (x.dataset.toma != null ? `t:${x.dataset.toma}` : Number(x.dataset.beat))));
+    const marcados = [...document.querySelectorAll("[data-beat]:checked,[data-toma]:checked")].map((x) => (x.dataset.toma != null ? `t:${x.dataset.toma}` : Number(x.dataset.beat)));
+    const hechos = [...s.detalle.hechos.filter((h) => !visibles.has(h)), ...marcados];
     s.detalle.hechos = hechos;
     api(`/api/videos/${s.sel}`, { method: "PATCH", body: JSON.stringify({ hechos }) }).catch((err) => avisar(err.message));
+    if (e.target.dataset.toma != null) {
+      const c = $(".contador"); const total = document.querySelectorAll("[data-toma]").length; const n = document.querySelectorAll("[data-toma]:checked").length;
+      if (c) { c.textContent = `${n} de ${total}`; c.classList.toggle("completo", n === total); }
+    }
   }
 });
 

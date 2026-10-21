@@ -278,6 +278,21 @@ svg { display: block; }
 .beat-dice { margin: 2px 0 0; font-size: 15px; line-height: 1.45; }
 .beat-plano { margin: 4px 0 0; font-size: 13px; color: var(--texto-3); }
 
+/* Lista de grabación */
+.titulo-lista { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.titulo-lista h4 { margin-bottom: 8px; }
+.contador { font-size: 12px; font-weight: 500; color: var(--texto-2); font-variant-numeric: tabular-nums; padding: 2px 8px; border-radius: 999px; background: var(--sup-2); }
+.contador.completo { background: var(--texto); color: #fff; }
+.subgrupo { margin: 14px 0 6px !important; font-size: 13px; font-weight: 500; color: var(--texto) !important; }
+.titulo-lista + .subgrupo { margin-top: 2px !important; }
+.antes { border: 1px solid var(--linea); border-radius: var(--r-m); padding: 0 14px; }
+.antes summary { list-style: none; cursor: pointer; padding: 12px 0; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
+.antes summary::-webkit-details-marker { display: none; }
+.antes summary span { font-size: 12px; font-weight: 400; color: var(--texto-3); display: inline-flex; align-items: center; gap: 6px; }
+.antes summary span::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform var(--t-rapido); }
+.antes[open] summary span::after { transform: rotate(-135deg) translateY(-1px); }
+.antes ul { padding-bottom: 14px; font-size: 14px; }
+
 /* Subida */
 .zona-subir {
   display: grid; place-items: center; gap: 6px; text-align: center; padding: 28px 16px; cursor: pointer;

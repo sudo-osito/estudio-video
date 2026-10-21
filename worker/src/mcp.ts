@@ -14,7 +14,8 @@ const DATOS = {
   description:
     "Bloques del video (se mezclan con los actuales): por_que, origen (chiste|persona|evento|espacio|objeto), ganchos_alt[], duracion, " +
     "grabar{plano, lugar, ropa, luz}, beats[{t, dice, plano}], broll[], props[], edicion{estilo, subtitulos, musica, efectos[], ritmo}, " +
-    "post{texto, hashtags[], sonido, inicio_sonido}",
+    "post{texto, hashtags[], sonido, inicio_sonido}, " +
+    "tomas[{id, que, detalle, grupo: Tomas|Aparte}] (lo que Max debe grabar para editar; si falta, la página lo arma desde el guion), beats[].seg (segundos fijos de un párrafo en el teleprompter)",
 };
 
 const HERRAMIENTAS = [
