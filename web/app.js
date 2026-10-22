@@ -682,12 +682,24 @@ let pr = {
 const durPr = (k) => segundosDe(pr.partes[k].texto, pr.ritmo, pr.partes[k].fijo);
 const totalPr = () => pr.partes.reduce((a, _, k) => a + durPr(k), 0);
 
+/* El teleprompter muestra SOLO lo que se dice: fuera las tomas sin hablar, las indicaciones entre paréntesis,
+   las etiquetas y el «cómo se graba» (eso vive en el guion y en Material, no frente al lente). */
+const sinIndicaciones = (t) => String(t).replace(/\([^)]*\)/g, " ").replace(/\s{2,}/g, " ").replace(/\s+([.,;:!?])/g, "$1").trim();
+function hablado(v, filtro) {
+  return partesDe(v)
+    .filter((p) => p.modo !== "escena" && !DIRECCION.test(String(p.texto).trim()))
+    .map((p) => ({ ...p, texto: sinIndicaciones(p.texto) }))
+    .filter((p) => p.texto && (filtro === "camara" ? !enOff(p.modo) : filtro === "voz" ? enOff(p.modo) : true));
+}
+
 function abrirPrompter(v) {
   if (!partesDe(v).length) return avisar("Este video todavía no tiene guion.");
-  pr.v = v; pr.filtro = "todo";
-  const todas = partesDe(v);
-  const mixto = todas.some((p) => enOff(p.modo)) && todas.some((p) => !enOff(p.modo));
-  $("#pr-filtro").hidden = !mixto;
+  const camara = hablado(v, "camara").length, voz = hablado(v, "voz").length;
+  if (!camara && !voz) return avisar("En este video no hablas: son tomas sin texto. Están en Material.");
+  pr.v = v; pr.filtro = camara ? "camara" : "voz"; // primero lo que dices a cámara; la voz en off se graba aparte
+  $("#pr-filtro").hidden = !(camara && voz);
+  $('[data-filtro="camara"]').textContent = `A cámara · ${camara}`;
+  $('[data-filtro="voz"]').textContent = `Voz en off · ${voz}`;
   armarPrompter();
   $("#prompter").classList.toggle("espejo", leerLocal("estudio:espejo") === "si");
   $("#pr-auto").checked = pr.auto;
@@ -700,13 +712,12 @@ function abrirPrompter(v) {
 
 /* «A cámara» deja solo lo que se dice mirando al lente; «Voz en off», lo que se graba solo con la voz. */
 function armarPrompter() {
-  pr.partes = partesDe(pr.v, pr.filtro);
+  pr.partes = hablado(pr.v, pr.filtro);
   pr.i = 0; pr.hecho = 0;
+  // [lo que cuentas con tus palabras] se ve más suave: es el tema, no un texto para leer
   $("#pr-lista").innerHTML = pr.partes.map((p, k) => `
-    <div class="pr-parrafo${DIRECCION.test(p.texto.trim()) ? " direccion" : ""}${enOff(p.modo) ? " en-off" : ""}" data-pi="${k}">
-      <span class="pr-etiqueta">${p.n ? `${p.n} · ` : ""}${esc(p.t)}${p.modo !== "camara" ? ` · ${MODOS[p.modo].nombre.toUpperCase()}` : ""}<em data-seg="${k}"></em></span>
-      <p>${esc(p.texto)}</p>
-      ${p.hace && pr.filtro !== "voz" ? `<small class="pr-hace">${esc(p.hace)}</small>` : ""}
+    <div class="pr-parrafo" data-pi="${k}">
+      <p>${esc(p.texto).replace(/\[([^\]]*)\]/g, '<span class="pr-tuyo">$1</span>')}</p>
       <i class="pr-progreso"><b></b></i>
     </div>`).join("");
 }
@@ -727,7 +738,6 @@ function pintarPrompter() {
   document.querySelectorAll(".pr-parrafo").forEach((el, k) => {
     el.classList.toggle("actual", k === pr.i);
     el.classList.toggle("pasado", k < pr.i);
-    el.querySelector("[data-seg]").textContent = ` · ${Math.round(durPr(k))} s`;
     el.querySelector(".pr-progreso b").style.transform = `scaleX(${k < pr.i ? 1 : k === pr.i ? Math.min(1, pr.hecho / durPr(k)) : 0})`;
   });
   // El párrafo actual queda arriba, cerca del lente, para que no se note que lees.
@@ -742,7 +752,7 @@ function pintarPrompter() {
 function pintarReloj() {
   let pasado = pr.hecho;
   for (let k = 0; k < pr.i; k++) pasado += durPr(k);
-  $("#pr-reloj").textContent = `${reloj(pasado)} / ${reloj(totalPr())}`;
+  $("#pr-reloj").textContent = `${pr.i + 1} de ${pr.partes.length} · ${reloj(pasado)} / ${reloj(totalPr())}`;
   const b = document.querySelector(`.pr-parrafo[data-pi="${pr.i}"] .pr-progreso b`);
   if (b) b.style.transform = `scaleX(${Math.min(1, pr.hecho / durPr(pr.i))})`;
 }
