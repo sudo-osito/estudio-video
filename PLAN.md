@@ -88,4 +88,4 @@ Retención por segundo (TikTok/IG insights) cada semana → qué gancho, ritmo y
 ## Preguntas que solo Max sabe
 1. ¿De qué va la marca personal y a quién quiere atraer?
 2. ¿La cuenta de TikTok/IG es personal/creador o de empresa?
-3. ¿Esto va en el Mac (lo cuento como trabajo de Cóndor) o en el PC?
+3. ¿Esto va en el Mac o en el PC?

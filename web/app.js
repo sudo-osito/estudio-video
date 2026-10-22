@@ -7,7 +7,7 @@ const PILARES = {
   ia: { nombre: "Construyo con IA", var: "ia" },
   anuncios: { nombre: "Anuncios que venden", var: "anuncios" },
   diseno: { nombre: "Diseño que cobra caro", var: "diseno" },
-  condor: { nombre: "Cóndor por dentro", var: "condor" },
+  optimizo: { nombre: "Por dentro", var: "optimizo" },
   chile: { nombre: "Chile + IA", var: "chile" },
 };
 const pilar = (k) => PILARES[k] ?? { nombre: k || "Sin pilar", var: null };
@@ -17,6 +17,24 @@ const ESTADO = {
   entregado: "Entregado", publicado: "Publicado", descartado: "Descartado",
 };
 const HECHO = new Set(["listo", "editando", "entregado", "publicado"]);
+
+/* Cómo se graba cada párrafo del guion (beats[].modo). */
+const MODOS = {
+  camara: { nombre: "A cámara", ayuda: "Te grabas diciéndolo, mirando al lente." },
+  voz: { nombre: "Voz en off", ayuda: "Solo tu voz. Encima va otra imagen que grabas aparte." },
+  pantalla: { nombre: "Voz + pantalla", ayuda: "Solo tu voz, sobre una grabación de pantalla." },
+  escena: { nombre: "Sin hablar", ayuda: "Actúas sin decir nada." },
+};
+const modoDe = (b) => (MODOS[b?.modo] ? b.modo : "camara");
+const enOff = (m) => m === "voz" || m === "pantalla";
+const ICONO_MODO = {
+  camara: `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.5" y="4" width="9.5" height="8" rx="2"/><path d="M11 7l3.5-2v6L11 9"/></svg>`,
+  voz: `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5"/><path d="M3 7.5a5 5 0 0010 0M8 12.5v2"/></svg>`,
+  pantalla: `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="2.5" width="13" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11v3"/></svg>`,
+  escena: `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h12v7H2zM2 6.5l1.5-4 11 2.5-.5 1.5"/><path d="M6 3.2l-.8 3.3M10 4.1l-.8 2.4"/></svg>`,
+};
+const chipModo = (m) => `<span class="modo m-${m}">${ICONO_MODO[m]}${MODOS[m].nombre}</span>`;
+const listaNum = (ns) => (ns.length > 1 ? `${ns.slice(0, -1).join(", ")} y ${ns.at(-1)}` : `${ns[0]}`);
 
 const DIAS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
 const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
@@ -241,15 +259,36 @@ function guionHtml(v) {
   const d = v.datos;
   const g = d.grabar ?? {};
   const beats = d.beats ?? [];
+  const cuenta = {};
+  beats.forEach((b) => { const m = modoDe(b); cuenta[m] = (cuenta[m] ?? 0) + 1; });
+  const ganchoAparte = v.gancho && !beats.some((b) => b.dice === v.gancho);
   return `
-    ${v.gancho ? `<div class="bloque"><h4>Primera frase</h4><p class="gancho">${esc(v.gancho)}</p></div>` : ""}
-    <div class="acciones"><button class="boton primario" data-prompter="${v.id}">Abrir teleprompter</button><button class="boton" data-pestana-det="material">Subir material</button></div>
-    ${beats.length ? `<div class="bloque"><h4>Lo que dices, en orden · ≈ ${reloj(partesDe(v).reduce((a, p) => a + segundosDe(p.texto, "normal", p.fijo), 0))} en total, contando la primera frase</h4><div class="beats">${beats.map((b, i) => `
-      <label class="beat"><input type="checkbox" data-beat="${i}" ${v.hechos.includes(i) ? "checked" : ""}>
-        <div><span class="beat-t">${b.t ? `${esc(b.t)} · ` : ""}${Math.round(segundosDe(b.dice, "normal", b.seg))} s</span><p class="beat-dice">${esc(b.dice)}</p>${b.plano ? `<p class="beat-plano">${esc(b.plano)}</p>` : ""}</div></label>`).join("")}</div></div>` : ""}
+    ${ganchoAparte ? `<div class="bloque"><h4>Primera frase</h4><p class="gancho">${esc(v.gancho)}</p></div>` : ""}
+    <div class="acciones"><button class="boton primario" data-prompter="${v.id}">Abrir teleprompter</button><button class="boton" data-pestana-det="material">Qué grabar y subir</button></div>
+    ${beats.length ? `
+      <div class="bloque">
+        <h4>Cómo se arma · ≈ ${reloj(partesDe(v).reduce((a, p) => a + segundosDe(p.texto, "normal", p.fijo), 0))}</h4>
+        <div class="modos-resumen">${Object.keys(MODOS).filter((m) => cuenta[m]).map((m) => `<div>${chipModo(m)}<span><b>${cuenta[m]}</b> ${cuenta[m] === 1 ? "párrafo" : "párrafos"} · ${MODOS[m].ayuda}</span></div>`).join("")}</div>
+      </div>
+      <div class="bloque"><h4>Párrafo por párrafo</h4><div class="beats">${beats.map((b, i) => {
+        const m = modoDe(b);
+        const filas = [
+          b.hace ? ["Haces", b.hace] : null,
+          b.ve ? [m === "pantalla" ? "Grabas en pantalla" : enOff(m) ? "Se ve (grábalo aparte)" : "Se ve", b.ve] : null,
+          b.plano ? ["Plano", b.plano] : null,
+        ].filter(Boolean);
+        return `
+        <label class="beat paso"><input type="checkbox" data-beat="${i}" ${v.hechos.includes(i) ? "checked" : ""}>
+          <div>
+            <div class="paso-cabeza"><span class="paso-n">${i + 1}</span>${chipModo(m)}<span class="beat-t">${b.t ? `${esc(b.t)} · ` : ""}${Math.round(segundosDe(b.dice, "normal", b.seg))} s</span></div>
+            ${enOff(m) ? `<small class="paso-off">Dices, en off:</small>` : ""}
+            <p class="beat-dice${DIRECCION.test(String(b.dice).trim()) ? " direccion" : ""}">${esc(b.dice)}</p>
+            ${filas.length ? `<dl class="paso-como">${filas.map(([k, x]) => `<div><dt>${k}</dt><dd>${esc(x)}</dd></div>`).join("")}</dl>` : ""}
+          </div></label>`;
+      }).join("")}</div></div>` : ""}
+    ${d.recursos?.length ? `<div class="bloque"><h4>Lo que necesito de ti</h4><ul class="lista-simple">${d.recursos.map((x) => `<li><b>${esc(x.que)}</b>${x.detalle ? `. ${esc(x.detalle)}` : ""}</li>`).join("")}</ul></div>` : ""}
     ${d.ganchos_alt?.length ? `<div class="bloque"><h4>Graba también estas primeras frases (para probar cuál funciona)</h4><div class="alt">${d.ganchos_alt.map((x) => `<div>${esc(x)}</div>`).join("")}</div></div>` : ""}
     ${Object.keys(g).length ? `<div class="bloque"><h4>Cómo grabarlo</h4><div class="datos">${[["plano", "Plano"], ["lugar", "Lugar"], ["luz", "Luz"], ["ropa", "Ropa"]].filter(([k]) => g[k]).map(([k, t]) => `<div><small>${t}</small><span>${esc(g[k])}</span></div>`).join("")}</div></div>` : ""}
-    ${d.broll?.length ? `<div class="bloque"><h4>Graba aparte</h4><ul class="lista-simple">${d.broll.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
     ${d.props?.length ? `<div class="bloque"><h4>Ten a mano</h4><ul class="lista-simple">${d.props.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
     ${d.por_que ? `<div class="bloque"><h4>Por qué funciona</h4><div class="caja">${esc(d.por_que)}</div></div>` : ""}`;
 }
@@ -257,19 +296,36 @@ function guionHtml(v) {
 const ICONO_ARCHIVO = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="2" y="3.5" width="9" height="9" rx="2"/><path d="M11 7l3-2v6l-3-2"/></svg>`;
 
 /* Lo que tiene que venir en el material para poder editar. Claude puede fijarlo por MCP en datos.tomas;
-   si no, se arma solo desde el guion. Cada ítem se marca y queda en «hechos» como "t:<id>". */
+   si no, se arma solo desde el guion (modo de cada párrafo). Cada ítem se marca y queda en «hechos» como "t:<id>". */
+const GRUPOS = { camara: "1 · A cámara", voz: "2 · Voz en off", encima: "3 · Lo que va encima de tu voz", aparte: "Graba aparte", mandame: "Mándame también", Tomas: "A cámara", Aparte: "Graba aparte" };
+
 function tomasDe(v) {
   const d = v.datos ?? {};
   if (Array.isArray(d.tomas) && d.tomas.length) return d.tomas.map((t, k) => ({ id: t.id ?? `c${k}`, que: t.que, detalle: t.detalle ?? "", grupo: t.grupo ?? "Tomas" }));
-  const lista = [{ id: "principal", grupo: "Tomas", que: "La toma completa, de corrido", detalle: "Todo el guion de principio a fin con el teleprompter. Si te equivocas, no pares: repite la frase y sigue, yo corto." }];
+  const beats = d.beats ?? [];
   const cita = (x) => `«${String(x).trim().replace(/^[«"]|[»"]$/g, "").replace(/[.]$/, "")}»`;
-  if (v.gancho) lista.push({ id: "gancho", grupo: "Tomas", que: "La primera frase, 3 veces", detalle: `${cita(v.gancho)}. Cada vez con más energía: es lo que decide si se quedan.` });
-  (d.ganchos_alt ?? []).forEach((g, k) => lista.push({ id: `alt${k}`, grupo: "Tomas", que: `Primera frase alternativa ${k + 1}`, detalle: `${cita(g)}. Para probar cuál funciona mejor.` }));
-  (d.broll ?? []).forEach((b, k) => lista.push({ id: `broll${k}`, grupo: "Aparte", que: b, detalle: "" }));
+  const sinParentesis = (x) => String(x).trim().replace(/^\(|\)$/g, "");
+  const nums = (f) => beats.map((b, i) => (f(modoDe(b)) ? i + 1 : 0)).filter(Boolean);
+  const aCamara = nums((m) => m === "camara"), enVoz = nums(enOff);
+  const lista = [];
+  if (!beats.length || aCamara.length === beats.length) lista.push({ id: "principal", grupo: "camara", que: "Todo el guion, de corrido", detalle: "De principio a fin con el teleprompter. Si te equivocas, no pares: repite la frase y sigue, yo corto." });
+  else if (aCamara.length) lista.push({ id: "principal", grupo: "camara", que: `Los párrafos a cámara, de corrido (${aCamara.length === 1 ? "el" : "los"} ${listaNum(aCamara)})`, detalle: "En el teleprompter elige «A cámara»: se salta los de voz en off. Si te equivocas, repite la frase y sigue." });
+  beats.forEach((b, i) => {
+    if (modoDe(b) === "escena") lista.push({ id: `esc${i}`, grupo: "camara", que: `Párrafo ${i + 1}, sin hablar: ${sinParentesis(b.dice)}`, detalle: [b.hace, b.ve].filter(Boolean).join(" ") });
+  });
+  if (v.gancho) lista.push({ id: "gancho", grupo: "camara", que: "La primera frase, 3 veces más", detalle: `${cita(v.gancho)}. Cada vez con más energía: es lo que decide si se quedan.` });
+  (d.ganchos_alt ?? []).forEach((g, k) => lista.push({ id: `alt${k}`, grupo: "camara", que: `Primera frase alternativa ${k + 1}`, detalle: `${cita(g)}. Misma energía, para probar cuál funciona mejor.` }));
+  if (enVoz.length) lista.push({ id: "voz", grupo: "voz", que: `Tu voz en off: ${enVoz.length === 1 ? "el párrafo" : "los párrafos"} ${listaNum(enVoz)}`, detalle: "En el teleprompter elige «Voz en off». Celular a un palmo de la boca, en un lugar sin eco (un clóset con ropa es perfecto); sirve la app Notas de voz. Lee cada párrafo 2 veces." });
+  beats.forEach((b, i) => {
+    const m = modoDe(b);
+    if (enOff(m)) lista.push({ id: `ve${i}`, grupo: "encima", que: `Párrafo ${i + 1} · ${m === "pantalla" ? "grabación de pantalla" : "imagen"}`, detalle: b.ve || "Algo que muestre lo que dices (5–8 s)." });
+  });
+  (d.broll ?? []).forEach((x, k) => lista.push({ id: `broll${k}`, grupo: "aparte", que: x, detalle: "" }));
   lista.push(
-    { id: "reacciones", grupo: "Aparte", que: "4 reacciones sin hablar (2 s cada una)", detalle: "Mirar a cámara serio, sonreír, cara de sorpresa y negar con la cabeza. Sirven para cortes, remates y transiciones." },
-    { id: "ambiente", grupo: "Aparte", que: "10 segundos de silencio en el mismo lugar", detalle: "Sin hablar ni moverte, con la misma cámara. Con eso limpio el ruido de fondo." },
+    { id: "reacciones", grupo: "aparte", que: "4 reacciones sin hablar (2 s cada una)", detalle: "Mirar a cámara serio, sonreír, cara de sorpresa y negar con la cabeza. Sirven para cortes, remates y transiciones." },
+    { id: "ambiente", grupo: "aparte", que: "10 segundos de silencio en el mismo lugar", detalle: "Sin hablar ni moverte, con la misma cámara. Con eso limpio el ruido de fondo." },
   );
+  (d.recursos ?? []).forEach((x, k) => lista.push({ id: `rec${k}`, grupo: "mandame", que: x.que, detalle: x.detalle ?? "" }));
   return lista;
 }
 
@@ -298,7 +354,7 @@ function listaGrabarHtml(v) {
     <div class="bloque">
       <div class="titulo-lista"><h4>Qué necesito para editar</h4><span class="contador${hechas === tomas.length ? " completo" : ""}">${hechas} de ${tomas.length}</span></div>
       ${grupos.map((gr) => `
-        ${grupos.length > 1 ? `<p class="subgrupo">${gr === "Tomas" ? "Tomas a cámara" : "Graba aparte"}</p>` : ""}
+        ${grupos.length > 1 ? `<p class="subgrupo">${esc(GRUPOS[gr] ?? gr)}</p>` : ""}
         <div class="beats">${tomas.filter((t) => t.grupo === gr).map((t) => `
           <label class="beat"><input type="checkbox" data-toma="${esc(t.id)}" ${v.hechos.includes(`t:${t.id}`) ? "checked" : ""}>
             <div><p class="beat-dice">${esc(t.que)}</p>${t.detalle ? `<p class="beat-plano">${esc(t.detalle)}</p>` : ""}</div></label>`).join("")}</div>`).join("")}
@@ -317,10 +373,10 @@ function materialHtml(v) {
   return `
     ${listaGrabarHtml(v)}
     <label class="zona-subir" id="zona-subir">
-      <input type="file" id="campo-archivos" multiple accept="video/*,audio/*,image/*,.mov,.mp4,.m4a,.wav" hidden>
+      <input type="file" id="campo-archivos" multiple hidden>
       <span class="icono"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13V3.5m0 0L6.5 7M10 3.5L13.5 7"/><path d="M3.5 12.5v2a2 2 0 002 2h9a2 2 0 002-2v-2"/></svg></span>
       <b>Sube tus tomas</b>
-      <span>Tal cual salen del celular, sin comprimir ni renombrar. Todas juntas está bien.</span>
+      <span>Videos, notas de voz, capturas y archivos, tal cual salen del celular o del computador. Todo junto está bien.</span>
     </label>
     <div class="archivos">${subiendo.map((x) => `<div class="archivo"><span class="ic">${ICONO_ARCHIVO}</span><b>${esc(x.nombre)}</b><small>Subiendo · ${Math.floor((x.hecho / x.bytes) * 100)}%</small><div class="progreso-barra"><i style="width:${(x.hecho / x.bytes) * 100}%"></i></div></div>`).join("")}${material.filter((a) => a.estado === "ok").map((a) => `<div class="archivo"><span class="ic">${ICONO_ARCHIVO}</span><b>${esc(a.nombre)}</b><button class="quitar" data-quitar="${a.id}">Quitar</button><small>${mb(a.bytes)}</small></div>`).join("")}</div>
     ${yaListo ? `
@@ -461,37 +517,37 @@ function segundosDe(texto, ritmo = "normal", fijo) {
   if (fijo) return Number(fijo);
   const t = String(texto).trim();
   if (DIRECCION.test(t)) { const n = t.match(/(\d+(?:[.,]\d+)?)\s*seg/); return n ? Number(n[1].replace(",", ".")) : 2; }
+  if (/^\[[^\]]*\]\.?$/.test(t)) return 10; // un párrafo que es solo [lo que cuentas tú] se estima como una historia corta
   const palabras = t.replace(/\[[^\]]*\]/g, "xx xx xx").split(/\s+/).filter(Boolean).length;
   return Math.max(1.5, Math.round((palabras / (RITMOS[ritmo] / 60) + 0.5) * 10) / 10);
 }
 const reloj = (seg) => `${Math.floor(seg / 60)}:${String(Math.floor(seg % 60)).padStart(2, "0")}`;
 
-function partesDe(v) {
-  const beats = (v.datos?.beats ?? []).filter((b) => b.dice !== v.gancho);
-  return [
-    ...(v.gancho ? [{ t: "GANCHO", texto: v.gancho }] : []),
-    ...beats.map((b) => ({ t: b.t ?? "", texto: b.dice, fijo: b.seg })),
-  ];
+function partesDe(v, filtro = "todo") {
+  const beats = v.datos?.beats ?? [];
+  const partes = beats.map((b, i) => ({ n: i + 1, t: b.t ?? "", texto: b.dice, fijo: b.seg, modo: modoDe(b), hace: b.hace ?? "" }));
+  if (v.gancho && !beats.some((b) => b.dice === v.gancho)) partes.unshift({ n: 0, t: "GANCHO", texto: v.gancho, modo: "camara", hace: "" });
+  if (filtro === "camara") return partes.filter((p) => !enOff(p.modo));
+  if (filtro === "voz") return partes.filter((p) => enOff(p.modo));
+  return partes;
 }
 
 let pr = {
   partes: [], i: 0, hecho: 0, corre: false, raf: 0, ultimo: 0, cuenta: 0,
   ritmo: leerLocal("estudio:ritmo") in RITMOS ? leerLocal("estudio:ritmo") : "normal",
   auto: leerLocal("estudio:auto") !== "no",
+  v: null, filtro: "todo",
 };
 const durPr = (k) => segundosDe(pr.partes[k].texto, pr.ritmo, pr.partes[k].fijo);
 const totalPr = () => pr.partes.reduce((a, _, k) => a + durPr(k), 0);
 
 function abrirPrompter(v) {
-  pr.partes = partesDe(v);
-  if (!pr.partes.length) return avisar("Este video todavía no tiene guion.");
-  pr.i = 0; pr.hecho = 0;
-  $("#pr-lista").innerHTML = pr.partes.map((p, k) => `
-    <div class="pr-parrafo${DIRECCION.test(p.texto.trim()) ? " direccion" : ""}" data-pi="${k}">
-      <span class="pr-etiqueta">${esc(p.t)}<em data-seg="${k}"></em></span>
-      <p>${esc(p.texto)}</p>
-      <i class="pr-progreso"><b></b></i>
-    </div>`).join("");
+  if (!partesDe(v).length) return avisar("Este video todavía no tiene guion.");
+  pr.v = v; pr.filtro = "todo";
+  const todas = partesDe(v);
+  const mixto = todas.some((p) => enOff(p.modo)) && todas.some((p) => !enOff(p.modo));
+  $("#pr-filtro").hidden = !mixto;
+  armarPrompter();
   $("#prompter").classList.toggle("espejo", leerLocal("estudio:espejo") === "si");
   $("#pr-auto").checked = pr.auto;
   $("#prompter").hidden = false;
@@ -499,6 +555,19 @@ function abrirPrompter(v) {
   history.pushState({ prompter: true }, "");
   mantenerPantalla(true);
   pintarPrompter();
+}
+
+/* «A cámara» deja solo lo que se dice mirando al lente; «Voz en off», lo que se graba solo con la voz. */
+function armarPrompter() {
+  pr.partes = partesDe(pr.v, pr.filtro);
+  pr.i = 0; pr.hecho = 0;
+  $("#pr-lista").innerHTML = pr.partes.map((p, k) => `
+    <div class="pr-parrafo${DIRECCION.test(p.texto.trim()) ? " direccion" : ""}${enOff(p.modo) ? " en-off" : ""}" data-pi="${k}">
+      <span class="pr-etiqueta">${p.n ? `${p.n} · ` : ""}${esc(p.t)}${p.modo !== "camara" ? ` · ${MODOS[p.modo].nombre.toUpperCase()}` : ""}<em data-seg="${k}"></em></span>
+      <p>${esc(p.texto)}</p>
+      ${p.hace && pr.filtro !== "voz" ? `<small class="pr-hace">${esc(p.hace)}</small>` : ""}
+      <i class="pr-progreso"><b></b></i>
+    </div>`).join("");
 }
 
 function cerrarPrompter(desdeHistorial = false) {
@@ -512,7 +581,8 @@ function cerrarPrompter(desdeHistorial = false) {
 }
 
 function pintarPrompter() {
-  document.querySelectorAll(".pr-segmento button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ritmo === pr.ritmo)));
+  document.querySelectorAll("[data-ritmo]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ritmo === pr.ritmo)));
+  document.querySelectorAll("[data-filtro]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filtro === pr.filtro)));
   document.querySelectorAll(".pr-parrafo").forEach((el, k) => {
     el.classList.toggle("actual", k === pr.i);
     el.classList.toggle("pasado", k < pr.i);
@@ -608,7 +678,7 @@ async function cambiarEstado(estado, extra = {}) {
 
 /* ── Eventos ── */
 document.addEventListener("click", async (e) => {
-  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-ritmo],[data-pi],[data-dia]");
+  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-ritmo],[data-filtro],[data-pi],[data-dia]");
   if (!t) { if (e.target.id === "velo") cerrarDetalle(); return; }
   const d = t.dataset;
   if (d.abrir) return abrir(d.abrir, d.pestana || (s.sel === d.abrir ? s.pestana : "guion"));
@@ -630,6 +700,7 @@ document.addEventListener("click", async (e) => {
     return abrirPrompter(v);
   }
   if (d.p) return accionPrompter(d.p);
+  if (d.filtro) { pausarPrompter(); pr.filtro = d.filtro; armarPrompter(); return pintarPrompter(); }
   if (d.ritmo) { pr.ritmo = d.ritmo; guardarLocal("estudio:ritmo", d.ritmo); pr.hecho = Math.min(pr.hecho, durPr(pr.i) - 0.1); return pintarPrompter(); }
   if (d.pi) { const seguia = pr.corre; irA(Number(d.pi)); if (seguia) pr.ultimo = performance.now(); return; }
   try {

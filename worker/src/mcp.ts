@@ -13,7 +13,10 @@ const DATOS = {
   type: "object",
   description:
     "Bloques del video (se mezclan con los actuales): por_que, origen (chiste|persona|evento|espacio|objeto), ganchos_alt[], duracion, " +
-    "grabar{plano, lugar, ropa, luz}, beats[{t, dice, plano}], broll[], props[], edicion{estilo, subtitulos, musica, efectos[], ritmo}, " +
+    "grabar{plano, lugar, ropa, luz}, " +
+    "beats[{t, modo: camara|voz|pantalla|escena, dice, hace (gesto o acción mientras lo dice), ve (qué se ve encima si es voz/pantalla: lo que Max graba aparte), plano, seg}] " +
+    "(el gancho = beats[0].dice; cada párrafo debe dejar claro si Max se graba diciéndolo, si es voz en off y qué graba para encima, o si es una escena sin hablar), " +
+    "recursos[{que, detalle}] (lo que Max debe mandar: datos reales, capturas, archivos), broll[], props[], edicion{estilo, subtitulos, musica, efectos[], ritmo}, " +
     "post{texto, hashtags[], sonido, inicio_sonido}, " +
     "tomas[{id, que, detalle, grupo: Tomas|Aparte}] (lo que Max debe grabar para editar; si falta, la página lo arma desde el guion), beats[].seg (segundos fijos de un párrafo en el teleprompter)",
 };
@@ -66,7 +69,8 @@ export async function mcp(req: Request, env: Env, autorizar: () => Promise<strin
           capabilities: { tools: { listChanged: false } },
           serverInfo: { name: "estudio", title: "Estudio · orgánicos de Max", version: "1.0.0" },
           instructions:
-            "Calendario de videos orgánicos de Max (TikTok e Instagram). Max graba y sube el material desde la página; cuando avisa, " +
+            "Calendario de videos orgánicos de Max (TikTok e Instagram). Antes de escribir o cambiar guiones, lee cerebro/ del repo " +
+            "estudio-video (quién es Max hoy, narrativa, reglas, cómo se graba). Max graba y sube el material desde la página; cuando avisa, " +
             "usa «pendientes», baja el material con «enlace_descarga», pasa el video a «editando», edítalo con la skill de video y súbelo " +
             "como entrega (herramientas/subir.mjs del repo estudio-video) con el post listo; después pásalo a «entregado».",
         }));

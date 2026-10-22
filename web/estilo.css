@@ -18,7 +18,7 @@
   --p-ia: #7c5cff;        --p-ia-suave: #f2efff;
   --p-anuncios: #ef6a1f;  --p-anuncios-suave: #fff1e8;
   --p-diseno: #e0458f;    --p-diseno-suave: #fdeef5;
-  --p-condor: #109f97;    --p-condor-suave: #e7f6f5;
+  --p-optimizo: #109f97;    --p-optimizo-suave: #e7f6f5;
   --p-chile: #c08a00;     --p-chile-suave: #fcf5dd;
 
   --fuente: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -278,6 +278,32 @@ svg { display: block; }
 .beat-dice { margin: 2px 0 0; font-size: 15px; line-height: 1.45; }
 .beat-plano { margin: 4px 0 0; font-size: 13px; color: var(--texto-3); }
 
+/* Guion párrafo por párrafo: cómo se graba cada uno */
+.modo { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; padding: 2px 8px 2px 6px; border-radius: 999px; white-space: nowrap; color: var(--m); background: var(--m-suave); }
+.modo svg { width: 14px; height: 14px; flex: none; }
+.m-camara { --m: #0d0d0d; --m-suave: #efefef; }
+.m-voz { --m: #7c5cff; --m-suave: #f2efff; }
+.m-pantalla { --m: #2f6fe4; --m-suave: #eaf1fd; }
+.m-escena { --m: #c08a00; --m-suave: #fcf5dd; }
+.modos-resumen { display: grid; gap: 8px; }
+.modos-resumen > div { display: flex; align-items: baseline; gap: 10px; font-size: 14px; color: var(--texto-2); }
+.modos-resumen .modo { min-width: 118px; }
+.modos-resumen b { color: var(--texto); font-weight: 600; }
+.paso-cabeza { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.paso-n { font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--texto-3); min-width: 12px; }
+.paso-off { display: block; margin-top: 8px; font-size: 12px; color: var(--texto-3); }
+.paso .beat-dice { margin-top: 6px; }
+.paso-off + .beat-dice { margin-top: 2px; }
+.beat-dice.direccion { font-style: italic; color: var(--texto-2); }
+.paso-como { display: grid; gap: 6px; margin: 10px 0 0; padding: 10px 12px; border-radius: var(--r-s, 8px); background: var(--sup); }
+.paso-como div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px; font-size: 13px; line-height: 1.45; }
+.paso-como dt { color: var(--texto-3); }
+.paso-como dd { margin: 0; color: var(--texto); }
+@media (max-width: 760px) {
+  .modos-resumen > div { flex-direction: column; gap: 4px; }
+  .paso-como div { grid-template-columns: 1fr; gap: 1px; }
+}
+
 /* Lista de grabación */
 .titulo-lista { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .titulo-lista h4 { margin-bottom: 8px; }
@@ -367,6 +393,9 @@ svg { display: block; }
 .pr-etiqueta { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: #ff6b6b; margin-bottom: 8px; }
 .pr-etiqueta em { font-style: normal; color: #6f6f6f; letter-spacing: 0; font-weight: 500; }
 .pr-parrafo p { margin: 0; font: 600 clamp(28px, 5.6vw, 58px)/1.25 var(--fuente-display); letter-spacing: -0.015em; text-wrap: pretty; }
+.pr-hace { display: block; margin-top: 10px; font-size: clamp(15px, 2vw, 20px); line-height: 1.4; color: #8a8a8a; }
+.pr-parrafo.en-off .pr-etiqueta { color: #a996ff; }
+.pr-segmento[hidden] { display: none; }
 .pr-parrafo.direccion p { font-style: italic; font-weight: 500; color: #9a9a9a; font-size: clamp(22px, 4vw, 40px); }
 .pr-progreso { display: block; height: 3px; margin-top: 14px; border-radius: 2px; background: #262626; overflow: hidden; visibility: hidden; }
 .pr-progreso b { display: block; height: 100%; background: #fff; transform-origin: left; transform: scaleX(0); }
