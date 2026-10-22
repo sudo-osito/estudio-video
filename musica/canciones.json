@@ -4,321 +4,671 @@
   "artista": "Max Richter",
   "cancion": "On the Nature of Daylight",
   "donde": "Arrival, Shutter Island",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "calma",
   "artista": "Ólafur Arnalds",
   "cancion": "Saman",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "calma",
   "artista": "Nils Frahm",
   "cancion": "Says",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "calma",
   "artista": "Ludovico Einaudi",
   "cancion": "Experience",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "asombro",
   "artista": "Hans Zimmer",
   "cancion": "Time",
   "donde": "Inception",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "asombro",
   "artista": "Hans Zimmer",
   "cancion": "Cornfield Chase",
   "donde": "Interstellar",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "asombro",
   "artista": "M83",
   "cancion": "Outro",
   "donde": "Muy usada en tráileres",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "asombro",
   "artista": "ODESZA",
   "cancion": "A Moment Apart",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "asombro",
   "artista": "Jon Hopkins",
   "cancion": "Emerald Rush",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "tension",
   "artista": "Trent Reznor & Atticus Ross",
   "cancion": "Hand Covers Bruise",
   "donde": "The Social Network",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "tension",
   "artista": "Moderat",
   "cancion": "Bad Kingdom",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "tension",
   "artista": "Radiohead",
   "cancion": "Everything In Its Right Place",
   "donde": "Vanilla Sky",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "indie"
  },
  {
   "emocion": "tension",
   "artista": "Daft Punk",
   "cancion": "Veridis Quo",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "epica-tranquila",
   "artista": "Explosions in the Sky",
   "cancion": "Your Hand in Mine",
   "donde": "Friday Night Lights",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "epica-tranquila",
   "artista": "RÜFÜS DU SOL",
   "cancion": "Innerbloom",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "epica-tranquila",
   "artista": "Fred again..",
   "cancion": "Delilah (pull me out of this)",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "dia",
   "artista": "Bonobo",
   "cancion": "Kerala",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "dia",
   "artista": "Tycho",
   "cancion": "Awake",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "dia",
   "artista": "Khruangbin",
   "cancion": "María También",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "indie"
  },
  {
   "emocion": "noche",
   "artista": "Kavinsky",
   "cancion": "Nightcall",
   "donde": "Drive",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "electronica"
  },
  {
   "emocion": "noche",
   "artista": "Soda Stereo",
   "cancion": "En la ciudad de la furia",
   "donde": "Para la vista de la ciudad desde el piso 15",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "latino"
  },
  {
   "emocion": "noche",
   "artista": "Vangelis",
   "cancion": "Tears in Rain",
   "donde": "Blade Runner",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "cine"
  },
  {
   "emocion": "noche",
   "artista": "Cigarettes After Sex",
   "cancion": "Apocalypse",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "indie"
  },
  {
   "emocion": "noche",
   "artista": "The xx",
   "cancion": "Intro",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "indie"
  },
  {
   "emocion": "nostalgia",
   "artista": "Arcade Fire",
   "cancion": "Supersymmetry",
   "donde": "Her",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "indie"
  },
  {
   "emocion": "nostalgia",
   "artista": "Bon Iver",
   "cancion": "Holocene",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "indie"
  },
  {
   "emocion": "nostalgia",
   "artista": "Gustavo Cerati",
   "cancion": "Puente",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "latino"
  },
  {
   "emocion": "nostalgia",
   "artista": "Los Prisioneros",
   "cancion": "Tren al sur",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "latino"
  },
  {
   "emocion": "calma",
   "artista": "Mac Miller",
   "cancion": "Good News",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "calma",
   "artista": "Frank Ocean",
   "cancion": "Pink + White",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "calma",
   "artista": "Daniel Caesar",
   "cancion": "Get You",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "dia",
   "artista": "Kendrick Lamar",
   "cancion": "Money Trees",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "dia",
   "artista": "Tyler, The Creator",
   "cancion": "See You Again",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "dia",
   "artista": "Childish Gambino",
   "cancion": "Redbone",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "noche",
   "artista": "The Weeknd",
   "cancion": "Blinding Lights",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "noche",
   "artista": "Frank Ocean",
   "cancion": "Nights",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "noche",
   "artista": "Travis Scott",
   "cancion": "BUTTERFLY EFFECT",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "epica-tranquila",
   "artista": "Kanye West",
   "cancion": "Runaway",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "epica-tranquila",
   "artista": "Kid Cudi",
   "cancion": "Pursuit of Happiness",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "epica-tranquila",
   "artista": "Kendrick Lamar",
   "cancion": "PRIDE.",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "asombro",
   "artista": "Kanye West",
   "cancion": "Flashing Lights",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "asombro",
   "artista": "Kendrick Lamar",
   "cancion": "LOVE.",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "tension",
   "artista": "Kendrick Lamar",
   "cancion": "DNA.",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "tension",
   "artista": "Travis Scott",
   "cancion": "goosebumps",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "nostalgia",
   "artista": "SZA",
   "cancion": "Snooze",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
  },
  {
   "emocion": "nostalgia",
   "artista": "J. Cole",
   "cancion": "Love Yourz",
   "donde": "",
+  "propuesta": "Claude 22-oct",
+  "estilo": "pop-eeuu"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "noche",
+  "artista": "Mariya Takeuchi",
+  "cancion": "Plastic Love",
+  "donde": "City pop clásico, vuelve una y otra vez en TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "nostalgia",
+  "artista": "Miki Matsubara",
+  "cancion": "Mayonaka no Door (Stay With Me)",
+  "donde": "City pop, viral en TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "dia",
+  "artista": "Tatsuro Yamashita",
+  "cancion": "Ride on Time",
+  "donde": "City pop",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "noche",
+  "artista": "Anri",
+  "cancion": "Last Summer Whisper",
+  "donde": "City pop",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "dia",
+  "artista": "Fujii Kaze",
+  "cancion": "Shinunoga E-Wa",
+  "donde": "Viral global",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "asombro",
+  "artista": "Kenshi Yonezu",
+  "cancion": "KICK BACK",
+  "donde": "Chainsaw Man",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "nostalgia",
+  "artista": "Kenshi Yonezu",
+  "cancion": "Lemon",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "epica-tranquila",
+  "artista": "RADWIMPS",
+  "cancion": "Sparkle",
+  "donde": "Your Name",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "calma",
+  "artista": "Joe Hisaishi",
+  "cancion": "One Summer's Day",
+  "donde": "El viaje de Chihiro",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "calma",
+  "artista": "Ryuichi Sakamoto",
+  "cancion": "Merry Christmas Mr. Lawrence",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "noche",
+  "artista": "Nujabes",
+  "cancion": "Aruarian Dance",
+  "donde": "Samurai Champloo; base del lo-fi hip hop",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "calma",
+  "artista": "Nujabes",
+  "cancion": "Feather",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "asombro",
+  "artista": "YOASOBI",
+  "cancion": "Idol",
+  "donde": "Oshi no Ko",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "japonesa",
+  "emocion": "nostalgia",
+  "artista": "Joji",
+  "cancion": "Glimpse of Us",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "tension",
+  "artista": "Kordhell",
+  "cancion": "Murder In My Mind",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "tension",
+  "artista": "DVRST",
+  "cancion": "Close Eyes",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "tension",
+  "artista": "INTERWORLD",
+  "cancion": "METAMORPHOSIS",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "tension",
+  "artista": "INTERWORLD",
+  "cancion": "RAPTURE",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "noche",
+  "artista": "MoonDeity",
+  "cancion": "NEON BLADE",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "dia",
+  "artista": "PlayaPhonk",
+  "cancion": "PHONKY TOWN",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "tension",
+  "artista": "Kaito Shoma",
+  "cancion": "Scopin",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "noche",
+  "artista": "Ghostface Playa",
+  "cancion": "Why Not",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "phonk",
+  "emocion": "noche",
+  "artista": "Hensonn",
+  "cancion": "Sahara",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "nostalgia",
+  "artista": "Djo",
+  "cancion": "End of Beginning",
+  "donde": "Clásico de TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "noche",
+  "artista": "Arctic Monkeys",
+  "cancion": "I Wanna Be Yours",
+  "donde": "Clásico de TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "noche",
+  "artista": "The Neighbourhood",
+  "cancion": "Sweater Weather",
+  "donde": "Clásico de TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "nostalgia",
+  "artista": "Glass Animals",
+  "cancion": "Heat Waves",
+  "donde": "Clásico de TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "dia",
+  "artista": "Tame Impala",
+  "cancion": "The Less I Know the Better",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "dia",
+  "artista": "Steve Lacy",
+  "cancion": "Bad Habit",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "nostalgia",
+  "artista": "Lana Del Rey",
+  "cancion": "Say Yes to Heaven",
+  "donde": "Clásico de TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "calma",
+  "artista": "Billie Eilish",
+  "cancion": "BIRDS OF A FEATHER",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "epica-tranquila",
+  "artista": "Benson Boone",
+  "cancion": "Beautiful Things",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "pop-eeuu",
+  "emocion": "nostalgia",
+  "artista": "Gigi Perez",
+  "cancion": "Sailor Song",
+  "donde": "Clásico de TikTok",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "tendencia",
+  "emocion": "nostalgia",
+  "artista": "girl in red",
+  "cancion": "We Fell in Love in October",
+  "donde": "Tendencia de octubre 2026",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "tendencia",
+  "emocion": "dia",
+  "artista": "Róisín Murphy",
+  "cancion": "Ramalama (Bang Bang)",
+  "donde": "Tendencia de Halloween 2026",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "tendencia",
+  "emocion": "calma",
+  "artista": "Ingrid Michaelson",
+  "cancion": "Be OK",
+  "donde": "Tendencia de octubre 2026",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "tendencia",
+  "emocion": "dia",
+  "artista": "Noah Preminger & Max Light",
+  "cancion": "Sunset in Girona",
+  "donde": "Tendencia de octubre 2026",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "estilo": "tendencia",
+  "emocion": "tension",
+  "artista": "SouthMemphisHypeman",
+  "cancion": "DIP ON EM",
+  "donde": "Creciendo en octubre 2026",
   "propuesta": "Claude 22-oct"
  }
 ]

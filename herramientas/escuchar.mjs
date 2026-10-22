@@ -9,7 +9,8 @@ import { exec } from "node:child_process";
 
 const ARCHIVO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../musica/canciones.json");
 const PUERTO = 4440;
-const EMOCION = { calma: "Calma, foco", asombro: "Asombro", tension: "Tensión controlada", "epica-tranquila": "Épica tranquila", dia: "Día, movimiento", noche: "Noche, la ciudad", nostalgia: "Nostalgia", mias: "Las mías" };
+const ESTILO = { mias: "Las mías", tendencia: "Tendencia en TikTok (cambia cada semana)", "pop-eeuu": "Pop y rap de EE. UU.", japonesa: "Japonesa", phonk: "Phonk", electronica: "Electrónica", cine: "Cine", indie: "Indie", latino: "Latino" };
+const EMOCION = { calma: "calma", asombro: "asombro", tension: "tensión", "epica-tranquila": "épica tranquila", dia: "día", noche: "noche", nostalgia: "nostalgia" };
 const leer = () => JSON.parse(fs.readFileSync(ARCHIVO, "utf8"));
 const guardar = (l) => fs.writeFileSync(ARCHIVO, JSON.stringify(l, null, 1));
 
@@ -35,17 +36,17 @@ input,select{padding:10px 12px;border:1px solid var(--linea);border-radius:10px;
 <p class="sub">Canciones reales para tus videos. Escúchalas, marca ✅ / ❌ y agrega las tuyas: con eso aprendo tu gusto. <span class="cuenta" id="cuenta"></span></p>
 <h2>Agregar una canción tuya</h2>
 <form id="nueva"><input name="artista" placeholder="Artista" required><input name="cancion" placeholder="Canción" required>
-<select name="emocion">${Object.entries(EMOCION).map(([k, v]) => `<option value="${k}"${k === "mias" ? " selected" : ""}>${v}</option>`).join("")}</select>
+<select name="estilo">${Object.entries(ESTILO).map(([k, v]) => `<option value="${k}"${k === "mias" ? " selected" : ""}>${v}</option>`).join("")}</select>
 <button class="agregar">Agregar</button></form>
 <div id="lista"></div></main>
 <script>
-const EMO=${JSON.stringify(EMOCION)};let temas=[];
+const EST=${JSON.stringify(ESTILO)},EMO=${JSON.stringify(EMOCION)};let temas=[];
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
 const q=t=>encodeURIComponent(t.artista+" "+t.cancion);
 async function cargar(){temas=await (await fetch("/api/canciones")).json();pintar();}
-function pintar(){const g={};temas.forEach((t,i)=>(g[t.emocion]??=[]).push([t,i]));
-document.getElementById("lista").innerHTML=Object.keys(EMO).filter(e=>g[e]).map(e=>"<h2>"+esc(EMO[e])+"</h2>"+g[e].map(([t,i])=>
-'<div class="tema"><div><b>'+esc(t.cancion)+'</b><small>'+esc(t.artista)+(t.donde?" · "+esc(t.donde):"")+'</small></div>'+
+function pintar(){const g={};temas.forEach((t,i)=>(g[t.estilo||"mias"]??=[]).push([t,i]));
+document.getElementById("lista").innerHTML=Object.keys(EST).filter(e=>g[e]).map(e=>"<h2>"+esc(EST[e])+"</h2>"+g[e].map(([t,i])=>
+'<div class="tema"><div><b>'+esc(t.cancion)+'</b><small>'+esc(t.artista)+(t.emocion&&EMO[t.emocion]?" · "+esc(EMO[t.emocion]):"")+(t.donde?" · "+esc(t.donde):"")+'</small></div>'+
 '<div class="oir-grupo"><a class="oir" target="_blank" href="https://open.spotify.com/search/'+q(t)+'">Spotify</a> <a class="oir" target="_blank" href="https://www.youtube.com/results?search_query='+q(t)+'">YouTube</a></div>'+
 '<div class="votos"><button class="voto" data-v="si" data-i="'+i+'" aria-pressed="'+(t.voto==="si")+'">✅</button><button class="voto" data-v="no" data-i="'+i+'" aria-pressed="'+(t.voto==="no")+'">❌</button></div></div>').join("")).join("");
 document.getElementById("cuenta").textContent=temas.filter(t=>t.voto).length+" de "+temas.length+" votadas";}
@@ -70,10 +71,10 @@ http.createServer(async (req, res) => {
     res.writeHead(t ? 200 : 404); return res.end();
   }
   if (u.pathname === "/api/agregar" && req.method === "POST") {
-    const { artista, cancion, emocion } = await cuerpoJson(req);
+    const { artista, cancion, estilo } = await cuerpoJson(req);
     const l = leer();
     if (artista && cancion && !l.some((x) => x.artista === artista && x.cancion === cancion)) {
-      l.push({ emocion: emocion || "mias", artista: artista.trim(), cancion: cancion.trim(), propuesta: "Max", voto: "si", votado: new Date().toISOString() });
+      l.push({ estilo: estilo || "mias", artista: artista.trim(), cancion: cancion.trim(), propuesta: "Max", voto: "si", votado: new Date().toISOString() });
       guardar(l);
     }
     res.writeHead(200); return res.end();
