@@ -2,11 +2,11 @@
 
 | Clave | Nombre | Para qué | Ejemplos |
 |---|---|---|---|
-| `ia` | Construyo con IA | Demostrar que construye de verdad | app contra el reloj, bot de WhatsApp, IA con memoria |
-| `anuncios` | Anuncios que venden | Autoridad en lo que más le duele al dueño: vender | ganchos, CPA, el anuncio feo que ganó |
+| `ia` | Construyo con IA | «Miren lo que hice»: lo nuevo que se puede hacer | app contra el reloj, video con IA en 3 min, motor gráfico en 10 h, IA con memoria |
+| `optimizo` | Por dentro | Lo que construimos y cómo evoluciona, el reto, la forma de trabajar | María llamando, Medula, el setup, el punto del logo |
+| `anuncios` | Anuncios que venden | Aprendizajes de vender | ganchos, CPA, el anuncio feo que ganó |
 | `diseno` | Diseño que cobra caro | Su sello: lo que se ve vale | web barata, tipografías, apps que se mueven |
-| `optimizo` | Por dentro | Cómo trabaja, el reto, el día a día y Optimizo como contexto | anuncio del reto, setup, el error que casi nos cuesta un cliente |
-| `chile` | Chile + IA | Humor y cercanía, para compartir | la IA no entiende el chileno, sketches de oficina |
+| `chile` | Chile + IA | Humor seco y cercanía, para compartir | la IA no entiende el chileno, sketches |
 
-Reparto sugerido por semana: 2 `ia`, 1–2 `anuncios`, 1 `diseno`, 1 `chile`, 1 `optimizo`.
-El pilar `condor` ya no existe (era el de antes; se reemplazó por `optimizo`).
+Reparto sugerido por semana: 2–3 `ia`, 1 `optimizo`, 1 `anuncios`, 1 `diseno`, 1 `chile`.
+El pilar `condor` ya no existe (se reemplazó por `optimizo`).

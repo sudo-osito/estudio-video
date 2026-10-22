@@ -30,7 +30,7 @@
         {
           "t": "QUIÉN",
           "modo": "camara",
-          "dice": "Soy Max, socio de Optimizo: implementamos inteligencia artificial en empresas.",
+          "dice": "Soy Max, cofundador de Optimizo. Armamos sistemas para que una empresa venda más con menos.",
           "hace": "Tranquilo, mirando al lente. Un gesto con la mano hacia el Mac de atrás en «inteligencia artificial».",
           "plano": "Mismo plano (yo lo acerco en edición)"
         },
@@ -65,11 +65,11 @@
         "subtitulos": "Palabra activa en blanco, palabras clave («30 días», «IA») en color REC",
         "musica": "Beat tenso que sube, 100–110 BPM; corte seco en «también»",
         "efectos": [
-          "Golpe grave + zoom punch en «Una IA edita todo»",
+          "Golpe grave + acercamiento lento en «Una IA edita todo»",
           "Clic de interfaz en cada palabra de la lista cortes/subtítulos/música",
           "Silencio de medio segundo antes de «también» (chiste)"
         ],
-        "ritmo": "Corte o zoom cada 2 s"
+        "ritmo": "Cortes con intención: rápido en el gancho, respira en «también»"
       },
       "post": {
         "texto": "Día 1/30. Yo grabo, una IA edita. ¿Llego al día 30?",
@@ -236,7 +236,7 @@
           "t": "CLIENTE",
           "modo": "camara",
           "dice": "Y que tenga inteligencia artificial. Mi sobrino dice que con IA se hace solo.",
-          "hace": "CLIENTE: entusiasmado, apuntándose la sien en «inteligencia artificial»."
+          "hace": "CLIENTE: muy convencido, se toca la sien en «inteligencia artificial»."
         },
         {
           "t": "DISEÑADOR",
@@ -279,8 +279,8 @@
     "fecha": "2026-10-25",
     "pilar": "optimizo",
     "formato": "Vlog rápido",
-    "titulo": "Un día metiéndole IA a empresas, en 60 segundos",
-    "gancho": "Así es un día real metiéndole inteligencia artificial a empresas.",
+    "titulo": "Un día construyendo con IA, en 60 segundos",
+    "gancho": "Así es un día real construyendo con inteligencia artificial.",
     "datos": {
       "origen": "espacio (tu día real)",
       "por_que": "«Un día en la vida» es un formato probado: curiosidad por un trabajo que pocos entienden. 20 tomas cortas dan ritmo solo.",
@@ -299,7 +299,7 @@
         {
           "t": "GANCHO",
           "modo": "camara",
-          "dice": "Así es un día real metiéndole inteligencia artificial a empresas.",
+          "dice": "Así es un día real construyendo con inteligencia artificial.",
           "hace": "Grábalo en la mañana con el café en la mano, recién llegando. Caminando hacia el celular si puedes."
         },
         {
@@ -311,7 +311,7 @@
         {
           "t": "MEDIODÍA",
           "modo": "voz",
-          "dice": "Después, reuniones con empresas: qué les duele y qué les podemos automatizar.",
+          "dice": "Después, reuniones: qué le duele a cada empresa y qué sistema le armamos.",
           "ve": "Tú en una reunión (desde atrás o de lado, sin pantallas con datos), una libreta, el reloj (3 clips)."
         },
         {
@@ -342,10 +342,10 @@
           "Whoosh en las transiciones de bloque",
           "Obturador de cámara en las fotos"
         ],
-        "ritmo": "Corte cada 1–1,5 s, siempre al beat"
+        "ritmo": "Al beat de la música, con planos de detalle que respiran"
       },
       "post": {
-        "texto": "Un día real metiéndole IA a empresas. ¿Qué parte te sorprendió? Día 4/30.",
+        "texto": "Un día real construyendo con IA. ¿Qué parte te sorprendió? Día 4/30.",
         "hashtags": [
           "#diaenlavida",
           "#ia",
@@ -428,7 +428,7 @@
           "Buzzer suave en el «antes»; ding en el «después»",
           "Pop en cada número"
         ],
-        "ritmo": "Cambio visual cada 2 s"
+        "ritmo": "Un cambio por idea, acercamientos lentos"
       },
       "post": {
         "texto": "¿Tu web pasa la prueba? Déjala en comentarios y elijo una para rediseñarla en vivo. Día 5/30.",
@@ -590,7 +590,7 @@
           "t": "LA REGLA",
           "modo": "camara",
           "dice": "Graba siempre tres ganchos para cada video y deja que el algoritmo elija.",
-          "hace": "Golpecito con el dedo en la mesa en «siempre»."
+          "hace": "Tranquilo, lo dices lento, como un consejo."
         },
         {
           "t": "CIERRE",
@@ -610,7 +610,7 @@
           "Clic en cada celular",
           "Whoosh cuando el ganador crece"
         ],
-        "ritmo": "Zoom punch en cada idea"
+        "ritmo": "Acercamiento lento en cada idea"
       },
       "post": {
         "texto": "Comenta «gancho» y reviso el tuyo. Día 7/30.",
@@ -684,7 +684,7 @@
           "t": "CIERRE",
           "modo": "camara",
           "dice": "Dame una frase en chileno que la IA no entienda. La pruebo en el próximo video.",
-          "hace": "Desafiante, apuntando a cámara."
+          "hace": "Media sonrisa, mirando al lente."
         }
       ],
       "broll": [],
@@ -1092,7 +1092,7 @@
           "t": "GANCHO",
           "modo": "camara",
           "dice": "Vi tres anuncios esta semana que me dieron envidia. Les robaría la idea.",
-          "hace": "Mirada cómplice; te frotas las manos en «les robaría»."
+          "hace": "Mirada cómplice al lente, media sonrisa en «les robaría»."
         },
         {
           "t": "UNO",
@@ -1333,83 +1333,112 @@
   },
   {
     "fecha": "2026-11-06",
-    "pilar": "anuncios",
-    "formato": "Checklist a cámara",
-    "titulo": "Antes de subir el presupuesto, revisa esto",
-    "gancho": "No le subas el presupuesto a tu anuncio hasta revisar estas tres cosas.",
+    "pilar": "ia",
+    "formato": "Demostración con pantalla",
+    "titulo": "Hice este video con IA en 3 minutos",
+    "gancho": "Este video lo hice con inteligencia artificial en tres minutos. Bueno, casi todo.",
     "datos": {
-      "origen": "objeto (el botón de presupuesto)",
-      "por_que": "Error carísimo y muy común. Un consejo que ahorra plata se guarda y se comparte.",
+      "origen": "objeto (la herramienta nueva)",
+      "por_que": "Asombro: «¿eso se puede hacer ya?». Y honestidad: mostrar lo que todavía no sale bien lo hace creíble.",
       "ganchos_alt": [
-        "Subirle el presupuesto a un anuncio malo es quemar plata más rápido.",
-        "Tu anuncio no necesita más plata. Necesita esto."
+        "Tres minutos. Eso me demoré en hacer este video.",
+        "Ningún humano grabó lo que vas a ver."
       ],
-      "duracion": "45–60 s",
+      "duracion": "40–60 s",
       "grabar": {
-        "plano": "A cámara",
+        "plano": "Medio, sentado frente al computador, la pantalla iluminándote",
         "lugar": "Escritorio",
-        "luz": "De frente",
+        "luz": "Baja, que la pantalla te ilumine la cara",
         "ropa": "Normal"
       },
       "beats": [
         {
           "t": "GANCHO",
           "modo": "camara",
-          "dice": "No le subas el presupuesto a tu anuncio hasta revisar estas tres cosas.",
-          "hace": "Mano levantada como «alto» al decir «no le subas»."
+          "dice": "Este video lo hice con inteligencia artificial en tres minutos. Bueno, casi todo.",
+          "hace": "Tranquilo, de lado al computador; giras la cara al lente en «tres minutos». Media sonrisa en «casi todo».",
+          "plano": "Medio, pantalla encendida a tu lado"
         },
         {
-          "t": "UNO",
-          "modo": "camara",
-          "dice": "Uno: la oferta. Si el precio no es atractivo, más gente va a ignorarlo más rápido.",
-          "hace": "Un dedo. Tono de advertencia."
-        },
-        {
-          "t": "DOS",
-          "modo": "camara",
-          "dice": "Dos: los primeros tres segundos. Si nadie se queda, no hay nada que escalar.",
-          "hace": "Dos dedos. Chasqueas los dedos en «tres segundos»."
-        },
-        {
-          "t": "TRES",
+          "t": "EL PEDIDO",
           "modo": "pantalla",
-          "dice": "Tres: la página a la que llegan. Si no carga rápido en el celular, pierdes la venta igual.",
-          "ve": "Grabación de pantalla del celular abriendo una página lenta (se queda en blanco 3–4 s)."
+          "dice": "Le escribí lo que quería: [lo que le pediste, en una frase].",
+          "ve": "Grabación de pantalla escribiendo el pedido en la herramienta (sin acelerar, 10–15 s)."
+        },
+        {
+          "t": "ESPERA",
+          "modo": "escena",
+          "dice": "(el video generándose, mientras miras la pantalla)",
+          "hace": "Te quedas mirando la pantalla con el café en la mano, sin hablar.",
+          "ve": "Grabación de pantalla del progreso (la acelero yo)."
+        },
+        {
+          "t": "LO QUE SALIÓ",
+          "modo": "pantalla",
+          "dice": "(el resultado, 5–8 segundos, sin hablar)",
+          "ve": "El video generado, grabado en el celular o exportado tal cual."
+        },
+        {
+          "t": "LO BUENO",
+          "modo": "camara",
+          "dice": "Lo que me sorprendió: [lo que salió bien].",
+          "hace": "Honesto, mirando al lente."
+        },
+        {
+          "t": "LO QUE FALTA",
+          "modo": "voz",
+          "dice": "Lo que todavía se nota: [lo que delata que es IA].",
+          "ve": "El detalle raro del video generado, de cerca (manos, texto, movimiento)."
         },
         {
           "t": "CIERRE",
           "modo": "camara",
-          "dice": "Arregla eso y después escala.",
-          "hace": "Firme. Asientes una vez al final."
+          "dice": "La herramienta ya no es lo difícil. Lo difícil es saber qué pedirle.",
+          "hace": "Lento, mirando al lente. 1 s quieto al final."
         }
       ],
       "broll": [
-        "Pantalla del Administrador de anuncios con el campo de presupuesto (sin datos de cliente, 5 s)"
+        "Tus manos en el teclado con la luz de la pantalla (5 s, 60 fps)"
       ],
-      "props": [],
+      "recursos": [
+        {
+          "que": "El video que generó la IA",
+          "detalle": "El archivo original, sin comprimir."
+        },
+        {
+          "que": "Qué herramienta usaste y el pedido exacto",
+          "detalle": "En la nota."
+        },
+        {
+          "que": "Cuánto demoró de verdad",
+          "detalle": "Desde que escribiste hasta que lo tuviste. Si fueron 5 minutos, decimos 5."
+        }
+      ],
+      "props": [
+        "Café"
+      ],
       "edicion": {
-        "estilo": "Un billete que se quema al fondo durante el gancho. Checklist que se va marcando detrás de ti.",
-        "subtitulos": "Palabra clave gigante: «OFERTA», «3 SEGUNDOS», «PÁGINA»",
-        "musica": "Tendencia con buen bajo",
+        "estilo": "Cinematográfico de noche: tú iluminado por la pantalla, la generación acelerada con un contador de tiempo elegante, y el resultado a pantalla completa como estreno.",
+        "subtitulos": "Limpios, abajo; «3 minutos» grande una sola vez",
+        "musica": "Electrónica suave que crece hasta el resultado y se corta en seco para «lo que falta»",
         "efectos": [
-          "Fuego en el billete",
-          "Check por punto",
-          "Freno de auto en «no le subas»"
+          "Teclas suaves al escribir el pedido",
+          "Aire que sube durante la espera",
+          "Silencio total al mostrar el resultado los primeros 2 s"
         ],
-        "ritmo": "Zoom punch por punto"
+        "ritmo": "Lento al inicio, acelera en la espera, respira en el resultado"
       },
       "post": {
-        "texto": "Guárdalo antes de tocar el presupuesto. Día 16/30.",
+        "texto": "3 minutos. ¿Se nota que es IA? Día 16/30.",
         "hashtags": [
-          "#metaads",
-          "#facebookads",
-          "#ecommerce",
-          "#emprendedores",
-          "#publicidad"
+          "#inteligenciaartificial",
+          "#videoia",
+          "#ia",
+          "#creadores",
+          "#reto30dias"
         ],
-        "sonido": "Tendencia de la semana"
-      },
-      "recursos": []
+        "sonido": "Instrumental electrónico (banco propio mientras IG siga en modo empresa)"
+      }
     }
   },
   {
@@ -1696,7 +1725,7 @@
           "t": "LA REGLA",
           "modo": "camara",
           "dice": "En productos baratos, el precio ES el gancho.",
-          "hace": "Golpe en la mesa en «ES»."
+          "hace": "Lo dices lento, marcando «ES» con la voz, no con volumen."
         },
         {
           "t": "CUÁNDO NO",
@@ -1772,7 +1801,7 @@
           "t": "GANCHO",
           "modo": "camara",
           "dice": "Le pedí a una inteligencia artificial que hiciera un comercial chileno de los noventa.",
-          "hace": "Ropa noventera si tienes. Tono de presentador de tele de los 90."
+          "hace": "Ropa noventera si tienes. Tranquilo, con media sonrisa."
         },
         {
           "t": "EL PEDIDO",
@@ -2062,7 +2091,7 @@
           "Reloj en el ejemplo",
           "Silencio antes de la pregunta"
         ],
-        "ritmo": "Zoom punch en cada frase"
+        "ritmo": "Plano fijo y cerca; acercamiento lento hasta el final"
       },
       "post": {
         "texto": "¿De acuerdo o no? 👇 Día 24/30.",
@@ -2173,81 +2202,106 @@
   },
   {
     "fecha": "2026-11-16",
-    "pilar": "anuncios",
-    "formato": "Tutorial rápido",
-    "titulo": "Pruebo 3 ganchos sin grabar 3 videos",
-    "gancho": "Así pruebo tres anuncios distintos grabando un solo video.",
+    "pilar": "optimizo",
+    "formato": "Por dentro · pantalla en tiempo real",
+    "titulo": "María llama: la vendedora que no es persona",
+    "gancho": "Esta llamada la hizo una inteligencia artificial. Escucha.",
     "datos": {
-      "origen": "objeto (el cuerpo del video + 3 cabezas)",
-      "por_que": "Truco concreto que ahorra tiempo y plata. Lo haces de verdad (Safetygate v3: 3 ganchos por cuerpo).",
+      "origen": "persona (María) + objeto (el flujo en tiempo real)",
+      "por_que": "Asombro y un poco de vértigo: escuchar una llamada real hecha por una IA. Muestra Optimizo funcionando sin vender nada.",
       "ganchos_alt": [
-        "Deja de grabar 10 anuncios. Graba uno y cámbiale la cabeza.",
-        "El truco que usan las marcas grandes para probar anuncios."
+        "La persona que llamó a este cliente no existe.",
+        "Esto antes lo hacía un equipo completo."
       ],
-      "duracion": "45–60 s",
+      "duracion": "45–70 s",
       "grabar": {
-        "plano": "A cámara + esquema simple",
+        "plano": "Medio, sentado, con la pantalla del flujo detrás o al lado",
         "lugar": "Escritorio",
-        "luz": "De frente",
-        "ropa": "Normal"
+        "luz": "Baja y cálida; la pantalla encendida",
+        "ropa": "Oscura"
       },
       "beats": [
         {
           "t": "GANCHO",
           "modo": "camara",
-          "dice": "Así pruebo tres anuncios distintos grabando un solo video.",
-          "hace": "Levantas tres dedos y después uno."
+          "dice": "Esta llamada la hizo una inteligencia artificial. Escucha.",
+          "hace": "Tranquilo, casi en voz baja. Después de «escucha» te quedas en silencio mirando al lente.",
+          "plano": "Primer plano"
         },
         {
-          "t": "EL TRUCO",
-          "modo": "camara",
-          "dice": "Grabo el cuerpo una vez, y tres comienzos distintos.",
-          "hace": "Con las manos: «cuerpo» abajo, «tres comienzos» arriba."
-        },
-        {
-          "t": "CÓMO",
+          "t": "LA LLAMADA",
           "modo": "pantalla",
-          "dice": "Pego cada comienzo al mismo cuerpo, y subo los tres al mismo conjunto de anuncios.",
-          "ve": "Una línea de tiempo de edición con 3 cabezas y 1 cuerpo (la grabo yo desde la edición de este mismo video)."
+          "dice": "(se escucha la llamada de María, 8–12 segundos)",
+          "ve": "Grabación de pantalla CON AUDIO de una llamada de María (de prueba o con permiso), con el flujo moviéndose en tiempo real."
         },
         {
-          "t": "RESULTADO",
+          "t": "QUÉ HACE",
+          "modo": "voz",
+          "dice": "María llama, entiende lo que la persona necesita y agenda. Mientras habla, todo queda anotado solo.",
+          "ve": "El flujo de Nexor avanzando paso a paso (grabación de pantalla, 10 s)."
+        },
+        {
+          "t": "QUIÉN LO ARMA",
           "modo": "camara",
-          "dice": "Meta le da más plata al que funciona. Yo solo miro cuál ganó.",
-          "hace": "Te echas hacia atrás con los brazos detrás de la cabeza."
+          "dice": "Esto lo arma Joaco, otro de los cofundadores de Optimizo. Es el flujo comercial completo, de punta a punta.",
+          "hace": "Tranquilo, con un gesto hacia la pantalla."
+        },
+        {
+          "t": "EL NÚMERO",
+          "modo": "pantalla",
+          "dice": "[Un número real: cuántas llamadas, cuántas reuniones agendadas, en cuánto tiempo.]",
+          "ve": "La pantalla con ese número (panel o calendario lleno, difuminando nombres)."
         },
         {
           "t": "CIERRE",
           "modo": "camara",
-          "dice": "Un video, tres pruebas. Guárdalo.",
-          "hace": "Gesto de guardar."
+          "dice": "Antes esto era un equipo completo. Ahora es un sistema.",
+          "hace": "Lento. 1 s en silencio mirando al lente al terminar."
         }
       ],
-      "broll": [],
+      "broll": [
+        "La pantalla del flujo de cerca, en la oscuridad (5 s)"
+      ],
+      "recursos": [
+        {
+          "que": "Una llamada de María grabada con audio",
+          "detalle": "De prueba, o real con permiso de la persona. Si no la tienes, pídesela a Joaco."
+        },
+        {
+          "que": "Grabación de pantalla del flujo en tiempo real",
+          "detalle": "Mientras ocurre la llamada, si se puede."
+        },
+        {
+          "que": "Un número real del sistema",
+          "detalle": "Llamadas, reuniones agendadas, tiempo de respuesta: el que sea más impresionante y cierto."
+        },
+        {
+          "que": "OK de Joaco para mostrarlo"
+        }
+      ],
       "props": [],
       "edicion": {
-        "estilo": "Esquema animado: 3 cabezas de colores que se enchufan a un cuerpo gris, como piezas de LEGO.",
-        "subtitulos": "Palabra activa",
-        "musica": "Tendencia",
+        "estilo": "Thriller tranquilo: oscuro, la pantalla como única luz, la onda de audio de María dibujándose en el centro mientras habla. Corte a negro antes del cierre.",
+        "subtitulos": "Lo que dice María en otro color, como subtítulo de película",
+        "musica": "Pulso grave y lento, casi ambiente; desaparece durante la llamada",
         "efectos": [
-          "Clic de pieza encajando",
-          "Ding en el ganador",
-          "Whoosh"
+          "Tono de llamada al inicio",
+          "Clic suave en cada paso del flujo",
+          "Grave profundo en «ahora es un sistema»"
         ],
-        "ritmo": "Gráfico por idea"
+        "ritmo": "Pausado; la llamada se deja respirar"
       },
       "post": {
-        "texto": "Un video, tres pruebas. Guárdalo. Día 26/30.",
+        "texto": "Esta llamada la hizo una IA. Día 26/30.",
         "hashtags": [
-          "#metaads",
-          "#publicidad",
-          "#marketingdigital",
-          "#creativos",
-          "#anuncios"
+          "#inteligenciaartificial",
+          "#ventas",
+          "#automatizacion",
+          "#emprendimiento",
+          "#reto30dias"
         ],
-        "sonido": "Tendencia de la semana"
-      },
-      "recursos": []
+        "sonido": "Ambiente propio (la llamada tiene que escucharse)"
+      }
     }
   },
   {
@@ -2380,7 +2434,7 @@
           "t": "EL RESULTADO",
           "modo": "camara",
           "dice": "Así no le explico lo mismo dos veces. Llega y sabe.",
-          "hace": "Chasqueas los dedos en «llega y sabe»."
+          "hace": "Pausa antes de «llega y sabe»."
         },
         {
           "t": "CIERRE",

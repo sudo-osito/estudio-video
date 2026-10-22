@@ -15,6 +15,7 @@ estas notas.** Si algo de acá contradice un guion viejo, manda el cerebro.
 | [[07 Reglas del guion]] | Ganchos, estructura, revisión antes de publicar un guion |
 | [[08 Datos reales]] | Historias, números y casos de verdad que Max va dejando. **Sin esto, los guiones quedan con [corchetes].** |
 | [[09 Banco de ideas]] | Ideas sueltas para las próximas tandas |
+| [[10 Estilo cinematográfico]] | Cómo se ve, suena y se siente: tranquilo en cámara, energía en la edición |
 | [[Bitácora]] | Qué cambió en el cerebro y por qué |
 
 ## Cómo se usa
@@ -23,8 +24,14 @@ estas notas.** Si algo de acá contradice un guion viejo, manda el cerebro.
    [[06 Cómo se graba]], cargar con `herramientas/sembrar.mjs` (nuevas) o `herramientas/actualizar.mjs` (existentes).
 3. Después de publicar: lo que funcionó o no (retención, comentarios) se anota en [[Bitácora]] y se ajustan las reglas.
 
+## Confirmado por Max (22-oct)
+- Se presenta como **cofundador de Optimizo** (todavía no hay roles).
+- Optimizo = sistema completo para que una empresa venda más con menos recursos (no «implementar IA»).
+- Audiencia: primero una comunidad interesada en IA y emprendimiento.
+- Se puede mostrar lo que se está construyendo (Medula, el flujo de Nexor, María) y cómo evoluciona.
+- Tono tranquilo y auténtico; marca cinematográfica, con energía y sentimiento.
+- Instagram está en modo empresa; se puede cambiar en IG y TikTok si hace falta.
+
 ## Por confirmar con Max
-- [ ] Su título en Optimizo para decir en cámara (hoy usamos «socio de Optimizo»).
-- [ ] Si la cuenta de TikTok/IG es personal/creador o de empresa (define si se puede usar música popular).
-- [ ] A quién quiere atraer primero (ver hipótesis en [[03 Audiencia]]).
-- [ ] Si se puede mostrar Medula y los demás productos de Optimizo en pantalla, y desde cuándo.
+- [ ] Pasar Instagram a cuenta de creador (y TikTok a personal) para poder usar música popular.
+- [ ] Qué se puede mostrar de Nexor y María, y el OK de Joaco.

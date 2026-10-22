@@ -64,7 +64,7 @@ G = {
     b("DISEÑADOR", E, "(mira a cámara en silencio, 2 segundos)",
       hace="DISEÑADOR: giras lento hacia el lente y te quedas inmóvil. Cero expresión.", plano="Mirando directo al lente"),
     b("CLIENTE", C, "Y que tenga inteligencia artificial. Mi sobrino dice que con IA se hace solo.",
-      hace="CLIENTE: entusiasmado, apuntándose la sien en «inteligencia artificial»."),
+      hace="CLIENTE: muy convencido, se toca la sien en «inteligencia artificial»."),
     b("DISEÑADOR", C, "Tu sobrino tiene razón. Que la haga tu sobrino.",
       hace="DISEÑADOR: lo dices tranquilo y te sacas la capucha al terminar, como quien se va."),
   ],
@@ -131,7 +131,7 @@ G = {
     b("EJEMPLO", P, "En vez de «Te presento el producto X», di el dolor: [ejemplo real, sin nombrar al cliente].",
       ve="Los 3 anuncios del ejemplo uno tras otro, solo los primeros 3 segundos de cada uno."),
     b("LA REGLA", C, "Graba siempre tres ganchos para cada video y deja que el algoritmo elija.",
-      hace="Golpecito con el dedo en la mesa en «siempre»."),
+      hace="Tranquilo, lo dices lento, como un consejo."),
     b("CIERRE", C, "Comenta «gancho» y te digo cuál pondría en el tuyo.",
       hace="Apuntas abajo, a los comentarios."),
   ],
@@ -150,7 +150,7 @@ G = {
     b("PRUEBA 2", P, "(dicta otra frase más difícil: «po», «fome», «al lote», «la raja»)",
       ve="Igual que la prueba 1: grabación de pantalla con el dictado y la respuesta."),
     b("CIERRE", C, "Dame una frase en chileno que la IA no entienda. La pruebo en el próximo video.",
-      hace="Desafiante, apuntando a cámara."),
+      hace="Media sonrisa, mirando al lente."),
   ],
   broll=[],
   recursos=[r("La grabación de pantalla con audio", "En el Mac: Cmd+Shift+5 → Opciones → Micrófono. Así queda tu voz y lo que escribe la IA juntos.")]),
@@ -226,7 +226,7 @@ G = {
 "2026-11-03": dict(
   beats=[
     b("GANCHO", C, "Vi tres anuncios esta semana que me dieron envidia. Les robaría la idea.",
-      hace="Mirada cómplice; te frotas las manos en «les robaría»."),
+      hace="Mirada cómplice al lente, media sonrisa en «les robaría»."),
     b("UNO", P, "Uno: [marca]. Lo bueno: [qué truco usa].",
       ve="El anuncio 1 corriendo (5–8 s)."),
     b("DOS", P, "Dos: [marca]. [Truco.]",
@@ -280,7 +280,7 @@ G = {
     b("UNO", C, "Uno: la oferta. Si el precio no es atractivo, más gente va a ignorarlo más rápido.",
       hace="Un dedo. Tono de advertencia."),
     b("DOS", C, "Dos: los primeros tres segundos. Si nadie se queda, no hay nada que escalar.",
-      hace="Dos dedos. Chasqueas los dedos en «tres segundos»."),
+      hace="Dos dedos. Pausa corta después de «tres segundos»."),
     b("TRES", P, "Tres: la página a la que llegan. Si no carga rápido en el celular, pierdes la venta igual.",
       ve="Grabación de pantalla del celular abriendo una página lenta (se queda en blanco 3–4 s)."),
     b("CIERRE", C, "Arregla eso y después escala.",
@@ -344,7 +344,7 @@ G = {
     b("POR QUÉ", P, "El feo dice el precio en el primer segundo. El bonito te cuenta una historia que nadie pidió.",
       ve="Los primeros 3 segundos de cada anuncio, uno después del otro."),
     b("LA REGLA", C, "En productos baratos, el precio ES el gancho.",
-      hace="Golpe en la mesa en «ES»."),
+      hace="Lo dices lento, marcando «ES» con la voz, no con volumen."),
     b("CUÁNDO NO", C, "En productos caros es al revés: primero confianza, después precio.",
       hace="Das vuelta la mano en «al revés»."),
     b("CIERRE", C, "¿Qué vendes tú? Te digo cuál te conviene.",
@@ -357,7 +357,7 @@ G = {
 "2026-11-11": dict(
   beats=[
     b("GANCHO", C, "Le pedí a una inteligencia artificial que hiciera un comercial chileno de los noventa.",
-      hace="Ropa noventera si tienes. Tono de presentador de tele de los 90."),
+      hace="Ropa noventera si tienes. Tranquilo, con media sonrisa."),
     b("EL PEDIDO", P, "Le dije: [lee el pedido que le hiciste].",
       ve="Grabación de pantalla escribiendo el pedido a la IA."),
     b("RESULTADO", E, "(reacción real mientras se ve el comercial)",
@@ -472,7 +472,7 @@ G = {
     b("LOS ERRORES", P, "Incluso tiene una lista de sus propios errores, para no repetirlos.",
       ve="Scroll por la nota de errores (sin datos sensibles; la difumino igual)."),
     b("EL RESULTADO", C, "Así no le explico lo mismo dos veces. Llega y sabe.",
-      hace="Chasqueas los dedos en «llega y sabe»."),
+      hace="Pausa antes de «llega y sabe»."),
     b("CIERRE", C, "¿Quieres que te muestre cómo armarlo?",
       hace="Ceja levantada."),
   ],
@@ -516,15 +516,15 @@ G = {
 }
 
 # 22-oct: Max ya no es COO de Cóndor; si se presenta por una empresa, es por Optimizo (ver cerebro/01 Quién es Max hoy.md).
-G["2026-10-22"]["beats"][1] = b("QUIÉN", C, "Soy Max, socio de Optimizo: implementamos inteligencia artificial en empresas.",
+G["2026-10-22"]["beats"][1] = b("QUIÉN", C, "Soy Max, cofundador de Optimizo. Armamos sistemas para que una empresa venda más con menos.",
     hace="Tranquilo, mirando al lente. Un gesto con la mano hacia el Mac de atrás en «inteligencia artificial».", plano="Mismo plano (yo lo acerco en edición)")
 G["2026-10-23"]["beats"][0] = b("GANCHO", C, "Le entregué mi trabajo a una IA por un día completo. Esto es lo que rompió.",
     hace="Serio, como confesando. Pausa breve antes de «esto es lo que rompió».")
 G["2026-10-23"]["beats"][-1] = b("CONCLUSIÓN", C, "La IA no hizo mi trabajo. Hizo la parte que yo odiaba, y me dejó el resto.",
     hace="Firme, mirando al lente. Media sonrisa en «el resto».")
-G["2026-10-25"]["beats"][0] = b("GANCHO", C, "Así es un día real metiéndole inteligencia artificial a empresas.",
+G["2026-10-25"]["beats"][0] = b("GANCHO", C, "Así es un día real construyendo con inteligencia artificial.",
     hace="Grábalo en la mañana con el café en la mano, recién llegando. Caminando hacia el celular si puedes.")
-G["2026-10-25"]["beats"][2] = b("MEDIODÍA", V, "Después, reuniones con empresas: qué les duele y qué les podemos automatizar.",
+G["2026-10-25"]["beats"][2] = b("MEDIODÍA", V, "Después, reuniones: qué le duele a cada empresa y qué sistema le armamos.",
     ve="Tú en una reunión (desde atrás o de lado, sin pantallas con datos), una libreta, el reloj (3 clips).")
 G["2026-10-25"]["beats"][3] = b("TARDE", V, "En la tarde construyo: sitios, apps, bots. Lo que se ve y lo que trabaja solo.",
     ve="Pantalla con un diseño o un bot en curso, tu mano en el mouse, un detalle de la pantalla de cerca (3 clips).")
@@ -568,10 +568,10 @@ AJUSTES = {
     ganchos_alt=["Hoy no trabajé yo. Trabajó una IA, y casi la despido.", "Le pasé mi pega a una IA por 24 horas."],
     origen="objeto (tu propio trabajo como experimento)",
     post={"texto": "Día 2/30. Le di mi trabajo a una IA. Lo que rompió me sorprendió.", "hashtags": ["#ia", "#productividad", "#trabajo", "#reto30dias", "#chatgpt"], "sonido": "Tendencia de la semana"})),
-  "2026-10-25": dict(titulo="Un día metiéndole IA a empresas, en 60 segundos", datos=dict(
+  "2026-10-25": dict(titulo="Un día construyendo con IA, en 60 segundos", datos=dict(
     ganchos_alt=["Nadie entiende qué hago. Así que te muestro mi día.", "Mi día empieza con 47 mensajes sin leer."],
     por_que="«Un día en la vida» es un formato probado: curiosidad por un trabajo que pocos entienden. 20 tomas cortas dan ritmo solo.",
-    post={"texto": "Un día real metiéndole IA a empresas. ¿Qué parte te sorprendió? Día 4/30.", "hashtags": ["#diaenlavida", "#ia", "#emprendimiento", "#automatizacion", "#reto30dias"], "sonido": "Canción en tendencia ~120 BPM (te digo cuál y desde qué segundo)"})),
+    post={"texto": "Un día real construyendo con IA. ¿Qué parte te sorprendió? Día 4/30.", "hashtags": ["#diaenlavida", "#ia", "#emprendimiento", "#automatizacion", "#reto30dias"], "sonido": "Canción en tendencia ~120 BPM (te digo cuál y desde qué segundo)"})),
   "2026-11-10": dict(datos=dict(
     por_que="Contradice lo que todos creen (lo bonito vende). Es un aprendizaje real de un e-commerce: el video con el precio fue el que vendió.")),
   "2026-11-13": dict(titulo="Viernes 13: mi peor historia de terror trabajando", datos=dict(
@@ -591,9 +591,86 @@ AJUSTES = {
     post={"texto": "¿Cuál es tu mito vs. realidad? Día 29/30.", "hashtags": ["#inteligenciaartificial", "#expectativavsrealidad", "#humor", "#trabajo", "#reto30dias"], "sonido": "Canción viral de contraste"})),
 }
 
+
+# 22-oct (Max): ideas propias reemplazan dos videos que se repetían (6-nov ≈ 30-oct; 16-nov ≈ 28-oct).
+NUEVOS = {
+  "2026-11-06": dict(pilar="ia", formato="Demostración con pantalla", titulo="Hice este video con IA en 3 minutos",
+    datos=dict(
+      origen="objeto (la herramienta nueva)",
+      por_que="Asombro: «¿eso se puede hacer ya?». Y honestidad: mostrar lo que todavía no sale bien lo hace creíble.",
+      ganchos_alt=["Tres minutos. Eso me demoré en hacer este video.", "Ningún humano grabó lo que vas a ver."],
+      duracion="40–60 s",
+      grabar={"plano": "Medio, sentado frente al computador, la pantalla iluminándote", "lugar": "Escritorio", "luz": "Baja, que la pantalla te ilumine la cara", "ropa": "Normal"},
+      beats=[
+        b("GANCHO", C, "Este video lo hice con inteligencia artificial en tres minutos. Bueno, casi todo.",
+          hace="Tranquilo, de lado al computador; giras la cara al lente en «tres minutos». Media sonrisa en «casi todo».", plano="Medio, pantalla encendida a tu lado"),
+        b("EL PEDIDO", P, "Le escribí lo que quería: [lo que le pediste, en una frase].",
+          ve="Grabación de pantalla escribiendo el pedido en la herramienta (sin acelerar, 10–15 s)."),
+        b("ESPERA", E, "(el video generándose, mientras miras la pantalla)",
+          hace="Te quedas mirando la pantalla con el café en la mano, sin hablar.", ve="Grabación de pantalla del progreso (la acelero yo)."),
+        b("LO QUE SALIÓ", P, "(el resultado, 5–8 segundos, sin hablar)",
+          ve="El video generado, grabado en el celular o exportado tal cual."),
+        b("LO BUENO", C, "Lo que me sorprendió: [lo que salió bien].",
+          hace="Honesto, mirando al lente."),
+        b("LO QUE FALTA", V, "Lo que todavía se nota: [lo que delata que es IA].",
+          ve="El detalle raro del video generado, de cerca (manos, texto, movimiento)."),
+        b("CIERRE", C, "La herramienta ya no es lo difícil. Lo difícil es saber qué pedirle.",
+          hace="Lento, mirando al lente. 1 s quieto al final."),
+      ],
+      broll=["Tus manos en el teclado con la luz de la pantalla (5 s, 60 fps)"],
+      recursos=[r("El video que generó la IA", "El archivo original, sin comprimir."),
+                r("Qué herramienta usaste y el pedido exacto", "En la nota."),
+                r("Cuánto demoró de verdad", "Desde que escribiste hasta que lo tuviste. Si fueron 5 minutos, decimos 5.")],
+      props=["Café"],
+      edicion={"estilo": "Cinematográfico de noche: tú iluminado por la pantalla, la generación acelerada con un contador de tiempo elegante, y el resultado a pantalla completa como estreno.", "subtitulos": "Limpios, abajo; «3 minutos» grande una sola vez", "musica": "Electrónica suave que crece hasta el resultado y se corta en seco para «lo que falta»", "efectos": ["Teclas suaves al escribir el pedido", "Aire que sube durante la espera", "Silencio total al mostrar el resultado los primeros 2 s"], "ritmo": "Lento al inicio, acelera en la espera, respira en el resultado"},
+      post={"texto": "3 minutos. ¿Se nota que es IA? Día 16/30.", "hashtags": ["#inteligenciaartificial", "#videoia", "#ia", "#creadores", "#reto30dias"], "sonido": "Instrumental electrónico (banco propio mientras IG siga en modo empresa)"})),
+  "2026-11-16": dict(pilar="optimizo", formato="Por dentro · pantalla en tiempo real", titulo="María llama: la vendedora que no es persona",
+    datos=dict(
+      origen="persona (María) + objeto (el flujo en tiempo real)",
+      por_que="Asombro y un poco de vértigo: escuchar una llamada real hecha por una IA. Muestra Optimizo funcionando sin vender nada.",
+      ganchos_alt=["La persona que llamó a este cliente no existe.", "Esto antes lo hacía un equipo completo."],
+      duracion="45–70 s",
+      grabar={"plano": "Medio, sentado, con la pantalla del flujo detrás o al lado", "lugar": "Escritorio", "luz": "Baja y cálida; la pantalla encendida", "ropa": "Oscura"},
+      beats=[
+        b("GANCHO", C, "Esta llamada la hizo una inteligencia artificial. Escucha.",
+          hace="Tranquilo, casi en voz baja. Después de «escucha» te quedas en silencio mirando al lente.", plano="Primer plano"),
+        b("LA LLAMADA", P, "(se escucha la llamada de María, 8–12 segundos)",
+          ve="Grabación de pantalla CON AUDIO de una llamada de María (de prueba o con permiso), con el flujo moviéndose en tiempo real."),
+        b("QUÉ HACE", V, "María llama, entiende lo que la persona necesita y agenda. Mientras habla, todo queda anotado solo.",
+          ve="El flujo de Nexor avanzando paso a paso (grabación de pantalla, 10 s)."),
+        b("QUIÉN LO ARMA", C, "Esto lo arma Joaco, otro de los cofundadores de Optimizo. Es el flujo comercial completo, de punta a punta.",
+          hace="Tranquilo, con un gesto hacia la pantalla."),
+        b("EL NÚMERO", P, "[Un número real: cuántas llamadas, cuántas reuniones agendadas, en cuánto tiempo.]",
+          ve="La pantalla con ese número (panel o calendario lleno, difuminando nombres)."),
+        b("CIERRE", C, "Antes esto era un equipo completo. Ahora es un sistema.",
+          hace="Lento. 1 s en silencio mirando al lente al terminar."),
+      ],
+      broll=["La pantalla del flujo de cerca, en la oscuridad (5 s)"],
+      recursos=[r("Una llamada de María grabada con audio", "De prueba, o real con permiso de la persona. Si no la tienes, pídesela a Joaco."),
+                r("Grabación de pantalla del flujo en tiempo real", "Mientras ocurre la llamada, si se puede."),
+                r("Un número real del sistema", "Llamadas, reuniones agendadas, tiempo de respuesta: el que sea más impresionante y cierto."),
+                r("OK de Joaco para mostrarlo")],
+      props=[],
+      edicion={"estilo": "Thriller tranquilo: oscuro, la pantalla como única luz, la onda de audio de María dibujándose en el centro mientras habla. Corte a negro antes del cierre.", "subtitulos": "Lo que dice María en otro color, como subtítulo de película", "musica": "Pulso grave y lento, casi ambiente; desaparece durante la llamada", "efectos": ["Tono de llamada al inicio", "Clic suave en cada paso del flujo", "Grave profundo en «ahora es un sistema»"], "ritmo": "Pausado; la llamada se deja respirar"},
+      post={"texto": "Esta llamada la hizo una IA. Día 26/30.", "hashtags": ["#inteligenciaartificial", "#ventas", "#automatizacion", "#emprendimiento", "#reto30dias"], "sonido": "Ambiente propio (la llamada tiene que escucharse)"})),
+}
+
+RITMO = {  # 22-oct: tono cinematográfico (cerebro/10): menos zoom punch, más intención
+  "Corte o zoom cada 2 s": "Cortes con intención: rápido en el gancho, respira en «también»",
+  "Corte cada 1–1,5 s, siempre al beat": "Al beat de la música, con planos de detalle que respiran",
+  "Cambio visual cada 2 s": "Un cambio por idea, acercamientos lentos",
+  "Zoom punch en cada idea": "Acercamiento lento en cada idea",
+  "Zoom punch por punto": "Acercamiento lento por punto",
+  "Zoom punch en cada frase": "Plano fijo y cerca; acercamiento lento hasta el final",
+}
+
 ruta = pathlib.Path(__file__).with_name("calendario-01.json")
 videos = json.loads(ruta.read_text())
 for v in videos:
+    if v["fecha"] in NUEVOS:
+        n = NUEVOS[v["fecha"]]
+        v.update(pilar=n["pilar"], formato=n["formato"], titulo=n["titulo"], gancho=n["datos"]["beats"][0]["dice"], datos=n["datos"])
+        continue
     g = G[v["fecha"]]
     v["datos"]["beats"] = g["beats"]
     v["datos"]["broll"] = g["broll"]
@@ -604,6 +681,9 @@ for v in videos:
     for k in ("titulo", "formato"):
         if k in aj: v[k] = aj[k]
     v["datos"].update(aj.get("datos", {}))
+    ed = v["datos"].get("edicion", {})
+    if ed.get("ritmo") in RITMO: ed["ritmo"] = RITMO[ed["ritmo"]]
+    ed["efectos"] = [x.replace("zoom punch", "acercamiento lento") for x in ed.get("efectos", [])]
     if v["fecha"] == "2026-11-05" and "POV" not in v["datos"]["edicion"]["estilo"]:
         v["datos"]["edicion"]["estilo"] = "Texto en pantalla desde el primer cuadro: «POV: eres el único de la oficina que sabe usar IA». " + v["datos"]["edicion"]["estilo"]
 ruta.write_text(json.dumps(videos, ensure_ascii=False, indent=2) + "\n")

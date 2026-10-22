@@ -313,8 +313,8 @@ function tomasDe(v) {
   beats.forEach((b, i) => {
     if (modoDe(b) === "escena") lista.push({ id: `esc${i}`, grupo: "camara", que: `Párrafo ${i + 1}, sin hablar: ${sinParentesis(b.dice)}`, detalle: [b.hace, b.ve].filter(Boolean).join(" ") });
   });
-  if (v.gancho) lista.push({ id: "gancho", grupo: "camara", que: "La primera frase, 3 veces más", detalle: `${cita(v.gancho)}. Cada vez con más energía: es lo que decide si se quedan.` });
-  (d.ganchos_alt ?? []).forEach((g, k) => lista.push({ id: `alt${k}`, grupo: "camara", que: `Primera frase alternativa ${k + 1}`, detalle: `${cita(g)}. Misma energía, para probar cuál funciona mejor.` }));
+  if (v.gancho) lista.push({ id: "gancho", grupo: "camara", que: "La primera frase, 3 veces más", detalle: `${cita(v.gancho)}. Tranquilo; cambia la intención y las pausas, no el volumen. Es lo que decide si se quedan.` });
+  (d.ganchos_alt ?? []).forEach((g, k) => lista.push({ id: `alt${k}`, grupo: "camara", que: `Primera frase alternativa ${k + 1}`, detalle: `${cita(g)}. Mismo tono, para probar cuál funciona mejor.` }));
   if (enVoz.length) lista.push({ id: "voz", grupo: "voz", que: `Tu voz en off: ${enVoz.length === 1 ? "el párrafo" : "los párrafos"} ${listaNum(enVoz)}`, detalle: "En el teleprompter elige «Voz en off». Celular a un palmo de la boca, en un lugar sin eco (un clóset con ropa es perfecto); sirve la app Notas de voz. Lee cada párrafo 2 veces." });
   beats.forEach((b, i) => {
     const m = modoDe(b);

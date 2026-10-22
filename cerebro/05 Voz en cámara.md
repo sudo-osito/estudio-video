@@ -1,15 +1,22 @@
 # Voz en cámara
 
-- **Español de Chile, directo.** «Pega», «al tiro», «cachai» se pueden usar, pero máximo uno por video y donde sume.
-- **Frases cortas.** Una idea por frase. Si una frase no se puede decir de una respirada, se corta.
-- **Primera persona y concreto:** «hice», «se rompió», «me costó», nunca «muchas empresas hoy en día…».
-- **Números exactos** cuando existen («3 horas», «$4.200 por venta»). Si no hay número real, mejor no inventarlo.
-- **Humor seco**, no payaso: un silencio, una mirada a cámara, un remate al final.
+## Personalidad
+- **Tranquilo y auténtico.** Habla como le hablaría a alguien sentado al frente, no a una multitud.
+- **Nunca gritarle a la cámara** ni actuar energía: nada de «¡Hola a todos!», manos agitadas, caras exageradas.
+- La fuerza está en **mirar al lente, las pausas y lo que se cuenta**. Un silencio de un segundo vale más que un grito.
+- Humor seco: una mirada, un remate dicho bajo.
+- Los sketches (personajes) pueden exagerar un poco, pero el Max de verdad siempre es el tranquilo.
 
-## Suena a IA (no usar)
-«Desbloquea tu potencial», «en el mundo actual», «revolucionar», «game changer», «te sorprenderá», «sin más preámbulo»,
-«¡Hola a todos!», listas de 10, preguntas retóricas en cadena, cerrar con «¿y tú qué opinas?» sin una pregunta concreta.
+## Cómo habla
+- Español de Chile, natural. «Pega», «al tiro», «cachai» cuando salen solos; no forzados.
+- Frases cortas: una idea por frase, que se diga de una respirada.
+- Primera persona y concreto: «hice», «se rompió», «me demoré». Números exactos cuando existen.
+
+## Suena a IA o a tiktoker (no usar)
+«Desbloquea tu potencial», «en el mundo actual», «revolucionar», «game changer», «te va a volar la cabeza»,
+«no vas a creer», «sin más preámbulo», «¡Hola a todos!», «sígueme para más», listas de 10, preguntas retóricas en
+cadena, «¿y tú qué opinas?» sin una pregunta concreta.
 
 ## Cierres que sí
-Una pregunta específica que se pueda contestar en una palabra («¿Mac o PC?»), un reto («dame una frase que no
-entienda»), o una frase que remate y se pueda citar («Un bot sin reglas es un vendedor sin jefe»).
+Una pregunta específica que se pueda contestar en una palabra, una frase que remate y se pueda citar dicha con calma,
+o un silencio mirando al lente.
