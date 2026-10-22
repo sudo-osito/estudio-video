@@ -1,140 +1,224 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Guion visual · Videos de Max</title>
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter+Tight:wght@800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="guion.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f3f1">
+  <meta name="robots" content="noindex">
+  <title>Guion visual · Heika</title>
+  <link rel="icon" href="../icono.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icono-180.png">
+  <link rel="preload" href="fuentes/InterDisplay-Black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../estilo.css">
+  <link rel="stylesheet" href="guion.css">
 </head>
 <body>
-<header class="barra">
-  <a class="marca" href="#inicio"><span class="punto"></span>Guion visual <em>· videos de Max</em></a>
-  <nav class="indice" aria-label="Capítulos">
-    <a href="#reglas">Reglas</a><a href="#letras">Letras</a><a href="#color">Color</a><a href="#texto">Texto</a>
-    <a href="#encuadres">Encuadres</a><a href="#identidad">Identidad</a><a href="#golpes">Golpes</a><a href="#ritmo">Ritmo</a><a href="#sonido">Sonido</a><a href="#zonas">Zonas</a>
-  </nav>
-  <button class="pulso" id="pulso" aria-pressed="false" title="Escuchar el pulso de 89 BPM con las animaciones">
-    <span class="ondas"><i></i><i></i><i></i></span><b>Pulso</b>
-  </button>
-</header>
+  <div class="eter" aria-hidden="true"><i class="e1"></i><i class="e2"></i><i class="e3"></i><i class="e4"></i></div>
 
-<main>
-  <!-- PORTADA -->
-  <section class="portada" id="inicio">
-    <div class="portada-texto">
-      <p class="eti">Laboratorio · v0.1 · 22-oct-2026</p>
-      <h1>Tranquilo en cámara.<br><span class="acento">La energía la pone la edición.</span></h1>
-      <p class="bajada">Todo el lenguaje de los videos de Max funcionando antes de editar: letras, color, texto que golpea, tarjetas, cortes al beat, sonido y zonas seguras. Marca 👍 o 👎 en cada pieza; con tus votos y tus referencias se arma la versión final.</p>
-      <div class="acciones"><a class="boton primario" href="#reglas">Recorrer el guion</a><button class="boton" id="ver-elecciones">Mis elecciones <span id="cuenta-votos">0</span></button></div>
+  <div id="app" class="app entra">
+    <!-- La misma barra lateral de Heika: Calendario y Agenda vuelven a la app -->
+    <aside class="lateral vidrio" id="lateral" aria-label="Navegación">
+      <div class="lat-cabeza">
+        <a class="lat-logo" href="../" aria-label="Heika · volver al calendario"><img src="../marca/heika-horizontal.svg" alt="" height="30"></a>
+        <button class="icono-boton lat-plegar" data-plegar aria-label="Plegar la barra lateral" title="Plegar ( [ )">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="15" height="13" rx="3"/><path d="M7.5 3.5v13"/><path class="flecha-plegar" d="M13 8l-2 2 2 2"/></svg>
+        </button>
+      </div>
+
+      <nav class="lat-nav" id="lat-nav">
+        <i class="lat-indicador" aria-hidden="true"></i>
+        <a class="lat-item" href="../" data-vista="mes" style="--n:0">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="13" rx="3"/><path d="M3 8.5h14M7 2.5v3M13 2.5v3"/></svg>
+          <span>Calendario</span>
+        </a>
+        <a class="lat-item" href="../" data-vista="agenda" style="--n:1">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 5.5h9M8 10h9M8 14.5h9"/><circle cx="4" cy="5.5" r="1" fill="currentColor"/><circle cx="4" cy="10" r="1" fill="currentColor"/><circle cx="4" cy="14.5" r="1" fill="currentColor"/></svg>
+          <span>Agenda</span>
+        </a>
+        <a class="lat-item" href="./" aria-current="true" style="--n:2">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="15" height="12" rx="3"/><path d="M8.5 7.6v4.8l4-2.4z" fill="currentColor"/></svg>
+          <span>Guion visual</span>
+        </a>
+      </nav>
+
+      <div class="lat-bloque" style="--n:3">
+        <p class="lat-titulo">En esta página</p>
+        <nav class="g-indice" id="g-indice" aria-label="Secciones">
+          <a href="#pieza">La primera pieza</a>
+          <a href="#letra">Letra</a>
+          <a href="#color">Color</a>
+          <a href="#piezas">Piezas</a>
+          <a href="#reglas">Reglas</a>
+          <a href="#formatos">Formatos</a>
+        </nav>
+      </div>
+    </aside>
+    <div class="velo-lateral" data-cerrar-lateral></div>
+
+    <div class="principal">
+      <header class="barra" id="barra">
+        <button class="icono-boton solo-movil" data-abrir-lateral aria-label="Abrir menú">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3.5 7h13M3.5 13h9"/></svg>
+        </button>
+        <div class="titulo-vista">
+          <h1>Guion visual</h1>
+          <span>v1</span>
+        </div>
+        <a class="volver-hoy vidrio" href="../" data-vista="mes"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 15l-5-5 5-5"/></svg><span class="solo-esc">Volver al calendario</span><span class="solo-cel">Heika</span></a>
+      </header>
+
+      <main class="lienzo g-lienzo">
+        <!-- Portada: la regla madre y la primera pieza real, en los dos formatos -->
+        <section class="g-portada" id="pieza">
+          <p class="g-kicker"><i></i>Cómo se ven los videos de Max</p>
+          <h2 class="g-titular">Tranquilo en cámara.<br><span>La edición pone la energía.</span></h2>
+          <p class="g-bajada">Vlog cinematográfico moderno: letra grande y bold, color vivo, cortes al ritmo, y Max hablando con calma. Todo lo que ves acá está renderizado en After Effects por el sistema, con las tomas reales de la oficina.</p>
+
+          <div class="g-par">
+            <figure class="g-marco g-h">
+              <video src="piezas/titulo-detras-16x9.mp4" poster="piezas/titulo-detras-16x9.jpg" muted loop playsinline preload="metadata" aria-label="Título detrás del sujeto, horizontal"></video>
+              <figcaption><b>16:9</b> YouTube · vlog largo</figcaption>
+            </figure>
+            <figure class="g-marco g-v">
+              <video src="piezas/titulo-detras-9x16.mp4" poster="piezas/titulo-detras-9x16.jpg" muted loop playsinline preload="metadata" aria-label="Título detrás del sujeto, vertical"></video>
+              <figcaption><b>9:16</b> Reels · TikTok</figcaption>
+            </figure>
+          </div>
+
+          <div class="g-ficha vidrio">
+            <div><small>Pieza 01</small><b>Título detrás del sujeto</b></div>
+            <div><small>Visto en</small><b>7 de 10 referencias</b></div>
+            <div><small>Cómo se hace</small><b>Máscara de persona (Vision) + mate de luminancia</b></div>
+            <div><small>Duración</small><b>3 s · 24 fps</b></div>
+          </div>
+        </section>
+
+        <!-- Letra -->
+        <section class="g-seccion" id="letra">
+          <header class="g-cabeza">
+            <h2>Letra</h2>
+            <p>Inter Display: la familia que más se parece a la de Apple, pero libre para videos (SF Pro no se puede usar fuera de apps de Apple). Tres pesos, cada uno con un trabajo.</p>
+          </header>
+          <div class="g-letras">
+            <article class="g-letra vidrio">
+              <p class="g-muestra negra">HEIKA</p>
+              <dl><dt>Black</dt><dd>Títulos. Mayúsculas, interletra −30. Uno por video, grande, detrás del sujeto.</dd></dl>
+            </article>
+            <article class="g-letra vidrio">
+              <p class="g-muestra bold">lo que nadie<br>te muestra</p>
+              <dl><dt>Bold</dt><dd>Lo que Max dice, palabra por palabra. Minúsculas, al ritmo de la voz.</dd></dl>
+            </article>
+            <article class="g-letra vidrio">
+              <p class="g-muestra semi"><i></i>EL SISTEMA QUE EDITA MIS VIDEOS</p>
+              <dl><dt>SemiBold</dt><dd>Bajadas y datos. Mayúsculas chicas, interletra +320, con el punto rojo.</dd></dl>
+            </article>
+          </div>
+        </section>
+
+        <!-- Color -->
+        <section class="g-seccion" id="color">
+          <header class="g-cabeza">
+            <h2>Color</h2>
+            <p>Los colores de Heika, aplicados al video. La imagen va viva: piel cálida, sombras frías, saturada sin quemar. Arrastra para ver la toma antes y después.</p>
+          </header>
+          <div class="g-color">
+            <div class="g-comparar" id="comparar" style="--corte:50%">
+              <img src="piezas/color-antes.jpg" alt="La toma tal como sale del iPhone" class="g-antes">
+              <img src="piezas/color-despues.jpg" alt="La misma toma con el color y el título de Heika" class="g-despues">
+              <span class="g-rotulo izq">Antes</span><span class="g-rotulo der">Después</span>
+              <i class="g-tirador" aria-hidden="true"></i>
+              <input type="range" min="0" max="100" value="50" aria-label="Comparar antes y después">
+            </div>
+            <ul class="g-paleta">
+              <li><i style="background:#f6f3f1"></i><div><b>Hueso</b><span>#f6f3f1 · texto sobre la imagen</span></div></li>
+              <li><i style="background:#0b0b0c"></i><div><b>Tinta</b><span>#0b0b0c · texto sobre fondos claros</span></div></li>
+              <li><i style="background:#ff0042"></i><div><b>Rojo Heika</b><span>#ff0042 · el único acento: el punto, una palabra</span></div></li>
+              <li><i class="g-deg"></i><div><b>Luz Heika</b><span>El degradado de la marca, como luz que entra por un costado</span></div></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Piezas -->
+        <section class="g-seccion" id="piezas">
+          <header class="g-cabeza">
+            <h2>Piezas</h2>
+            <p>Lo que más se repite en tus referencias de «para claude». Cada pieza se arma una vez como plantilla de After Effects y después el sistema la usa sola en cada video.</p>
+          </header>
+          <ol class="g-piezas">
+            <li class="lista"><span class="g-estado">Lista</span><b>Título detrás del sujeto</b><p>El título se arma letra por letra y Max pasa por delante.</p></li>
+            <li><span class="g-estado">Sigue</span><b>Palabra por palabra</b><p>Texto gigante que aparece al ritmo exacto de la voz, como «float 2.0».</p></li>
+            <li><span class="g-estado">Sigue</span><b>Barrido con desenfoque</b><p>Un giro rápido de cámara que corta a la toma siguiente sin que se note el corte.</p></li>
+            <li><span class="g-estado">Sigue</span><b>Paso a oscuro</b><p>Algo oscuro cruza cerca del lente, tapa todo y destapa otro lugar.</p></li>
+            <li><span class="g-estado">Sigue</span><b>Apertura en ráfaga</b><p>Los primeros segundos con tomas de 2 cuadros, al golpe de la música.</p></li>
+            <li><span class="g-estado">Sigue</span><b>Firma de la serie</b><p>Una capa chica fija: lugar, hora y día. Hace reconocible cada video al toque.</p></li>
+          </ol>
+        </section>
+
+        <!-- Reglas -->
+        <section class="g-seccion" id="reglas">
+          <header class="g-cabeza">
+            <h2>Reglas</h2>
+            <p>Lo que aprendimos de la prueba de la oficina y de tus referencias.</p>
+          </header>
+          <div class="g-reglas">
+            <div class="vidrio si"><h3>Sí</h3><ul>
+              <li>Max habla con calma. La energía la ponen el corte, la letra y la música.</li>
+              <li>Letra grande y bold; un título por video, detrás de Max cuando hay espacio.</li>
+              <li>Color vivo y moderno: piel cálida, sombras frías.</li>
+              <li>Cortes en el beat o en el medio beat. Siempre algo se mueve.</li>
+              <li>Un solo acento: el rojo Heika.</li>
+              <li>Música real de artistas, nunca de biblioteca.</li>
+            </ul></div>
+            <div class="vidrio no"><h3>No</h3><ul>
+              <li>Look de película vieja: grano, barras negras, color lavado.</li>
+              <li>Letras con serifa o «elegantes».</li>
+              <li>Subtítulos amarillos, emojis, memes, gritarle a la cámara.</li>
+              <li>Texto encima de la cara.</li>
+              <li>Fundidos largos a negro.</li>
+              <li>Construir cosas solo para el video: se graba lo que ya está pasando.</li>
+            </ul></div>
+          </div>
+        </section>
+
+        <!-- Formatos -->
+        <section class="g-seccion" id="formatos">
+          <header class="g-cabeza">
+            <h2>Formatos</h2>
+            <p>Se graba una vez y salen los dos. El horizontal es el original; el vertical es un recorte del mismo 4K, sin perder calidad.</p>
+          </header>
+          <div class="g-formatos">
+            <article class="vidrio">
+              <small>Grabar</small><b>4K · 24 fps · horizontal</b>
+              <p>iPhone en horizontal, Max al centro del cuadro, con aire arriba para el título.</p>
+            </article>
+            <article class="vidrio">
+              <small>16:9</small><b>3840 × 2160</b>
+              <p>YouTube y los vlogs largos de 20–30 minutos. Es el original.</p>
+            </article>
+            <article class="vidrio">
+              <small>9:16</small><b>1080 × 1920</b>
+              <p>Reels y TikTok. Recorte del centro del 4K (2160 px de alto, sobra).</p>
+            </article>
+            <figure class="g-zonas">
+              <div class="g-zonas-tel"><img src="piezas/titulo-detras-9x16.jpg" alt="Cuadro vertical con las zonas que tapa la app"><i class="z-arriba">Barra de la app</i><i class="z-der">Botones</i><i class="z-abajo">Nombre y texto</i></div>
+              <figcaption>En vertical, el texto va entre el 15 % y el 70 % de la altura. Abajo y a la derecha lo tapa la app.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <footer class="g-pie">Heika · guion visual v1 · 22-oct-2026 · se actualiza con cada pieza nueva</footer>
+      </main>
     </div>
-    <div class="telefono grande" id="reel" aria-label="Reel de muestra">
-      <div class="pantalla"><div class="escena-reel" id="escena-reel"></div></div>
-      <div class="reel-pie"><span id="reel-t">0.0 s</span><button class="mini" data-repetir="reel">↺ Repetir</button></div>
-    </div>
-  </section>
 
-  <!-- REGLAS -->
-  <section class="capitulo" id="reglas">
-    <header class="cap-cabeza"><span class="num">01</span><h2>Reglas</h2><p>Lo que aprendimos de la prueba «Aquí se construye». La v1 «se sentía película vieja»; la v2 va por acá.</p></header>
-    <div class="dos-columnas">
-      <div class="lista si"><h3>Sí</h3><ul>
-        <li>Letras <b>bold sans</b>, grandes, en mayúsculas, que golpean palabra por palabra.</li>
-        <li>Color <b>vivo y contrastado</b>; un solo acento fuerte.</li>
-        <li>Cortes <b>al beat</b> de la canción; algo se mueve siempre.</li>
-        <li>Golpes en los momentos clave: <b>zoom punch, sacudida, destello</b>.</li>
-        <li>Material horizontal como <b>tarjetas flotantes</b> sobre el mismo clip desenfocado.</li>
-        <li>Max tranquilo: <b>la edición pone la energía</b>, no la voz.</li>
-      </ul></div>
-      <div class="lista no"><h3>No</h3><ul>
-        <li>Barras de cine, serif elegante, grano de película.</li>
-        <li>Color desaturado o «triste», cámara lenta melancólica.</li>
-        <li>Fundidos largos a negro, nada que se quede quieto.</li>
-        <li>Texto sobre la cara o encima de la interfaz de la app.</li>
-        <li>Efectos de meme, emojis, subtítulos amarillos tiktokeros.</li>
-        <li>Música genérica de biblioteca.</li>
-      </ul></div>
-    </div>
-  </section>
+    <!-- Celular: las mismas pestañas de Heika, con Guion -->
+    <nav class="pestanas-movil vidrio" id="pestanas-movil" aria-label="Vista">
+      <i class="pm-indicador" aria-hidden="true"></i>
+      <a href="../" data-vista="mes"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="13" rx="3"/><path d="M3 8.5h14M7 2.5v3M13 2.5v3"/></svg>Mes</a>
+      <a href="../" data-vista="agenda"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 5.5h9M8 10h9M8 14.5h9"/><circle cx="4" cy="5.5" r="1" fill="currentColor"/><circle cx="4" cy="10" r="1" fill="currentColor"/><circle cx="4" cy="14.5" r="1" fill="currentColor"/></svg>Agenda</a>
+      <a href="./" aria-current="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="15" height="12" rx="3"/><path d="M8.5 7.6v4.8l4-2.4z" fill="currentColor"/></svg>Guion</a>
+    </nav>
+  </div>
 
-  <!-- LETRAS -->
-  <section class="capitulo" id="letras">
-    <header class="cap-cabeza"><span class="num">02</span><h2>Letras</h2><p>Una letra de titular (golpes, finales) y una de apoyo (subtítulos, datos). Vota la que más te represente.</p></header>
-    <div class="grilla-letras" id="grilla-letras"></div>
-  </section>
-
-  <!-- COLOR -->
-  <section class="capitulo" id="color">
-    <header class="cap-cabeza"><span class="num">03</span><h2>Color</h2><p>Base negra y blanca, un acento que marca la palabra importante. El acento tiñe también los brillos.</p></header>
-    <div class="grilla-color" id="grilla-color"></div>
-  </section>
-
-  <!-- TEXTO -->
-  <section class="capitulo" id="texto">
-    <header class="cap-cabeza"><span class="num">04</span><h2>Texto que golpea</h2><p>Los estilos de texto animado. Cada uno con su regla de uso.</p></header>
-    <div class="grilla-demos" id="demos-texto"></div>
-  </section>
-
-  <!-- ENCUADRES -->
-  <section class="capitulo" id="encuadres">
-    <header class="cap-cabeza"><span class="num">05</span><h2>Encuadres</h2><p>Cómo se ponen las tomas en 9:16. Lo horizontal nunca va en una franja chica.</p></header>
-    <div class="grilla-demos" id="demos-encuadre"></div>
-  </section>
-
-  <!-- IDENTIDAD -->
-  <section class="capitulo" id="identidad">
-    <header class="cap-cabeza"><span class="num">05b</span><h2>Overlay de identidad</h2><p>Una capa fija y chica que está en todos tus videos y los hace reconocibles al toque, como el «• LOS ÁNGELES • REC •» de @ghostrideneeko o el «9:30am · day 01/100» de @byjxson. No tapa nada: es la firma de la serie. Vota la que más te guste (o ninguna).</p></header>
-    <div class="grilla-demos" id="demos-identidad"></div>
-  </section>
-
-  <!-- GOLPES -->
-  <section class="capitulo" id="golpes">
-    <header class="cap-cabeza"><span class="num">06</span><h2>Golpes y transiciones</h2><p>Los momentos que despiertan. Se usan en los beats fuertes, no en todos.</p></header>
-    <div class="grilla-demos" id="demos-golpes"></div>
-  </section>
-
-  <!-- RITMO -->
-  <section class="capitulo" id="ritmo">
-    <header class="cap-cabeza"><span class="num">07</span><h2>Ritmo</h2><p>La estructura de la prueba v2 (15 s, «Flashing Lights» a 89 BPM): un corte cada 0,67 s y golpes cada 4 beats. Es la plantilla de los cortos.</p></header>
-    <div class="linea-tiempo" id="linea-tiempo"></div>
-  </section>
-
-  <!-- SONIDO -->
-  <section class="capitulo" id="sonido">
-    <header class="cap-cabeza"><span class="num">08</span><h2>Sonido</h2><p>Cada imagen tiene su sonido. Acá van aproximados para que sientas el rol; en el video se usan los de la biblioteca (Sonniss, Freesound, Mixkit).</p></header>
-    <div class="grilla-sonido" id="grilla-sonido"></div>
-  </section>
-
-  <!-- ZONAS -->
-  <section class="capitulo" id="zonas">
-    <header class="cap-cabeza"><span class="num">09</span><h2>Zonas seguras</h2><p>Lo que tapa TikTok/Instagram y dónde va cada cosa. La cara manda: el texto nunca la toca.</p></header>
-    <div class="zonas-caja">
-      <div class="telefono"><div class="pantalla"><img src="img/nave.jpg" alt="" class="foto completa"><div class="zona arriba">Barra de la app</div><div class="zona derecha">Botones</div><div class="zona abajo">Nombre, texto y música</div><div class="zona cara">Cara</div><div class="zona texto-ok">Texto aquí</div></div></div>
-      <ul class="reglas-zonas">
-        <li><b>Arriba (0–10 %)</b>: nada importante; lo tapa la barra de la app.</li>
-        <li><b>Derecha (últimos 14 %)</b>: botones de me gusta, comentar, compartir.</li>
-        <li><b>Abajo (últimos 22 %)</b>: nombre, descripción y canción.</li>
-        <li><b>Texto grande</b>: centro, entre el 30 % y el 70 % de la altura.</li>
-        <li><b>Subtítulos con la cara en pantalla</b>: bajo el mentón, alrededor del 72–78 %.</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer class="pie">Estudio · guion visual de los videos de Max · v0.1 · Se completa con las referencias de Max.</footer>
-</main>
-
-<aside class="elecciones" id="elecciones" hidden>
-  <header><h3>Mis elecciones</h3><button class="mini" id="cerrar-elecciones">Cerrar</button></header>
-  <pre id="texto-elecciones"></pre>
-  <button class="boton primario ancho" id="copiar-elecciones">Copiar para mandárselo a Claude</button>
-</aside>
-<div class="aviso" id="aviso" hidden></div>
-
-<script src="guion.js"></script>
+  <script src="guion.js"></script>
 </body>
 </html>
