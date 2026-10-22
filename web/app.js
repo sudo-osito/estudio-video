@@ -1,5 +1,10 @@
 /* Heika · calendario de orgánicos. Lee el calendario del Worker, sube el material por trozos y avisa «listo para editar». */
+import { crearSeguidor } from "./seguir.js";
+
 const API = window.ESTUDIO_API;
+/* Dentro de la app del Mac hay un puente al lado nativo (voz sin internet, pantalla encendida, ventana privada) */
+const PUENTE = window.webkit?.messageHandlers?.heika;
+const nativo = PUENTE ? (tipo, datos = {}) => PUENTE.postMessage({ tipo, ...datos }) : null;
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
@@ -573,6 +578,7 @@ async function cargarEntregas() {
 /* ── Subida por trozos (se retoma si se corta) ── */
 let candado = null;
 async function mantenerPantalla(on) {
+  if (nativo) return nativo("pantalla", { on });
   try {
     if (on && !candado && "wakeLock" in navigator) candado = await navigator.wakeLock.request("screen");
     if (!on && candado) { await candado.release(); candado = null; }
@@ -679,8 +685,91 @@ let pr = {
   ritmo: leerLocal("estudio:ritmo") in RITMOS ? leerLocal("estudio:ritmo") : "normal",
   auto: leerLocal("estudio:auto") !== "no",
   v: null, filtro: "todo",
+  voz: false, seg: null, palabras: [], pintado: 0, ultimaVoz: 0, vigia: 0, terminado: false,
 };
 const durPr = (k) => segundosDe(pr.partes[k].texto, pr.ritmo, pr.partes[k].fijo);
+
+/* ── Seguir la voz: en el Mac con el oído nativo (sin internet); en el navegador, con el reconocimiento del navegador si existe ── */
+const fuenteVoz = (() => {
+  if (nativo) return { nativa: true, oir: (frases) => nativo("oir", { frases }), callar: () => nativo("callar") };
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) return null;
+  let r = null;
+  return {
+    nativa: false,
+    oir() {
+      r = new SR(); r.lang = "es-CL"; r.continuous = true; r.interimResults = true;
+      r.onresult = (e) => {
+        let tramo = "";
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          const x = e.results[i];
+          if (x.isFinal) alOir(x[0].transcript, true); else tramo += ` ${x[0].transcript}`;
+        }
+        if (tramo.trim()) alOir(tramo, false);
+      };
+      r.onstart = () => alEstadoVoz("escuchando");
+      r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") alErrorVoz("El navegador no tiene permiso para el micrófono."); };
+      r.onend = () => { if (pr.corre && pr.voz && r) try { r.start(); } catch {} }; // el navegador corta solo cada tanto: se retoma
+      r.start();
+    },
+    callar() { const x = r; r = null; try { x?.stop(); } catch {} },
+  };
+})();
+window.heikaNativo = {
+  recibir(tipo, d) {
+    if (tipo === "oido") alOir(d.texto, d.final);
+    else if (tipo === "oido-estado") alEstadoVoz(d.estado, d.progreso);
+    else if (tipo === "oido-error") alErrorVoz(d.mensaje);
+    else if (tipo === "oido-nivel") pintarNivel(d.nivel);
+    else if (tipo === "aviso") avisar(d.texto);
+  },
+};
+
+function alOir(texto, final) {
+  if (!pr.voz || !pr.corre || !pr.seg) return;
+  const antes = pr.seg.cursor;
+  const { retomas } = pr.seg.oir(texto, final);
+  if (pr.seg.cursor !== antes || String(texto).trim()) pr.ultimaVoz = performance.now();
+  if (retomas) marcarToma();
+  seguirCursor();
+}
+
+function alEstadoVoz(estado, progreso) {
+  const t = { preparando: "Preparando…", descargando: `Bajando el español · ${Math.round((progreso ?? 0) * 100)} %`, escuchando: "Te escucho" }[estado] ?? estado;
+  oidoTexto(t, estado === "escuchando");
+}
+function alErrorVoz(mensaje) { pausarPrompter(); avisar(mensaje); }
+function oidoTexto(t, vivo = false) { $("#pr-oido-texto").textContent = t; $("#pr-oido").classList.toggle("vivo", vivo); }
+function pintarNivel(n) {
+  // cinco barras que suben con la voz (la del medio más alta)
+  [0.55, 0.8, 1, 0.8, 0.55].forEach((f, k) => { const b = $(`#pr-oido .pr-nivel b:nth-child(${k + 1})`); if (b) b.style.transform = `scaleY(${Math.max(0.18, Math.min(1, n * f * 1.25))})`; });
+}
+
+/* Pinta las palabras ya dichas y la que viene, y mueve el párrafo cuando lo terminas */
+function seguirCursor() {
+  const c = pr.seg.cursor;
+  const desde = Math.min(pr.pintado, c), hasta = Math.max(pr.pintado, c);
+  for (let k = Math.max(0, desde - 1); k <= Math.min(pr.palabras.length - 1, hasta + 1); k++) {
+    pr.palabras[k].classList.toggle("dicha", k < c);
+    pr.palabras[k].classList.toggle("ahora", k === c);
+  }
+  pr.pintado = c;
+  const p = pr.seg.parrafo();
+  if (p !== pr.i) { pr.i = p; pintarPrompter(); } else pintarReloj();
+  if (pr.seg.terminado() && !pr.terminado) {
+    pr.terminado = true;
+    setTimeout(() => { if (pr.terminado) { pausarPrompter(); avisar(pr.seg.tomas ? `Terminado · repetiste ${pr.seg.tomas} ${pr.seg.tomas === 1 ? "frase" : "frases"}` : "Terminado"); } }, 1200);
+  }
+}
+
+/* Te equivocaste y repetiste: se anota la toma (servirá para que Claude encuentre la buena) */
+function marcarToma() {
+  pr.marcas = pr.marcas ?? [];
+  pr.marcas.push({ parrafo: pr.partes[pr.seg.parrafo()]?.n, en: new Date().toISOString() });
+  const el = $("#pr-toma");
+  el.textContent = `Toma ${pr.seg.tomas + 1} · desde el principio de la frase`;
+  el.classList.remove("visible"); void el.offsetWidth; el.classList.add("visible");
+}
 const totalPr = () => pr.partes.reduce((a, _, k) => a + durPr(k), 0);
 
 /* El teleprompter muestra SOLO lo que se dice: fuera las tomas sin hablar, las indicaciones entre paréntesis,
@@ -701,7 +790,10 @@ function abrirPrompter(v) {
   $("#pr-filtro").hidden = !(camara && voz);
   $('[data-filtro="camara"]').textContent = `A cámara · ${camara}`;
   $('[data-filtro="voz"]').textContent = `Voz en off · ${voz}`;
+  pr.voz = !!fuenteVoz && (fuenteVoz.nativa ? leerLocal("estudio:voz") !== "no" : leerLocal("estudio:voz") === "si");
+  $("#pr-modo").hidden = !fuenteVoz;
   armarPrompter();
+  nativo?.("privado", { on: true }); // el teleprompter no sale en las grabaciones de pantalla
   $("#prompter").classList.toggle("espejo", leerLocal("estudio:espejo") === "si");
   $("#pr-auto").checked = pr.auto;
   $("#prompter").hidden = false;
@@ -714,13 +806,20 @@ function abrirPrompter(v) {
 /* «A cámara» deja solo lo que se dice mirando al lente; «Voz en off», lo que se graba solo con la voz. */
 function armarPrompter() {
   pr.partes = hablado(pr.v, pr.filtro);
-  pr.i = 0; pr.hecho = 0;
-  // [lo que cuentas con tus palabras] se ve más suave: es el tema, no un texto para leer
+  pr.i = 0; pr.hecho = 0; pr.pintado = 0; pr.terminado = false;
+  // Cada palabra en su <span>, para pintar las que ya dijiste. [lo que cuentas con tus palabras] se ve más suave.
+  pr.seg = crearSeguidor(pr.partes.map((p) => p.texto), esc);
   $("#pr-lista").innerHTML = pr.partes.map((p, k) => `
     <div class="pr-parrafo" data-pi="${k}">
-      <p>${esc(p.texto).replace(/\[([^\]]*)\]/g, '<span class="pr-tuyo">$1</span>')}</p>
+      <p>${pr.seg.guion.html[k]}</p>
       <i class="pr-progreso"><b></b></i>
     </div>`).join("");
+  pr.palabras = [...$("#pr-lista").querySelectorAll("[data-w]")];
+  $("#prompter").classList.toggle("modo-voz", pr.voz);
+  document.querySelectorAll("[data-modo]").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.modo === "voz") === pr.voz)));
+  oidoTexto(pr.voz ? "Toca ▶ y empieza a hablar" : "");
+  $("#pr-oido").hidden = !pr.voz;
+  if (pr.voz) seguirCursor();
 }
 
 function cerrarPrompter(desdeHistorial = false) {
@@ -728,6 +827,7 @@ function cerrarPrompter(desdeHistorial = false) {
   pausarPrompter();
   clearInterval(pr.cuentaIntervalo); $("#pr-cuenta").hidden = true;
   $("#prompter").hidden = true;
+  nativo?.("privado", { on: false });
   document.body.style.overflow = s.sel ? "hidden" : "";
   if (!s.subidas.size) mantenerPantalla(false);
   if (!desdeHistorial && history.state?.prompter) history.back();
@@ -739,7 +839,7 @@ function pintarPrompter() {
   document.querySelectorAll(".pr-parrafo").forEach((el, k) => {
     el.classList.toggle("actual", k === pr.i);
     el.classList.toggle("pasado", k < pr.i);
-    el.querySelector(".pr-progreso b").style.transform = `scaleX(${k < pr.i ? 1 : k === pr.i ? Math.min(1, pr.hecho / durPr(k)) : 0})`;
+    el.querySelector(".pr-progreso b").style.transform = `scaleX(${k < pr.i ? 1 : k === pr.i ? avanceParrafo(k) : 0})`;
   });
   // El párrafo actual queda arriba, cerca del lente, para que no se note que lees.
   const actual = document.querySelector(`.pr-parrafo[data-pi="${pr.i}"]`);
@@ -750,22 +850,46 @@ function pintarPrompter() {
   $('[data-p="play"]').setAttribute("aria-label", pr.corre ? "Pausa" : "Partir");
 }
 
+/* Cuánto llevas del párrafo: por palabras dichas (voz) o por tiempo */
+function avanceParrafo(k) {
+  if (!pr.voz) return Math.min(1, pr.hecho / durPr(k));
+  const W = pr.seg.guion.palabras, ini = pr.seg.guion.inicios[k];
+  const fin = (pr.seg.guion.inicios[k + 1] ?? W.length);
+  return fin > ini ? Math.min(1, Math.max(0, (pr.seg.cursor - ini) / (fin - ini))) : 0;
+}
+
 function pintarReloj() {
-  let pasado = pr.hecho;
-  for (let k = 0; k < pr.i; k++) pasado += durPr(k);
-  $("#pr-reloj").textContent = `${pr.i + 1} de ${pr.partes.length} · ${reloj(pasado)} / ${reloj(totalPr())}`;
+  if (pr.voz) $("#pr-reloj").textContent = `${pr.i + 1} de ${pr.partes.length}`;
+  else {
+    let pasado = pr.hecho;
+    for (let k = 0; k < pr.i; k++) pasado += durPr(k);
+    $("#pr-reloj").textContent = `${pr.i + 1} de ${pr.partes.length} · ${reloj(pasado)} / ${reloj(totalPr())}`;
+  }
   const b = document.querySelector(`.pr-parrafo[data-pi="${pr.i}"] .pr-progreso b`);
-  if (b) b.style.transform = `scaleX(${Math.min(1, pr.hecho / durPr(pr.i))})`;
+  if (b) b.style.transform = `scaleX(${avanceParrafo(pr.i)})`;
 }
 
 function irA(k) {
   pr.i = Math.max(0, Math.min(pr.partes.length - 1, k));
   pr.hecho = 0;
+  if (pr.seg) { pr.seg.irA(pr.i); pr.terminado = false; if (pr.voz) return seguirCursor(); }
+  pintarPrompter();
+}
+
+/* En modo voz, ▶ empieza a escuchar (sin cuenta regresiva: el texto espera a que hables) */
+function escuchar() {
+  pr.corre = true; pr.terminado = false; pr.ultimaVoz = performance.now();
+  oidoTexto("Preparando…");
+  fuenteVoz.oir([...new Set(pr.partes.flatMap((p) => p.texto.split(/\s+/)).map((w) => w.replace(/[^\p{L}\p{N}]/gu, "")).filter((w) => w.length > 3))].slice(0, 200));
+  clearInterval(pr.vigia);
+  // Si te quedas callado en un pedazo [libre], se da por dicho y pasa al siguiente
+  pr.vigia = setInterval(() => { if (performance.now() - pr.ultimaVoz > 1700 && pr.seg.silencio()) seguirCursor(); }, 300);
   pintarPrompter();
 }
 
 function partirPrompter() {
   if (pr.corre || pr.cuenta) return;
+  if (pr.voz) return escuchar();
   // Cuenta regresiva antes de partir desde un párrafo nuevo (no al retomar una pausa).
   if (pr.hecho === 0) {
     pr.cuenta = 3;
@@ -803,6 +927,7 @@ function correrPrompter() {
 
 function pausarPrompter() {
   if (pr.cuenta) { clearInterval(pr.cuentaIntervalo); pr.cuenta = 0; $("#pr-cuenta").hidden = true; }
+  if (pr.voz && pr.corre) { fuenteVoz?.callar(); clearInterval(pr.vigia); oidoTexto("En pausa"); pintarNivel(0); }
   pr.corre = false;
   cancelAnimationFrame(pr.raf);
   pintarPrompter();
@@ -813,7 +938,8 @@ function accionPrompter(p) {
   if (p === "espejo") { const on = $("#prompter").classList.toggle("espejo"); return guardarLocal("estudio:espejo", on ? "si" : null); }
   if (p === "play") return pr.corre || pr.cuenta ? pausarPrompter() : partirPrompter();
   const seguia = pr.corre;
-  if (p === "anterior") irA(pr.hecho > 1.5 ? pr.i : pr.i - 1); // como en un reproductor: primero vuelve al inicio del párrafo
+  const alInicio = pr.voz ? pr.seg.cursor === pr.seg.guion.inicios[pr.i] : pr.hecho <= 1.5;
+  if (p === "anterior") irA(alInicio ? pr.i - 1 : pr.i); // como en un reproductor: primero vuelve al inicio del párrafo
   if (p === "siguiente") irA(pr.i + 1);
   if (seguia) { pr.ultimo = performance.now(); }
 }
@@ -830,7 +956,7 @@ async function cambiarEstado(estado, extra = {}) {
 
 /* ── Eventos ── */
 document.addEventListener("click", async (e) => {
-  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-ritmo],[data-filtro],[data-pi],[data-dia],[data-plegar],[data-abrir-lateral],[data-cerrar-lateral],[data-salir],[data-ir-hoy]");
+  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-ritmo],[data-filtro],[data-modo],[data-pi],[data-dia],[data-plegar],[data-abrir-lateral],[data-cerrar-lateral],[data-salir],[data-ir-hoy]");
   if (!t) { if (e.target.id === "velo") cerrarDetalle(); return; }
   const d = t.dataset;
   if ("plegar" in d) return plegar();
@@ -865,6 +991,7 @@ document.addEventListener("click", async (e) => {
   }
   if (d.p) return accionPrompter(d.p);
   if (d.filtro) { pausarPrompter(); pr.filtro = d.filtro; armarPrompter(); return pintarPrompter(); }
+  if (d.modo) { pausarPrompter(); pr.voz = d.modo === "voz"; guardarLocal("estudio:voz", pr.voz ? "si" : "no"); armarPrompter(); return pintarPrompter(); }
   if (d.ritmo) { pr.ritmo = d.ritmo; guardarLocal("estudio:ritmo", d.ritmo); pr.hecho = Math.min(pr.hecho, durPr(pr.i) - 0.1); return pintarPrompter(); }
   if (d.pi) { const seguia = pr.corre; irA(Number(d.pi)); if (seguia) pr.ultimo = performance.now(); return; }
   try {

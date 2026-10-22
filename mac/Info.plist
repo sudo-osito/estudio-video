@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleName</key><string>Heika</string>
+  <key>CFBundleDisplayName</key><string>Heika</string>
+  <key>CFBundleIdentifier</key><string>com.maxpino.heika</string>
+  <key>CFBundleExecutable</key><string>Heika</string>
+  <key>CFBundleIconFile</key><string>Heika</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>1.0</string>
+  <key>CFBundleVersion</key><string>1</string>
+  <key>LSMinimumSystemVersion</key><string>26.0</string>
+  <key>LSApplicationCategoryType</key><string>public.app-category.video</string>
+  <key>NSHighResolutionCapable</key><true/>
+  <key>NSHumanReadableCopyright</key><string>Heika · el estudio de Max</string>
+  <key>NSMicrophoneUsageDescription</key><string>Heika escucha lo que dices para que el teleprompter avance con tu voz. El audio no sale de este Mac.</string>
+  <key>NSSpeechRecognitionUsageDescription</key><string>Heika reconoce tu voz en este Mac para seguir el guion.</string>
+</dict></plist>

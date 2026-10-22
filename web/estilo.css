@@ -736,3 +736,38 @@ svg { display: block; }
   .volver-hoy .solo-esc { display: none; }
   .volver-hoy .solo-cel { display: inline; }
 }
+
+/* ── Teleprompter que sigue la voz: lo dicho en blanco, lo que viene más tenue, la próxima palabra subrayada con la marca ── */
+.pr-centro { display: flex; align-items: center; gap: 12px; }
+.pr-oido { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 10px; border-radius: 999px; background: #161616; color: #9a9a9a; font-size: 13px; font-weight: 500; white-space: nowrap; transition: color var(--t-medio), background var(--t-medio); }
+.pr-oido.vivo { color: #fff; background: #1d1d1d; }
+.pr-nivel { display: inline-flex; align-items: center; gap: 2px; height: 14px; }
+.pr-nivel b { width: 3px; height: 14px; border-radius: 2px; background: currentColor; transform: scaleY(0.18); transition: transform 90ms linear; }
+.pr-oido.vivo .pr-nivel b { background: var(--rojo); }
+.prompter:not(.modo-voz) .pr-oido { display: none; }
+.prompter.modo-voz .solo-tiempo { display: none; }
+.pr-segmento button svg { width: 14px; height: 14px; display: inline-block; vertical-align: -2px; margin-right: 6px; }
+.pr-palabra, .pr-tuyo { transition: color 180ms var(--salida); }
+.prompter.modo-voz .pr-parrafo.actual .pr-palabra { color: rgba(255, 255, 255, 0.46); }
+.prompter.modo-voz .pr-parrafo.actual .pr-palabra.dicha { color: #fff; }
+.prompter.modo-voz .pr-parrafo.actual .pr-tuyo.dicha { color: #d6d6d6; }
+.prompter.modo-voz.corriendo .pr-parrafo.actual .ahora {
+  color: #fff; background: var(--degradado-corto) no-repeat 0 100% / 100% 4px; padding-bottom: 2px;
+  animation: palabra-ahora 1.2s ease-in-out infinite;
+}
+@keyframes palabra-ahora { 50% { background-size: 100% 2px; } }
+.prompter.modo-voz .pr-progreso b { transition: transform 260ms var(--salida); }
+.pr-toma {
+  position: absolute; z-index: 3; left: 50%; top: calc(env(safe-area-inset-top) + 64px); transform: translate(-50%, -8px); opacity: 0; pointer-events: none;
+  padding: 7px 14px; border-radius: 999px; background: #1d1d1d; color: #fff; font-size: 13px; font-weight: 600;
+}
+.pr-toma::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--rojo); vertical-align: 1px; }
+.pr-toma.visible { animation: toma 2.4s var(--salida); }
+@keyframes toma { 12%, 80% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, -4px); } }
+
+/* ── Dentro de la app del Mac: espacio para los semáforos y la franja que mueve la ventana (30 px arriba) ── */
+html.nativo .lateral { padding-top: 46px; }
+html.nativo .barra { padding-top: 36px; }
+html.nativo .cajon { top: 38px; }
+html.nativo .pr-arriba { padding-top: 34px; }
+html.nativo .pestanas-movil { display: none; }

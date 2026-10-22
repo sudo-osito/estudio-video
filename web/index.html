@@ -123,9 +123,13 @@
   <div id="prompter" class="prompter" hidden>
     <header class="pr-arriba">
       <button class="pr-volver" data-p="cerrar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 15l-5-5 5-5"/></svg>Volver</button>
-      <span class="pr-reloj" id="pr-reloj"></span>
+      <div class="pr-centro">
+        <span class="pr-reloj" id="pr-reloj"></span>
+        <span class="pr-oido" id="pr-oido" hidden><i class="pr-nivel" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b></i><span id="pr-oido-texto"></span></span>
+      </div>
       <button class="pr-icono" data-p="espejo" aria-label="Espejo" title="Espejo (para teleprompter con vidrio)"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14M7 6L3 10l4 4M13 6l4 4-4 4"/></svg></button>
     </header>
+    <div class="pr-toma" id="pr-toma" role="status"></div>
     <div class="pr-escenario" id="pr-escenario">
       <div class="pr-lista" id="pr-lista"></div>
       <div class="pr-cuenta" id="pr-cuenta" hidden></div>
@@ -137,13 +141,16 @@
         <button class="pr-icono grande" data-p="siguiente" aria-label="Párrafo siguiente"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5.5v13L14.5 12z"/></svg></button>
       </div>
       <div class="pr-ajustes">
+        <div class="pr-segmento" id="pr-modo" role="group" aria-label="Cómo avanza" hidden>
+          <button data-modo="voz"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5"/><path d="M3 7.5a5 5 0 0010 0M8 12.5v2"/></svg>Sigue tu voz</button><button data-modo="tiempo">Por tiempo</button>
+        </div>
         <div class="pr-segmento" id="pr-filtro" role="group" aria-label="Qué párrafos">
           <button data-filtro="camara">A cámara</button><button data-filtro="voz">Voz en off</button>
         </div>
-        <div class="pr-segmento" role="group" aria-label="Ritmo">
+        <div class="pr-segmento solo-tiempo" role="group" aria-label="Ritmo">
           <button data-ritmo="lento">Lento</button><button data-ritmo="normal">Normal</button><button data-ritmo="rapido">Rápido</button>
         </div>
-        <label class="pr-auto"><input type="checkbox" id="pr-auto"><span>Avance automático</span></label>
+        <label class="pr-auto solo-tiempo"><input type="checkbox" id="pr-auto"><span>Avance automático</span></label>
       </div>
     </footer>
   </div>
