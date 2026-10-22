@@ -1,0 +1,324 @@
+[
+ {
+  "emocion": "calma",
+  "artista": "Max Richter",
+  "cancion": "On the Nature of Daylight",
+  "donde": "Arrival, Shutter Island",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "calma",
+  "artista": "Ólafur Arnalds",
+  "cancion": "Saman",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "calma",
+  "artista": "Nils Frahm",
+  "cancion": "Says",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "calma",
+  "artista": "Ludovico Einaudi",
+  "cancion": "Experience",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "asombro",
+  "artista": "Hans Zimmer",
+  "cancion": "Time",
+  "donde": "Inception",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "asombro",
+  "artista": "Hans Zimmer",
+  "cancion": "Cornfield Chase",
+  "donde": "Interstellar",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "asombro",
+  "artista": "M83",
+  "cancion": "Outro",
+  "donde": "Muy usada en tráileres",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "asombro",
+  "artista": "ODESZA",
+  "cancion": "A Moment Apart",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "asombro",
+  "artista": "Jon Hopkins",
+  "cancion": "Emerald Rush",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "tension",
+  "artista": "Trent Reznor & Atticus Ross",
+  "cancion": "Hand Covers Bruise",
+  "donde": "The Social Network",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "tension",
+  "artista": "Moderat",
+  "cancion": "Bad Kingdom",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "tension",
+  "artista": "Radiohead",
+  "cancion": "Everything In Its Right Place",
+  "donde": "Vanilla Sky",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "tension",
+  "artista": "Daft Punk",
+  "cancion": "Veridis Quo",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "epica-tranquila",
+  "artista": "Explosions in the Sky",
+  "cancion": "Your Hand in Mine",
+  "donde": "Friday Night Lights",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "epica-tranquila",
+  "artista": "RÜFÜS DU SOL",
+  "cancion": "Innerbloom",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "epica-tranquila",
+  "artista": "Fred again..",
+  "cancion": "Delilah (pull me out of this)",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "dia",
+  "artista": "Bonobo",
+  "cancion": "Kerala",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "dia",
+  "artista": "Tycho",
+  "cancion": "Awake",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "dia",
+  "artista": "Khruangbin",
+  "cancion": "María También",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "Kavinsky",
+  "cancion": "Nightcall",
+  "donde": "Drive",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "Soda Stereo",
+  "cancion": "En la ciudad de la furia",
+  "donde": "Para la vista de la ciudad desde el piso 15",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "Vangelis",
+  "cancion": "Tears in Rain",
+  "donde": "Blade Runner",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "Cigarettes After Sex",
+  "cancion": "Apocalypse",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "The xx",
+  "cancion": "Intro",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "nostalgia",
+  "artista": "Arcade Fire",
+  "cancion": "Supersymmetry",
+  "donde": "Her",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "nostalgia",
+  "artista": "Bon Iver",
+  "cancion": "Holocene",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "nostalgia",
+  "artista": "Gustavo Cerati",
+  "cancion": "Puente",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "nostalgia",
+  "artista": "Los Prisioneros",
+  "cancion": "Tren al sur",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "calma",
+  "artista": "Mac Miller",
+  "cancion": "Good News",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "calma",
+  "artista": "Frank Ocean",
+  "cancion": "Pink + White",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "calma",
+  "artista": "Daniel Caesar",
+  "cancion": "Get You",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "dia",
+  "artista": "Kendrick Lamar",
+  "cancion": "Money Trees",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "dia",
+  "artista": "Tyler, The Creator",
+  "cancion": "See You Again",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "dia",
+  "artista": "Childish Gambino",
+  "cancion": "Redbone",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "The Weeknd",
+  "cancion": "Blinding Lights",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "Frank Ocean",
+  "cancion": "Nights",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "noche",
+  "artista": "Travis Scott",
+  "cancion": "BUTTERFLY EFFECT",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "epica-tranquila",
+  "artista": "Kanye West",
+  "cancion": "Runaway",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "epica-tranquila",
+  "artista": "Kid Cudi",
+  "cancion": "Pursuit of Happiness",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "epica-tranquila",
+  "artista": "Kendrick Lamar",
+  "cancion": "PRIDE.",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "asombro",
+  "artista": "Kanye West",
+  "cancion": "Flashing Lights",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "asombro",
+  "artista": "Kendrick Lamar",
+  "cancion": "LOVE.",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "tension",
+  "artista": "Kendrick Lamar",
+  "cancion": "DNA.",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "tension",
+  "artista": "Travis Scott",
+  "cancion": "goosebumps",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "nostalgia",
+  "artista": "SZA",
+  "cancion": "Snooze",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ },
+ {
+  "emocion": "nostalgia",
+  "artista": "J. Cole",
+  "cancion": "Love Yourz",
+  "donde": "",
+  "propuesta": "Claude 22-oct"
+ }
+]
