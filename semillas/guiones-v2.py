@@ -623,7 +623,7 @@ NUEVOS = {
                 r("Cuánto demoró de verdad", "Desde que escribiste hasta que lo tuviste. Si fueron 5 minutos, decimos 5.")],
       props=["Café"],
       edicion={"estilo": "Cinematográfico de noche: tú iluminado por la pantalla, la generación acelerada con un contador de tiempo elegante, y el resultado a pantalla completa como estreno.", "subtitulos": "Limpios, abajo; «3 minutos» grande una sola vez", "musica": "Electrónica suave que crece hasta el resultado y se corta en seco para «lo que falta»", "efectos": ["Teclas suaves al escribir el pedido", "Aire que sube durante la espera", "Silencio total al mostrar el resultado los primeros 2 s"], "ritmo": "Lento al inicio, acelera en la espera, respira en el resultado"},
-      post={"texto": "3 minutos. ¿Se nota que es IA? Día 16/30.", "hashtags": ["#inteligenciaartificial", "#videoia", "#ia", "#creadores", "#reto30dias"], "sonido": "Instrumental electrónico (banco propio mientras IG siga en modo empresa)"})),
+      post={"texto": "3 minutos. ¿Se nota que es IA? Día 16/30.", "hashtags": ["#inteligenciaartificial", "#videoia", "#ia", "#creadores", "#reto30dias"], "sonido": "Electrónica suave en tendencia (te digo cuál y desde qué segundo)"})),
   "2026-11-16": dict(pilar="optimizo", formato="Por dentro · pantalla en tiempo real", titulo="María llama: la vendedora que no es persona",
     datos=dict(
       origen="persona (María) + objeto (el flujo en tiempo real)",

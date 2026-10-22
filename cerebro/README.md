@@ -30,8 +30,7 @@ estas notas.** Si algo de acá contradice un guion viejo, manda el cerebro.
 - Audiencia: primero una comunidad interesada en IA y emprendimiento.
 - Se puede mostrar lo que se está construyendo (Medula, el flujo de Nexor, María) y cómo evoluciona.
 - Tono tranquilo y auténtico; marca cinematográfica, con energía y sentimiento.
-- Instagram está en modo empresa; se puede cambiar en IG y TikTok si hace falta.
+- Instagram en modo creador y TikTok cuenta personal: se puede usar música popular de la app.
 
 ## Por confirmar con Max
-- [ ] Pasar Instagram a cuenta de creador (y TikTok a personal) para poder usar música popular.
 - [ ] Qué se puede mostrar de Nexor y María, y el OK de Joaco.

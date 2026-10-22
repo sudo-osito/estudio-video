@@ -18,9 +18,9 @@ personalidad tranquila. La energía la pone la edición, no la voz.
 ## Sonido
 - Música que lleva la emoción (cinematográfica, electrónica suave, piano, ambientes) y se mezcla bajo la voz.
 - Efectos de sonido sutiles y con textura (aire, papel, teclas, graves profundos), no meme ni bocina.
-- ⚠️ Instagram está en **modo empresa**: así no se puede usar música popular de la app. Para usarla, pasar la
-  cuenta a **creador** (mantiene las estadísticas) en IG y tener TikTok en cuenta personal. Mientras tanto, música libre
-  del banco propio.
+- **Música popular: sí.** Instagram está en modo **creador** y TikTok es cuenta personal (Max, 22-oct), así que se
+  usan canciones populares de la app. La canción NO va dentro del mp4: edito al BPM de la canción y Max la agrega en la
+  app desde el segundo que indico en el post. Si una canción no aparece en la biblioteca de creador, se elige otra.
 
 ## Texto en pantalla
 - Pocos y elegantes: subtítulos limpios (palabra activa discreta) y palabra clave grande solo en el momento que importa.
