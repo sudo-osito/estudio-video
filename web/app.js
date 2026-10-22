@@ -1,20 +1,43 @@
-/* Estudio · calendario de orgánicos. Lee el calendario del Worker, sube el material por trozos y avisa «listo para editar». */
+/* Heika · calendario de orgánicos. Lee el calendario del Worker, sube el material por trozos y avisa «listo para editar». */
 const API = window.ESTUDIO_API;
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-const PILARES = {
-  proyectos: { nombre: "Proyectos", var: "ia" },
-  vida: { nombre: "Vida", var: "optimizo" },
-  criterio: { nombre: "Criterio", var: "anuncios" },
-};
-const pilar = (k) => PILARES[k] ?? { nombre: k || "Sin pilar", var: null };
-const tono = (k) => { const p = pilar(k); return p.var ? `--evento:var(--p-${p.var});--evento-suave:var(--p-${p.var}-suave)` : "--evento:var(--texto-3);--evento-suave:var(--sup-2)"; };
+const PILARES = { proyectos: "Proyectos", vida: "Vida", criterio: "Criterio" };
+const pilar = (k) => ({ nombre: PILARES[k] ?? (k || "Sin pilar") });
 const ESTADO = {
   grabar: "Por grabar", material: "Con material", listo: "Listo para editar", editando: "En edición",
   entregado: "Entregado", publicado: "Publicado", descartado: "Descartado",
 };
 const HECHO = new Set(["listo", "editando", "entregado", "publicado"]);
+
+/* El estado es un anillo que se llena a medida que el video avanza: sin colores, se lee por la forma. */
+const AVANCE = { grabar: 0, material: 25, listo: 50, editando: 75, entregado: 100, publicado: 100, descartado: 0 };
+const glifo = (estado) => {
+  const p = AVANCE[estado] ?? 0;
+  if (estado === "publicado") return `<svg class="glifo" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.3l2 2 4-4.4" fill="none" stroke="var(--fondo)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  return `<svg class="glifo" viewBox="0 0 16 16"><circle class="g-pista" cx="8" cy="8" r="6.2"${estado === "grabar" ? ' stroke-dasharray="2 2.4"' : ""}/>${p ? `<circle class="g-valor" cx="8" cy="8" r="6.2" pathLength="100" stroke-dasharray="${p} 100" transform="rotate(-90 8 8)"/>` : ""}${estado === "entregado" ? `<path d="M5.4 8.2l1.8 1.8 3.4-3.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>` : ""}</svg>`;
+};
+const estadoHtml = (e) => `<span class="estado">${glifo(e)}${ESTADO[e] ?? e}</span>`;
+
+/* La ruta de cada video: dónde está y qué falta. */
+const RUTA = ["Grabar", "Subir", "Editar", "Entregar", "Publicar"];
+const PASO = { grabar: 0, material: 1, listo: 2, editando: 2, entregado: 3, publicado: 5, descartado: -1 };
+
+/* ── Logo: la H con terminales en cuarto de círculo + «heika» (Clash Display, en curvas). El punto de la i es rojo. ── */
+const LETRAS = [
+  "M190 0V-251C190 -335 221 -376 322 -376C416 -376 452 -346 452 -262V0H602V-307C602 -423 536 -511 401 -511C273 -511 214 -433 198 -348H190V-670H40V0Z",
+  "M934 10C1093 10 1199 -66 1199 -175V-186H1049V-176C1049 -133 1018 -110 929 -110C832 -110 796 -143 792 -220H1200C1202 -237 1204 -250 1204 -268C1204 -425 1095 -511 931 -511C766 -511 653 -410 653 -250C653 -72 767 10 934 10ZM928 -394C1016 -394 1056 -365 1060 -299H794C801 -364 839 -394 928 -394Z",
+  "M1408 0V-501H1258V0Z",
+  "M1627 0V-181H1742L1867 0H2044L1864 -259L2047 -501H1869L1741 -315H1627V-670H1477V0Z",
+  "M2227 10C2338 10 2408 -37 2431 -115H2439V0H2579V-294C2579 -425 2500 -511 2333 -511C2168 -511 2064 -425 2064 -301V-298H2215V-302C2215 -359 2246 -379 2322 -379C2402 -379 2431 -361 2431 -296V-277L2216 -255C2109 -244 2054 -198 2054 -124C2054 -40 2119 10 2227 10ZM2205 -134C2205 -158 2221 -168 2257 -171L2431 -191C2427 -120 2372 -96 2270 -96C2226 -96 2205 -107 2205 -134Z",
+];
+const H = `<g class="l-h"><path class="l-pieza l-izq" d="M10 92V40A32 32 0 0 1 42 8V92Z"/><path class="l-pieza l-der" d="M90 8V60A32 32 0 0 1 58 92V8Z"/><rect class="l-pieza l-cruz" x="41" y="39" width="18" height="22"/></g>`;
+function logoSvg(tipo, armar = true) {
+  if (tipo === "simbolo") return `<svg class="logo${armar ? " armar" : ""}" viewBox="0 0 100 100" aria-hidden="true">${H}</svg>`;
+  return `<svg class="logo${armar ? " armar" : ""}" viewBox="0 0 388 100" aria-hidden="true">${H}<g transform="translate(124 92) scale(.1)">${LETRAS.map((d, k) => `<path class="l-letra" style="--l:${k}" d="${d}"/>`).join("")}<path class="l-punto" d="M1408 -552V-670H1258V-552Z"/></g></svg>`;
+}
+document.querySelectorAll("[data-logo]").forEach((el) => { el.innerHTML = logoSvg(el.dataset.logo); });
 
 /* Cómo se graba cada párrafo del guion (beats[].modo). */
 const MODOS = {
@@ -57,6 +80,7 @@ let s = {
   pestana: "guion",
   recien: false,
   subidas: new Map(), // id temporal → { nombre, bytes, hecho, estado }
+  animar: "entra", // qué movimiento usa el próximo pintado: "entra", "izq", "der" o nada
 };
 
 function leerLocal(k) { try { return localStorage.getItem(k); } catch { return null; } }
@@ -84,6 +108,7 @@ function avisar(texto) {
 /* ── Entrada ── */
 function salir() { guardarLocal("estudio:llave", null); s.llave = null; mostrarEntrada(); }
 function mostrarEntrada(error) {
+  $("#cargando").classList.add("fuera");
   $("#app").hidden = true;
   $("#entrada").hidden = false;
   $("#error-llave").hidden = !error;
@@ -98,25 +123,89 @@ $("#form-llave").addEventListener("submit", async (e) => {
 
 async function cargar() {
   s.videos = await api("/api/videos");
+  $("#cargando").classList.add("fuera");
   $("#entrada").hidden = true;
   $("#app").hidden = false;
+  // La barra lateral entra, el logo se arma y el contenido sube en cascada; después se quita la clase para no repetirlo.
+  $("#app").classList.add("entra");
+  setTimeout(() => $("#app").classList.remove("entra"), 1600);
+  s.animar = "entra";
   pintar();
   const id = new URLSearchParams(location.hash.slice(1)).get("v");
   if (id && !s.sel) abrir(id);
+}
+// Cuando el punto de la i aterriza, el logo queda quieto (y vuelve a responder al plegar y al pasar el mouse).
+document.addEventListener("animationend", (e) => { if (e.animationName === "l-punto") e.target.closest(".logo")?.classList.remove("armar"); });
+
+/* ── Barra lateral ── */
+function plegar(on = !$("#app").classList.contains("plegada")) {
+  $("#app").classList.toggle("plegada", on);
+  guardarLocal("estudio:lateral", on ? "plegada" : null);
+  $("[data-plegar]").setAttribute("aria-label", on ? "Desplegar la barra lateral" : "Plegar la barra lateral");
+  setTimeout(moverIndicadores, 30);
+}
+if (leerLocal("estudio:lateral") === "plegada" && matchMedia("(min-width: 761px)").matches) $("#app").classList.add("plegada");
+function lateralMovil(on) { $("#app").classList.toggle("lateral-abierta", on); }
+
+/* Los indicadores (barra lateral, pestañas del celular) se deslizan al elemento activo */
+function moverIndicadores() {
+  const activo = $(`#lat-nav [data-vista="${s.vista}"]`);
+  if (activo) $(".lat-indicador").style.transform = `translateY(${activo.offsetTop}px)`;
+  const pm = $(`#pestanas-movil [data-vista="${s.vista}"]`);
+  if (pm && pm.offsetWidth) Object.assign($(".pm-indicador").style, { width: `${pm.offsetWidth}px`, transform: `translateX(${pm.offsetLeft}px)` });
+}
+
+function pintarLateral() {
+  const hoy = hoyTexto();
+  const prox = s.videos.filter((v) => v.fecha >= hoy && !HECHO.has(v.estado) && v.estado !== "descartado").slice(0, 4);
+  $("#lat-proximos").innerHTML = prox.length ? prox.map((v) => { const d = aFecha(v.fecha); return `
+    <button class="lat-prox${v.fecha === hoy ? " es-hoy" : ""}" data-abrir="${v.id}" title="${esc(v.titulo)}">
+      <span class="fecha-mini"><small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b></span><span>${esc(v.titulo)}</span>
+    </button>`; }).join("") : `<p class="lat-vacio">Nada pendiente por grabar.</p>`;
+  const total = s.videos.filter((v) => v.estado !== "descartado").length;
+  const hechos = s.videos.filter((v) => HECHO.has(v.estado)).length;
+  const p = total ? Math.round((hechos / total) * 100) : 0;
+  $("#prog-num").textContent = `${hechos} de ${total}`;
+  $("#prog-texto").textContent = total === 1 ? "video grabado" : "videos grabados";
+  $(".anillo-valor").style.strokeDashoffset = String(100 - p);
+  $(".anillo-valor").classList.toggle("cero", !p);
+  $("#prog-barra").style.clipPath = `inset(0 ${100 - p}% 0 0 round 2px)`; // el degradado se revela, no se aplasta
+  document.querySelectorAll("[data-vista]").forEach((b) => b.setAttribute("aria-current", String(b.dataset.vista === s.vista)));
+  requestAnimationFrame(moverIndicadores);
+}
+
+function irAHoy() {
+  const mes = hoyTexto().slice(0, 7);
+  s.animar = mes === s.mes && s.vista === "mes" ? null : mes < s.mes ? "izq" : "der";
+  if (s.vista !== "mes") { s.vista = "mes"; guardarLocal("estudio:vista", "mes"); s.animar = "vista"; }
+  s.mes = mes; s.dia = hoyTexto();
+  pintar();
 }
 
 /* ── Vista principal ── */
 function pintar() {
   const [a, m] = s.mes.split("-").map(Number);
   const agenda = s.vista === "agenda";
-  $("#titulo-mes").textContent = agenda ? "Próximos videos" : `${MESES_LARGO[m - 1]} ${a}`;
-  document.querySelectorAll(".nav-mes .icono-boton, .nav-mes .boton").forEach((b) => (b.hidden = agenda));
-  document.querySelectorAll(".segmento button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.vista === s.vista)));
-  const hechos = s.videos.filter((v) => HECHO.has(v.estado)).length;
-  $("#progreso").innerHTML = s.videos.length ? `<b>${hechos}</b> de ${s.videos.length} grabados` : "";
+  const titulo = agenda ? "Agenda" : MESES_LARGO[m - 1];
+  const sub = agenda ? "Próximos videos" : String(a);
+  const t = $(".titulo-vista");
+  if ($("#titulo-mes").textContent !== titulo || $("#titulo-sub").textContent !== sub) {
+    $("#titulo-mes").textContent = titulo;
+    $("#titulo-sub").textContent = sub;
+    t.classList.remove("cambia", "atras");
+    void t.offsetWidth; // reinicia la animación del título
+    t.classList.add("cambia");
+    if (s.animar === "izq") t.classList.add("atras");
+  }
+  $("#nav-mes").hidden = agenda;
+  pintarLateral();
   pintarHoy();
   agenda ? pintarAgenda() : pintarMes();
+  s.animar = null;
 }
+
+/* La barra de arriba toma vidrio solo cuando el contenido pasa por debajo */
+addEventListener("scroll", () => $("#barra").classList.toggle("con-fondo", scrollY > 8), { passive: true });
 
 function videoDeHoy() {
   const hoy = hoyTexto();
@@ -130,25 +219,43 @@ function cuandoTexto(fecha) {
   return `${DIAS[d.getDay()]} ${d.getDate()} ${MESES[d.getMonth()]}`;
 }
 
+const ICONO = {
+  guion: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 2.5h6l3.5 3.5v10a1.5 1.5 0 01-1.5 1.5h-8A1.5 1.5 0 014 16V4a1.5 1.5 0 011.5-1.5z"/><path d="M11 2.5V6.5h4M7 10h6M7 13h4"/></svg>`,
+  subir: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13V3.5m0 0L6.5 7M10 3.5L13.5 7"/><path d="M3.5 12.5v2a2 2 0 002 2h9a2 2 0 002-2v-2"/></svg>`,
+  prompter: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="15" height="10" rx="2"/><path d="M6 7h8M6 10h5M10 13.5v3M7 16.5h6"/></svg>`,
+};
+
+/* Próximo rodaje: una sola acción principal según dónde va el video; lo demás queda a mano, en silencio. */
 function pintarHoy() {
   const v = videoDeHoy();
   const el = $("#hoy");
   if (!v) { el.innerHTML = ""; return; }
   const d = aFecha(v.fecha);
+  const esHoy = v.fecha === hoyTexto();
+  const faltan = Math.round((d - aFecha(hoyTexto())) / 86400000);
+  const paso = PASO[v.estado] ?? 0;
+  const grabado = v.estado !== "grabar";
+  const principal = grabado
+    ? `<button class="boton primario" data-abrir="${v.id}" data-pestana="material">${ICONO.subir}Subir material</button>`
+    : `<button class="boton primario" data-prompter="${v.id}"><i class="rec"></i>Grabar ahora</button>`;
+  const otras = grabado
+    ? `<button class="accion-suave" data-abrir="${v.id}" data-pestana="guion">${ICONO.guion}Guion</button><button class="accion-suave" data-prompter="${v.id}">${ICONO.prompter}Teleprompter</button>`
+    : `<button class="accion-suave" data-abrir="${v.id}" data-pestana="guion">${ICONO.guion}Guion</button><button class="accion-suave" data-abrir="${v.id}" data-pestana="material">${ICONO.subir}Subir</button>`;
   el.innerHTML = `
-    <div class="hoy-toca" style="${tono(v.pilar)}">
-      <div class="hoy-cuando"><small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b></div>
-      <div class="hoy-texto">
-        <div class="hoy-etiqueta">${v.fecha === hoyTexto() ? "Hoy toca grabar" : `Próximo · ${cuandoTexto(v.fecha)}`}<span class="pilar">${esc(pilar(v.pilar).nombre)}</span></div>
-        <h2>${esc(v.titulo)}</h2>
-        ${v.gancho ? `<p>«${esc(v.gancho)}»</p>` : ""}
+    <article class="rodaje vidrio${s.animar === "entra" ? " animar" : ""}">
+      <div class="rodaje-fecha${esHoy ? " es-hoy" : ""}"><small>${esHoy ? "Hoy" : DIAS[d.getDay()]}</small><b>${d.getDate()}</b><span>${esHoy ? MESES[d.getMonth()] : faltan === 1 ? "mañana" : `en ${faltan} días`}</span></div>
+      <div class="rodaje-cuerpo">
+        <div class="rodaje-cabeza" style="--n:0">
+          <div class="rodaje-etiqueta">${esHoy && !grabado ? `<i class="rec"></i>Hoy toca grabar` : `Próximo rodaje · ${cuandoTexto(v.fecha)}`}<span class="chip">${esc(pilar(v.pilar).nombre)}</span></div>
+          <h2>${esc(v.titulo)}</h2>
+        </div>
+        ${v.gancho ? `<p class="rodaje-gancho" style="--n:1">«${esc(v.gancho)}»</p>` : ""}
+        <div class="rodaje-pie" style="--n:2">
+          <div class="rodaje-acciones">${principal}${otras}</div>
+          <ol class="ruta" aria-label="En qué va">${RUTA.map((r, k) => `<li class="${k < paso ? "hecho" : k === paso ? "actual" : ""}"><i class="nodo"></i>${r}</li>`).join("")}</ol>
+        </div>
       </div>
-      <div class="hoy-acciones">
-        <button class="boton primario" data-abrir="${v.id}" data-pestana="guion">Ver guion</button>
-        <button class="boton" data-prompter="${v.id}">Teleprompter</button>
-        <button class="boton" data-abrir="${v.id}" data-pestana="material">Subir</button>
-      </div>
-    </div>`;
+    </article>`;
 }
 
 function pintarMes() {
@@ -162,19 +269,20 @@ function pintarMes() {
     const d = sumarDias(inicio, i);
     const f = aTexto(d);
     const vs = porDia.get(f) ?? [];
-    const clases = ["cal-dia", d.getMonth() !== m - 1 && "fuera", f === hoy && "hoy", f === s.dia && "elegido"].filter(Boolean).join(" ");
-    return `<div class="${clases}" data-dia="${f}">
+    const clases = ["cal-dia", d.getMonth() !== m - 1 && "fuera", f === hoy && "hoy", f === s.dia && "elegido", i % 7 > 4 && "finde"].filter(Boolean).join(" ");
+    return `<div class="${clases}" data-dia="${f}" style="--f:${Math.floor(i / 7)};--c:${i % 7}">
       <span class="cal-num">${d.getDate()}</span>
-      ${vs.map((v) => `<button class="evento${HECHO.has(v.estado) ? " hecho" : ""}${v.id === s.sel ? " activo" : ""}" style="${tono(v.pilar)}" data-abrir="${v.id}"><b>${esc(v.titulo)}</b><span class="estado e-${v.estado}">${ESTADO[v.estado]}</span></button>`).join("")}
-      ${vs.length ? `<i class="punto-ev${vs.every((v) => HECHO.has(v.estado)) ? " hecho" : ""}" style="${tono(vs[0].pilar)}"></i>` : ""}
+      ${vs.map((v) => `<button class="evento${HECHO.has(v.estado) ? " hecho" : ""}${v.id === s.sel ? " activo" : ""}${f === hoy && v.estado === "grabar" ? " toca" : ""}" data-abrir="${v.id}"><b>${esc(v.titulo)}</b><span class="ev-pie">${estadoHtml(v.estado)}</span></button>`).join("")}
+      ${vs.length ? `<i class="punto-ev${vs.every((v) => HECHO.has(v.estado)) ? " hecho" : ""}"></i>` : ""}
     </div>`;
   }).join("");
   const delDia = porDia.get(s.dia) ?? [];
   const dd = aFecha(s.dia);
+  const animar = s.animar ? ` animar ${s.animar}` : "";
   $("#vista").innerHTML = `
-    <div class="calendario">
+    <div class="calendario vidrio">
       <div class="cal-cabeza">${["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((x) => `<div>${x}</div>`).join("")}</div>
-      <div class="cal-grilla">${celdas}</div>
+      <div class="cal-grilla${animar}">${celdas}</div>
     </div>
     <div class="dia-panel">
       <h3>${s.dia === hoy ? "Hoy" : `${DIAS[dd.getDay()]} ${dd.getDate()} de ${MESES_LARGO[dd.getMonth()].toLowerCase()}`}</h3>
@@ -183,9 +291,9 @@ function pintarMes() {
 }
 
 function tarjetaHtml(v) {
-  return `<button class="tarjeta-video${HECHO.has(v.estado) ? " hecho" : ""}" style="${tono(v.pilar)}" data-abrir="${v.id}">
-    <span class="tono"></span>
-    <span><b>${esc(v.titulo)}</b><span class="meta"><span class="pilar">${esc(pilar(v.pilar).nombre)}</span><span class="estado e-${v.estado}">${ESTADO[v.estado] ?? v.estado}</span></span></span>
+  return `<button class="tarjeta-video${HECHO.has(v.estado) ? " hecho" : ""}" data-abrir="${v.id}">
+    ${glifo(v.estado)}
+    <span><b>${esc(v.titulo)}</b><span class="meta"><span>${ESTADO[v.estado] ?? v.estado}</span><span class="pilar">${esc(pilar(v.pilar).nombre)}</span></span></span>
     ${FLECHA}
   </button>`;
 }
@@ -205,9 +313,9 @@ function pintarAgenda() {
   }
   const nombre = (l) => (l === esta ? "Esta semana" : l === prox ? "La próxima semana" : `Semana del ${aFecha(l).getDate()} de ${MESES_LARGO[aFecha(l).getMonth()].toLowerCase()}`);
   const fila = (v) => { const d = aFecha(v.fecha); return `<div class="agenda-fila${v.fecha === hoy ? " hoy" : ""}"><div class="agenda-fecha"><small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b></div>${tarjetaHtml(v)}</div>`; };
-  let html = [...grupos].map(([l, vs]) => `<div class="agenda-grupo"><h3>${nombre(l)}</h3><div class="agenda-filas">${vs.map(fila).join("")}</div></div>`).join("");
-  if (anteriores.length) html += `<div class="agenda-grupo"><h3>Anteriores</h3><div class="agenda-filas">${anteriores.reverse().map(fila).join("")}</div></div>`;
-  $("#vista").innerHTML = `<div class="agenda">${html}</div>`;
+  let html = [...grupos].map(([l, vs], g) => `<div class="agenda-grupo" style="--g:${g}"><h3>${nombre(l)}</h3><div class="agenda-filas">${vs.map(fila).join("")}</div></div>`).join("");
+  if (anteriores.length) html += `<div class="agenda-grupo" style="--g:${grupos.size}"><h3>Anteriores</h3><div class="agenda-filas">${anteriores.reverse().map(fila).join("")}</div></div>`;
+  $("#vista").innerHTML = `<div class="agenda${s.animar ? " animar" : ""}">${html}</div>`;
 }
 
 /* ── Detalle (cajón) ── */
@@ -216,19 +324,30 @@ async function abrir(id, pestana) {
   s.sel = id;
   if (pestana) s.pestana = pestana;
   history.replaceState(null, "", `#v=${id}`);
+  clearTimeout(cerrarDetalle.t);
+  $("#detalle").classList.remove("saliendo");
+  $("#velo").classList.remove("saliendo");
   $("#detalle").hidden = false;
   $("#velo").hidden = false;
+  lateralMovil(false);
   document.body.style.overflow = "hidden";
-  if (!s.detalle || s.detalle.id !== id) $("#detalle").innerHTML = `<div class="cajon-cuerpo"><p class="vacio">Cargando…</p></div>`;
+  if (!s.detalle || s.detalle.id !== id) { s.pildora = null; $("#detalle").innerHTML = `<div class="cajon-cuerpo"><i class="cajon-carga" aria-label="Cargando"></i></div>`; }
   pintar();
-  try { s.detalle = await api(`/api/videos/${id}`); pintarDetalle(); }
+  try { s.detalle = await api(`/api/videos/${id}`); s.cambioPestana = true; pintarDetalle(); }
   catch (e) { cerrarDetalle(); avisar(e.message); }
 }
+/* Se va deslizando (hoja hacia abajo en el celular) y recién entonces se oculta */
 function cerrarDetalle() {
   s.sel = null; s.detalle = null; s.recien = false;
   history.replaceState(null, "", location.pathname);
-  $("#detalle").hidden = true;
-  $("#velo").hidden = true;
+  $("#detalle").classList.add("saliendo");
+  $("#velo").classList.add("saliendo");
+  cerrarDetalle.t = setTimeout(() => {
+    $("#detalle").hidden = true;
+    $("#velo").hidden = true;
+    $("#detalle").classList.remove("saliendo");
+    $("#velo").classList.remove("saliendo");
+  }, 250);
   document.body.style.overflow = "";
   pintar();
 }
@@ -239,18 +358,42 @@ function pintarDetalle() {
   const material = v.archivos.filter((a) => a.tipo === "material" && a.estado === "ok");
   const entregas = v.archivos.filter((a) => a.tipo === "entrega" && a.estado === "ok");
   const pest = [["guion", "Guion"], ["material", `Material${material.length ? `<span class="cuenta">${material.length}</span>` : ""}`], ["edicion", "Edición"], ["entrega", `Entrega${entregas.length ? `<span class="cuenta">${entregas.length}</span>` : ""}`]];
+  const cuerpoViejo = $("#detalle .cajon-cuerpo");
+  const scroll = !s.cambioPestana && cuerpoViejo ? cuerpoViejo.scrollTop : 0;
   $("#detalle").innerHTML = `
-    <div class="cajon-cabeza" style="${tono(v.pilar)}">
+    <div class="cajon-cabeza">
       <div class="cajon-arriba">
-        <span class="estado e-${v.estado}">${ESTADO[v.estado]}</span>
+        ${estadoHtml(v.estado)}
         <button class="icono-boton" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
       </div>
       <h2>${esc(v.titulo)}</h2>
-      <div class="meta-fila"><span class="pilar">${esc(pilar(v.pilar).nombre)}</span><span>${cuandoTexto(v.fecha)}</span>${v.formato ? `<span>${esc(v.formato)}</span>` : ""}${v.datos.duracion ? `<span>${esc(v.datos.duracion)}</span>` : ""}</div>
-      <div class="pestanas" role="tablist">${pest.map(([k, t]) => `<button role="tab" data-pestana-det="${k}" aria-selected="${s.pestana === k}">${t}</button>`).join("")}</div>
+      <div class="meta-fila"><span class="chip">${esc(pilar(v.pilar).nombre)}</span><span class="chip">${cuandoTexto(v.fecha)}</span>${v.formato ? `<span class="chip">${esc(v.formato)}</span>` : ""}${v.datos.duracion ? `<span class="chip">${esc(v.datos.duracion)}</span>` : ""}</div>
+      <div class="pestanas" role="tablist"><i class="pildora" aria-hidden="true"></i>${pest.map(([k, t]) => `<button role="tab" data-pestana-det="${k}" aria-selected="${s.pestana === k}">${t}</button>`).join("")}</div>
     </div>
-    <div class="cajon-cuerpo">${({ guion: guionHtml, material: materialHtml, edicion: edicionHtml, entrega: entregaHtml })[s.pestana](v)}</div>`;
+    <div class="cajon-cuerpo${s.cambioPestana ? " cambia" : ""}">${({ guion: guionHtml, material: materialHtml, edicion: edicionHtml, entrega: entregaHtml })[s.pestana](v)}</div>`;
+  const cuerpo = $("#detalle .cajon-cuerpo");
+  [...cuerpo.children].forEach((el, k) => el.style.setProperty("--k", Math.min(k, 8)));
+  cuerpo.scrollTop = scroll;
+  s.cambioPestana = false;
+  moverPildora();
   if (s.pestana === "entrega") cargarEntregas(v);
+}
+
+/* La píldora parte donde estaba y se desliza a la pestaña nueva */
+function moverPildora() {
+  const p = $("#detalle .pildora");
+  const b = $(`#detalle [data-pestana-det][aria-selected="true"]`);
+  if (!p || !b) return;
+  const nueva = { x: b.offsetLeft, w: b.offsetWidth };
+  const vieja = s.pildora ?? nueva;
+  p.style.transition = "none";
+  p.style.width = `${vieja.w}px`;
+  p.style.transform = `translateX(${vieja.x}px)`;
+  void p.offsetWidth;
+  p.style.transition = "";
+  p.style.width = `${nueva.w}px`;
+  p.style.transform = `translateX(${nueva.x}px)`;
+  s.pildora = nueva;
 }
 
 function guionHtml(v) {
@@ -616,10 +759,10 @@ function partirPrompter() {
   if (pr.hecho === 0) {
     pr.cuenta = 3;
     $("#pr-cuenta").hidden = false;
-    $("#pr-cuenta").textContent = pr.cuenta;
+    $("#pr-cuenta").innerHTML = `<span>${pr.cuenta}</span>`;
     pr.cuentaIntervalo = setInterval(() => {
       pr.cuenta--;
-      if (pr.cuenta > 0) { $("#pr-cuenta").textContent = pr.cuenta; return; }
+      if (pr.cuenta > 0) { $("#pr-cuenta").innerHTML = `<span>${pr.cuenta}</span>`; return; }
       clearInterval(pr.cuentaIntervalo);
       $("#pr-cuenta").hidden = true;
       correrPrompter();
@@ -676,9 +819,14 @@ async function cambiarEstado(estado, extra = {}) {
 
 /* ── Eventos ── */
 document.addEventListener("click", async (e) => {
-  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-ritmo],[data-filtro],[data-pi],[data-dia]");
+  const t = e.target.closest("[data-abrir],[data-cerrar],[data-pestana-det],[data-prompter],[data-listo],[data-estado],[data-quitar],[data-copiar],[data-vista],[data-mes],[data-p],[data-ritmo],[data-filtro],[data-pi],[data-dia],[data-plegar],[data-abrir-lateral],[data-cerrar-lateral],[data-salir],[data-ir-hoy]");
   if (!t) { if (e.target.id === "velo") cerrarDetalle(); return; }
   const d = t.dataset;
+  if ("plegar" in d) return plegar();
+  if ("abrirLateral" in d) return lateralMovil(true);
+  if ("cerrarLateral" in d) return lateralMovil(false);
+  if ("salir" in d) { if (confirm("¿Cambiar la llave de acceso en este equipo?")) salir(); return; }
+  if ("irHoy" in d) { lateralMovil(false); return irAHoy(); }
   if (d.abrir) return abrir(d.abrir, d.pestana || (s.sel === d.abrir ? s.pestana : "guion"));
   if (d.dia) {
     s.dia = d.dia;
@@ -686,11 +834,18 @@ document.addEventListener("click", async (e) => {
     return pintar();
   }
   if ("cerrar" in d) return cerrarDetalle();
-  if (d.pestanaDet) { s.pestana = d.pestanaDet; return pintarDetalle(); }
-  if (d.vista) { s.vista = d.vista; guardarLocal("estudio:vista", d.vista); return pintar(); }
+  if (d.pestanaDet) { if (d.pestanaDet !== s.pestana) { s.pestana = d.pestanaDet; s.cambioPestana = true; } return pintarDetalle(); }
+  if (d.vista) {
+    lateralMovil(false);
+    if (d.vista === s.vista) return;
+    s.vista = d.vista; guardarLocal("estudio:vista", d.vista); s.animar = "vista"; scrollTo({ top: 0 });
+    return pintar();
+  }
   if (d.mes) {
-    if (d.mes === "hoy") { s.mes = hoyTexto().slice(0, 7); s.dia = hoyTexto(); }
-    else { const [a, m] = s.mes.split("-").map(Number); const x = new Date(a, m - 1 + Number(d.mes), 1); s.mes = aTexto(x).slice(0, 7); }
+    if (d.mes === "hoy") return irAHoy();
+    const [a, m] = s.mes.split("-").map(Number); const x = new Date(a, m - 1 + Number(d.mes), 1);
+    s.mes = aTexto(x).slice(0, 7);
+    s.animar = Number(d.mes) < 0 ? "izq" : "der";
     return pintar();
   }
   if (d.prompter) {
@@ -727,7 +882,7 @@ document.addEventListener("click", async (e) => {
 
 $("#pr-auto").addEventListener("change", (e) => { pr.auto = e.target.checked; guardarLocal("estudio:auto", pr.auto ? null : "no"); });
 window.addEventListener("popstate", () => cerrarPrompter(true));
-window.addEventListener("resize", () => { if (!$("#prompter").hidden) pintarPrompter(); });
+window.addEventListener("resize", () => { if (!$("#prompter").hidden) pintarPrompter(); moverIndicadores(); });
 
 document.addEventListener("input", (e) => { if (e.target.id === "nota") s.borrador = e.target.value; });
 
@@ -766,7 +921,9 @@ document.addEventListener("keydown", (e) => {
     if (tecla) { e.preventDefault(); accionPrompter(tecla); }
     return;
   }
+  if (e.key === "Escape" && $("#app").classList.contains("lateral-abierta")) return lateralMovil(false);
   if (e.key === "Escape" && s.sel) cerrarDetalle();
+  if (e.key === "[" && !s.sel) return plegar();
   if (s.sel || s.vista !== "mes" || !$("#prompter").hidden) return;
   if (e.key === "ArrowLeft") $('[data-mes="-1"]').click();
   if (e.key === "ArrowRight") $('[data-mes="1"]').click();

@@ -3,22 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f6f3f1">
   <meta name="robots" content="noindex">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Estudio">
-  <title>Estudio</title>
+  <meta name="apple-mobile-web-app-title" content="Heika">
+  <title>Heika</title>
   <link rel="icon" href="icono.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icono-180.png">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap">
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+  <!-- El éter: manchas lentas con los colores de la marca, detrás del vidrio -->
+  <div class="eter" aria-hidden="true"><i class="e1"></i><i class="e2"></i><i class="e3"></i><i class="e4"></i></div>
+
+  <!-- Cargando: la H respira y la barra corre como una línea de tiempo -->
+  <div id="cargando" class="cargando" aria-label="Cargando">
+    <div class="cargando-marca" data-logo="simbolo"></div>
+    <i class="cargando-barra"></i>
+  </div>
+
   <!-- Entrada: la llave se pega una vez y queda en este equipo -->
   <section id="entrada" class="entrada" hidden>
-    <div class="entrada-caja">
-      <span class="logo grande" aria-hidden="true"></span>
-      <h1>Bienvenido a Estudio</h1>
+    <div class="entrada-caja vidrio">
+      <div class="entrada-logo" data-logo="completo"></div>
+      <i class="entrada-barra"></i>
+      <h1>Bienvenido a Heika</h1>
       <p>Pega tu llave de acceso. Queda guardada solo en este equipo.</p>
       <form id="form-llave">
         <input id="campo-llave" type="password" autocomplete="off" placeholder="es_…" required>
@@ -28,28 +40,79 @@
     </div>
   </section>
 
-  <div id="app" hidden>
-    <header class="barra">
-      <div class="marca"><span class="logo" aria-hidden="true"></span>Estudio</div>
-      <div class="nav-mes">
-        <button class="icono-boton" data-mes="-1" aria-label="Mes anterior"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 15l-5-5 5-5"/></svg></button>
-        <h1 id="titulo-mes"></h1>
-        <button class="icono-boton" data-mes="1" aria-label="Mes siguiente"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 5l5 5-5 5"/></svg></button>
-        <button class="boton chico" data-mes="hoy">Hoy</button>
+  <div id="app" class="app" hidden>
+    <aside class="lateral vidrio" id="lateral" aria-label="Navegación">
+      <div class="lat-cabeza">
+        <button class="lat-logo" data-ir-hoy aria-label="Heika · volver a hoy" data-logo="completo"></button>
+        <button class="icono-boton lat-plegar" data-plegar aria-label="Plegar la barra lateral" title="Plegar ( [ )">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="15" height="13" rx="3"/><path d="M7.5 3.5v13"/><path class="flecha-plegar" d="M13 8l-2 2 2 2"/></svg>
+        </button>
       </div>
-      <div class="barra-der">
-        <span class="progreso" id="progreso"></span>
-        <div class="segmento" role="tablist" aria-label="Vista">
-          <button role="tab" data-vista="mes" aria-selected="true">Mes</button>
-          <button role="tab" data-vista="agenda" aria-selected="false">Agenda</button>
-        </div>
-      </div>
-    </header>
 
-    <main class="lienzo">
-      <section id="hoy" aria-label="Lo que toca grabar"></section>
-      <section id="vista" aria-label="Calendario"></section>
-    </main>
+      <nav class="lat-nav" id="lat-nav">
+        <i class="lat-indicador" aria-hidden="true"></i>
+        <button class="lat-item" data-vista="mes" style="--n:0">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="13" rx="3"/><path d="M3 8.5h14M7 2.5v3M13 2.5v3"/></svg>
+          <span>Calendario</span>
+        </button>
+        <button class="lat-item" data-vista="agenda" style="--n:1">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 5.5h9M8 10h9M8 14.5h9"/><circle cx="4" cy="5.5" r="1" fill="currentColor"/><circle cx="4" cy="10" r="1" fill="currentColor"/><circle cx="4" cy="14.5" r="1" fill="currentColor"/></svg>
+          <span>Agenda</span>
+        </button>
+        <a class="lat-item" href="guion/" style="--n:2">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="15" height="12" rx="3"/><path d="M8.5 7.6v4.8l4-2.4z" fill="currentColor"/></svg>
+          <span>Guion visual</span>
+        </a>
+      </nav>
+
+      <div class="lat-bloque" style="--n:3">
+        <p class="lat-titulo">Próximos</p>
+        <div class="lat-proximos" id="lat-proximos"></div>
+      </div>
+
+      <div class="lat-progreso" id="lat-progreso" style="--n:4">
+        <svg class="anillo" viewBox="0 0 44 44" aria-hidden="true"><circle class="anillo-pista" cx="22" cy="22" r="18"/><circle class="anillo-valor" cx="22" cy="22" r="18" pathLength="100"/></svg>
+        <div class="lat-progreso-texto"><b id="prog-num">0</b><span id="prog-texto">grabados</span></div>
+        <i class="barra-marca" aria-hidden="true"><b id="prog-barra"></b></i>
+      </div>
+
+      <div class="lat-pie" style="--n:5">
+        <button class="lat-item" data-salir>
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="10" r="3.5"/><path d="M10.5 10H18M15 10v3M17.5 10v2"/></svg>
+          <span>Cambiar llave</span>
+        </button>
+      </div>
+    </aside>
+    <div class="velo-lateral" data-cerrar-lateral></div>
+
+    <div class="principal">
+      <header class="barra" id="barra">
+        <button class="icono-boton solo-movil" data-abrir-lateral aria-label="Abrir menú">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3.5 7h13M3.5 13h9"/></svg>
+        </button>
+        <div class="titulo-vista">
+          <h1 id="titulo-mes"></h1>
+          <span id="titulo-sub"></span>
+        </div>
+        <div class="nav-mes vidrio" id="nav-mes">
+          <button class="icono-boton" data-mes="-1" aria-label="Mes anterior"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 15l-5-5 5-5"/></svg></button>
+          <button class="nav-hoy" data-mes="hoy">Hoy</button>
+          <button class="icono-boton" data-mes="1" aria-label="Mes siguiente"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 5l5 5-5 5"/></svg></button>
+        </div>
+      </header>
+
+      <main class="lienzo">
+        <section id="hoy" aria-label="Lo que toca grabar"></section>
+        <section id="vista" aria-label="Calendario"></section>
+      </main>
+    </div>
+
+    <!-- Celular: barra de pestañas flotante -->
+    <nav class="pestanas-movil vidrio" id="pestanas-movil" aria-label="Vista">
+      <i class="pm-indicador" aria-hidden="true"></i>
+      <button data-vista="mes"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="13" rx="3"/><path d="M3 8.5h14M7 2.5v3M13 2.5v3"/></svg>Mes</button>
+      <button data-vista="agenda"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 5.5h9M8 10h9M8 14.5h9"/><circle cx="4" cy="5.5" r="1" fill="currentColor"/><circle cx="4" cy="10" r="1" fill="currentColor"/><circle cx="4" cy="14.5" r="1" fill="currentColor"/></svg>Agenda</button>
+    </nav>
   </div>
 
   <div id="velo" class="velo" hidden></div>
