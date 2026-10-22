@@ -1,0 +1,39 @@
+[{
+ "fecha": "2026-10-22", "pilar": "vida", "formato": "Prueba del sistema · vlog corto", "titulo": "Prueba · Aquí se construye",
+ "gancho": "Lo que hacemos acá no se ve desde afuera. Por eso empecé a grabarlo.",
+ "datos": {
+  "por_que": "Prueba completa del sistema nuevo (Premiere + After Effects) con algo real y simple: la oficina trabajando en los computadores. Sentimiento: calma, foco, algo grande pasando en silencio.",
+  "origen": "espacio (la oficina, trabajando)",
+  "duracion": "20–25 s",
+  "ganchos_alt": ["Así se ve construir algo desde adentro.", "Desde afuera es una oficina. Adentro estamos armando algo grande."],
+  "grabar": {"plano": "Detalles de cerca a 60 fps + tú en plano medio a 30 fps", "lugar": "La oficina, en los computadores", "luz": "Ventana o lámpara de lado; evita los tubos del techo en la cara", "ropa": "La que tengas hoy"},
+  "beats": [
+   {"t": "APERTURA", "modo": "escena", "dice": "(tus manos en el teclado, la luz de la pantalla)", "ve": "De cerca, celular apoyado o en la mano quieta, 5 s a 60 fps.", "seg": 3},
+   {"t": "DETALLES", "modo": "escena", "dice": "(tres detalles del trabajo: una pantalla, el mouse, una taza)", "ve": "Pantalla en diagonal con algo trabajando (código, Medula, lo que sea), la mano en el mouse y una taza en la mesa. 4 s cada uno a 60 fps.", "seg": 5},
+   {"t": "EQUIPO", "modo": "escena", "dice": "(tus colegas trabajando, de espaldas o de perfil)", "ve": "5 s, con su permiso. Si prefieren no salir, solo sus manos en el teclado.", "seg": 3},
+   {"t": "LA OFICINA", "modo": "escena", "dice": "(la oficina completa desde un rincón)", "ve": "Celular apoyado en un mueble, 0,5× si cabe todo, 6 s.", "seg": 3},
+   {"t": "LA FRASE", "modo": "camara", "dice": "Lo que hacemos acá no se ve desde afuera. Por eso empecé a grabarlo.", "hace": "Sentado en tu puesto, tranquilo, mirando al lente. Pausa de un segundo entre las dos frases. Al terminar, 2 s quieto mirando al lente.", "plano": "Medio, a ~1,5 m, con las pantallas y la oficina desenfocadas detrás"}
+  ],
+  "tomas": [
+   {"id": "frase", "grupo": "Tomas", "que": "La frase, 3 veces", "detalle": "«Lo que hacemos acá no se ve desde afuera. Por eso empecé a grabarlo.» Tranquilo; cambia la intención y las pausas, no el volumen. 4K a 30 fps, cámara trasera, AE/AF bloqueado."},
+   {"id": "manos", "grupo": "Aparte", "que": "Manos en el teclado con la luz de la pantalla", "detalle": "De cerca, 5 s, 4K a 60 fps."},
+   {"id": "pantalla", "grupo": "Aparte", "que": "Una pantalla con algo trabajando, en diagonal", "detalle": "De cerca, 4 s, 60 fps."},
+   {"id": "mouse", "grupo": "Aparte", "que": "La mano en el mouse o el trackpad", "detalle": "De cerca, 4 s, 60 fps."},
+   {"id": "taza", "grupo": "Aparte", "que": "Una taza o el café en la mesa", "detalle": "4 s, 60 fps."},
+   {"id": "colegas", "grupo": "Aparte", "que": "Tus colegas trabajando, de espaldas o de perfil", "detalle": "5 s, con su permiso (o solo manos)."},
+   {"id": "general", "grupo": "Aparte", "que": "La oficina completa desde un rincón", "detalle": "Celular apoyado, 6 s."},
+   {"id": "ambiente", "grupo": "Aparte", "que": "10 segundos de silencio en tu puesto", "detalle": "Sin hablar, con el celular quieto. Con eso limpio el ruido de fondo."}
+  ],
+  "broll": [],
+  "recursos": [],
+  "props": [],
+  "edicion": {
+   "estilo": "Mini film sereno. Abre con las manos en el teclado y el sonido de la oficina antes que la imagen; detalles en cámara lenta al ritmo de la música; tú hablando con acercamiento lento y la frase detrás tuyo; corte a negro y una línea de luz que dibuja «Aquí se construye.» (firma «Luz de trabajo»).",
+   "subtitulos": "Limpios, abajo, palabra activa discreta en ámbar",
+   "musica": "Prueba con una muestra del banco de canciones (calma o noche); al publicar, la canción va en la app",
+   "efectos": ["Teclas y clics reales de Freesound calzados al golpe", "Ambiente de oficina de fondo en todo el video", "Silencio de medio segundo antes de «Por eso empecé a grabarlo»", "Aire suave cuando aparece la línea de luz"],
+   "ritmo": "Pausado: detalles de 1,5–2 s, la frase entera sin cortes, título de 3 s"
+  },
+  "post": {"texto": "Lo que hacemos acá no se ve desde afuera.", "hashtags": ["#emprendimiento", "#inteligenciaartificial", "#vlog", "#optimizo"], "sonido": "Te propongo 2–3 canciones al editar"}
+ }
+}]
