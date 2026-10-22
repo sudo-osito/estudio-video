@@ -1,7 +1,7 @@
 /* Heika · vidrio claro sobre el éter de la marca. Tinta negra para la acción, grises para lo demás.
    El rojo y el degradado son de la marca: solo en el logo, en hoy y en lo que se celebra (progreso, listo). */
 :root {
-  --fondo: #f6f3f1;
+  --fondo: #faf9f8;
   --tinta: #0b0b0c;
   --texto: #0b0b0c;
   --texto-2: rgba(11, 11, 12, 0.62);
@@ -80,10 +80,10 @@ svg { display: block; }
 /* ── Éter: la marca respira detrás de todo, lento ── */
 .eter { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .eter i { position: absolute; border-radius: 50%; will-change: transform; }
-.eter .e1 { width: 62vmax; height: 62vmax; left: -18vmax; top: -26vmax; background: radial-gradient(closest-side, rgba(255, 0, 66, 0.20), rgba(255, 0, 66, 0)); animation: deriva-1 46s ease-in-out infinite alternate; }
-.eter .e2 { width: 58vmax; height: 58vmax; right: -20vmax; bottom: -24vmax; background: radial-gradient(closest-side, rgba(254, 120, 69, 0.22), rgba(254, 120, 69, 0)); animation: deriva-2 52s ease-in-out infinite alternate; }
-.eter .e3 { width: 50vmax; height: 50vmax; right: -8vmax; top: -12vmax; background: radial-gradient(closest-side, rgba(245, 186, 170, 0.55), rgba(245, 186, 170, 0)); animation: deriva-3 40s ease-in-out infinite alternate; }
-.eter .e4 { width: 56vmax; height: 56vmax; left: -10vmax; bottom: -30vmax; background: radial-gradient(closest-side, rgba(220, 188, 203, 0.6), rgba(220, 188, 203, 0)); animation: deriva-1 58s ease-in-out infinite alternate-reverse; }
+.eter .e1 { width: 62vmax; height: 62vmax; left: -18vmax; top: -26vmax; background: radial-gradient(closest-side, rgba(255, 0, 66, 0.06), rgba(255, 0, 66, 0)); animation: deriva-1 46s ease-in-out infinite alternate; }
+.eter .e2 { width: 58vmax; height: 58vmax; right: -20vmax; bottom: -24vmax; background: radial-gradient(closest-side, rgba(254, 120, 69, 0.08), rgba(254, 120, 69, 0)); animation: deriva-2 52s ease-in-out infinite alternate; }
+.eter .e3 { width: 50vmax; height: 50vmax; right: -8vmax; top: -12vmax; background: radial-gradient(closest-side, rgba(245, 186, 170, 0.26), rgba(245, 186, 170, 0)); animation: deriva-3 40s ease-in-out infinite alternate; }
+.eter .e4 { width: 56vmax; height: 56vmax; left: -10vmax; bottom: -30vmax; background: radial-gradient(closest-side, rgba(220, 188, 203, 0.32), rgba(220, 188, 203, 0)); animation: deriva-1 58s ease-in-out infinite alternate-reverse; }
 @keyframes deriva-1 { to { transform: translate(14vmax, 10vmax) scale(1.15); } }
 @keyframes deriva-2 { to { transform: translate(-12vmax, -8vmax) scale(0.9); } }
 @keyframes deriva-3 { to { transform: translate(-10vmax, 12vmax) scale(1.2); } }
@@ -263,7 +263,7 @@ svg { display: block; }
   padding: calc(env(safe-area-inset-top) + 22px) 28px 14px;
   transition: background var(--t-medio), box-shadow var(--t-medio);
 }
-.barra.con-fondo { background: rgba(246, 243, 241, 0.7); -webkit-backdrop-filter: var(--desenfoque); backdrop-filter: var(--desenfoque); box-shadow: 0 1px 0 var(--linea); }
+.barra.con-fondo { background: rgba(250, 249, 248, 0.72); -webkit-backdrop-filter: var(--desenfoque); backdrop-filter: var(--desenfoque); box-shadow: 0 1px 0 var(--linea); }
 .titulo-vista { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 12px; overflow: hidden; }
 .titulo-vista h1 { margin: 0; font: 600 34px/1.05 var(--fuente-display); letter-spacing: -0.01em; white-space: nowrap; }
 .titulo-vista span { font: 500 34px/1.05 var(--fuente-display); color: var(--texto-3); white-space: nowrap; }

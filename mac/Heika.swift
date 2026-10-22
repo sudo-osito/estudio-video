@@ -14,7 +14,7 @@ import Speech
 import WebKit
 
 let URL_HEIKA = URL(string: ProcessInfo.processInfo.environment["HEIKA_URL"] ?? "https://sudo-osito.github.io/estudio-video/")!
-let FONDO = NSColor(srgbRed: 0xf6 / 255, green: 0xf3 / 255, blue: 0xf1 / 255, alpha: 1)
+let FONDO = NSColor(srgbRed: 0xfa / 255, green: 0xf9 / 255, blue: 0xf8 / 255, alpha: 1)
 let TINTA = NSColor(srgbRed: 0x0b / 255, green: 0x0b / 255, blue: 0x0c / 255, alpha: 1)
 // El degradado de la marca, muestreado de la referencia
 let DEGRADADO: [(CGFloat, UInt32)] = [(0, 0xeb7c60), (0.14, 0xfc3e40), (0.35, 0xff0042), (0.48, 0xfe0428), (0.6, 0xfd5731), (0.74, 0xfe9e74), (0.86, 0xf0b8b0), (1, 0xdcbccb)]
@@ -411,7 +411,7 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
 
     func sinConexion(_ e: Error) {
         arranque?.lista = true
-        let html = "<body style='margin:0;display:grid;place-items:center;height:100vh;background:#f6f3f1;font:15px -apple-system;color:#0b0b0c'><div style='text-align:center'><h2 style='font-weight:600'>Sin conexión</h2><p style='color:#777'>Heika necesita internet para traer el calendario.</p><button onclick='location.href=\(String(reflecting: URL_HEIKA.absoluteString))' style='font:inherit;padding:10px 18px;border-radius:999px;border:0;background:#0b0b0c;color:#fff'>Reintentar</button></div></body>"
+        let html = "<body style='margin:0;display:grid;place-items:center;height:100vh;background:#faf9f8;font:15px -apple-system;color:#0b0b0c'><div style='text-align:center'><h2 style='font-weight:600'>Sin conexión</h2><p style='color:#777'>Heika necesita internet para traer el calendario.</p><button onclick='location.href=\(String(reflecting: URL_HEIKA.absoluteString))' style='font:inherit;padding:10px 18px;border-radius:999px;border:0;background:#0b0b0c;color:#fff'>Reintentar</button></div></body>"
         web.loadHTMLString(html, baseURL: nil)
     }
 
