@@ -747,15 +747,15 @@ svg { display: block; }
 .prompter:not(.modo-voz) .pr-oido { display: none; }
 .prompter.modo-voz .solo-tiempo { display: none; }
 .pr-segmento button svg { width: 14px; height: 14px; display: inline-block; vertical-align: -2px; margin-right: 6px; }
-.pr-palabra, .pr-tuyo { transition: color 180ms var(--salida); }
-.prompter.modo-voz .pr-parrafo.actual .pr-palabra { color: rgba(255, 255, 255, 0.46); }
-.prompter.modo-voz .pr-parrafo.actual .pr-palabra.dicha { color: #fff; }
-.prompter.modo-voz .pr-parrafo.actual .pr-tuyo.dicha { color: #d6d6d6; }
-.prompter.modo-voz.corriendo .pr-parrafo.actual .ahora {
-  color: #fff; background: var(--degradado-corto) no-repeat 0 100% / 100% 4px; padding-bottom: 2px;
-  animation: palabra-ahora 1.2s ease-in-out infinite;
+/* Cada palabra se llena de izquierda a derecha con el cabezal (--lleno de 0 a 1); el borde que avanza tiene el rojo de la marca */
+.prompter.modo-voz .pr-parrafo.actual .pr-palabra, .prompter.modo-voz .pr-parrafo.actual .pr-tuyo {
+  --borde: calc(var(--lleno, 0) * 112% - 6%);
+  color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(90deg, #fff 0, #fff calc(var(--borde) - 8%), #ff5a78 var(--borde), rgba(255, 255, 255, 0.4) calc(var(--borde) + 4%));
 }
-@keyframes palabra-ahora { 50% { background-size: 100% 2px; } }
+.prompter.modo-voz .pr-parrafo.actual .pr-tuyo { background-image: linear-gradient(90deg, #d6d6d6 0, #d6d6d6 calc(var(--borde) - 8%), #ff5a78 var(--borde), rgba(255, 255, 255, 0.32) calc(var(--borde) + 4%)); }
+.prompter.modo-voz .pr-parrafo.actual .pr-tuyo.hablando { animation: libre 1.4s ease-in-out infinite; }
+@keyframes libre { 50% { opacity: 0.55; } }
 .prompter.modo-voz .pr-progreso b { transition: transform 260ms var(--salida); }
 .pr-toma {
   position: absolute; z-index: 3; left: 50%; top: calc(env(safe-area-inset-top) + 64px); transform: translate(-50%, -8px); opacity: 0; pointer-events: none;

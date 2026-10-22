@@ -741,6 +741,7 @@ function alOir(texto, final) {
   if (!pr.voz || !pr.corre || !pr.seg) return;
   const antes = pr.seg.cursor;
   const { retomas } = pr.seg.oir(texto, final);
+  confirmar(antes, pr.seg.cursor);
   if (pr.seg.cursor !== antes || String(texto).trim()) pr.ultimaVoz = performance.now();
   if (retomas) marcarToma();
   seguirCursor();
@@ -753,19 +754,72 @@ function alEstadoVoz(estado, progreso) {
 function alErrorVoz(mensaje) { pausarPrompter(); avisar(mensaje); }
 function oidoTexto(t, vivo = false) { $("#pr-oido-texto").textContent = t; $("#pr-oido").classList.toggle("vivo", vivo); }
 function pintarNivel(n) {
+  // ¿Estás hablando? Se compara con el ruido de fondo, que se va aprendiendo solo (sube lento, baja de inmediato)
+  const c = pr.cab;
+  c.piso = n < c.piso ? n : c.piso + (n - c.piso) * 0.004;
+  if (n > c.piso + 0.13) c.hablaHasta = performance.now() + 260;
   // cinco barras que suben con la voz (la del medio más alta)
   [0.55, 0.8, 1, 0.8, 0.55].forEach((f, k) => { const b = $(`#pr-oido .pr-nivel b:nth-child(${k + 1})`); if (b) b.style.transform = `scaleY(${Math.max(0.18, Math.min(1, n * f * 1.25))})`; });
 }
 
 /* Pinta las palabras ya dichas y la que viene, y mueve el párrafo cuando lo terminas */
-function seguirCursor() {
-  const c = pr.seg.cursor;
-  const desde = Math.min(pr.pintado, c), hasta = Math.max(pr.pintado, c);
-  for (let k = Math.max(0, desde - 1); k <= Math.min(pr.palabras.length - 1, hasta + 1); k++) {
-    pr.palabras[k].classList.toggle("dicha", k < c);
-    pr.palabras[k].classList.toggle("ahora", k === c);
+/* El cabezal: las palabras se llenan en continuo mientras hablas.
+   El reconocimiento llega ~0,8 s tarde, así que mientras el micrófono oye voz el cabezal avanza solo a tu ritmo
+   (hasta 2 palabras más allá de lo confirmado) y el reconocimiento lo va corrigiendo. Si te callas, vuelve a lo confirmado. */
+const ADELANTO = 2.2;
+function cabezalNuevo() { return { pos: 0, extra: 0, ritmo: 2.6, tAvance: performance.now(), piso: 0.12, hablaHasta: 0, calla: 0, raf: 0, ultimo: performance.now(), llenos: [] }; }
+pr.cab = cabezalNuevo();
+window.__pos = () => pr.cab.pos.toFixed(1); // para las pruebas
+
+function confirmar(antes, ahora) {
+  const c = pr.cab, t = performance.now();
+  if (ahora > antes) {
+    const dt = (t - c.tAvance) / 1000;
+    if (dt > 0.08) c.ritmo = c.ritmo * 0.75 + Math.min(4.5, Math.max(1.3, (ahora - antes) / dt)) * 0.25;
+    c.extra = Math.max(0, c.extra - (ahora - antes));
+    c.tAvance = t;
+  } else if (ahora < antes) { c.extra = 0; c.pos = Math.min(c.pos, ahora); } // repetiste o volviste: el cabezal vuelve
+}
+
+function moverCabezal(t) {
+  const c = pr.cab;
+  const dt = Math.min(0.05, (t - c.ultimo) / 1000);
+  c.ultimo = t;
+  const seg = pr.seg, W = seg.guion.palabras, cur = seg.cursor;
+  const nativa = fuenteVoz?.nativa;
+  const habla = pr.corre && (nativa ? t < c.hablaHasta : t - pr.ultimaVoz < 700);
+  const p = cur < W.length ? W[cur].p : pr.partes.length - 1;
+  const fin = seg.guion.inicios[p + 1] ?? W.length;
+  const libre = W[cur]?.libre;
+  if (habla && !libre) c.extra = Math.min(ADELANTO, c.extra + c.ritmo * dt);
+  c.calla = habla ? 0 : c.calla + dt;
+  if (c.calla > 0.5) c.extra = Math.max(0, c.extra - dt * 3); // callado: se devuelve a lo confirmado
+  const objetivo = Math.min(fin, cur + c.extra);
+  // sube rápido y suave; baja más lento (solo cuando te callaste y lo predicho no se dijo)
+  c.pos += (objetivo - c.pos) * (1 - Math.exp(-dt * (objetivo >= c.pos ? 16 : 6)));
+  pintarLlenado();
+  pintarReloj();
+  c.raf = requestAnimationFrame(moverCabezal);
+}
+
+function pintarLlenado() {
+  const c = pr.cab, pos = c.pos;
+  for (let k = 0; k < pr.palabras.length; k++) {
+    const v = Math.max(0, Math.min(1, pos - k));
+    if (Math.abs((c.llenos[k] ?? -1) - v) < 0.004) continue;
+    c.llenos[k] = v;
+    pr.palabras[k].style.setProperty("--lleno", v.toFixed(3));
+    pr.palabras[k].classList.toggle("dicha", v >= 1);
   }
-  pr.pintado = c;
+  const W = pr.seg.guion.palabras;
+  $("#pr-lista").querySelectorAll(".pr-tuyo.hablando").forEach((x) => x.classList.remove("hablando"));
+  if (W[pr.seg.cursor]?.libre && performance.now() - pr.ultimaVoz < 900) pr.palabras[pr.seg.cursor]?.classList.add("hablando");
+}
+
+function arrancarCabezal() { cancelAnimationFrame(pr.cab.raf); pr.cab.ultimo = performance.now(); pr.cab.raf = requestAnimationFrame(moverCabezal); }
+function pararCabezal() { cancelAnimationFrame(pr.cab.raf); pr.cab.raf = 0; }
+
+function seguirCursor() {
   const p = pr.seg.parrafo();
   if (p !== pr.i) { pr.i = p; pintarPrompter(); } else pintarReloj();
   if (pr.seg.terminado() && !pr.terminado) {
@@ -831,7 +885,9 @@ function armarPrompter() {
   document.querySelectorAll("[data-modo]").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.modo === "voz") === pr.voz)));
   oidoTexto(pr.voz ? "Toca ▶ y empieza a hablar" : "");
   $("#pr-oido").hidden = !pr.voz;
-  if (pr.voz) seguirCursor();
+  pararCabezal();
+  pr.cab = { ...cabezalNuevo(), piso: pr.cab.piso };
+  if (pr.voz) { pintarLlenado(); seguirCursor(); }
 }
 
 function cerrarPrompter(desdeHistorial = false) {
@@ -867,7 +923,7 @@ function avanceParrafo(k) {
   if (!pr.voz) return Math.min(1, pr.hecho / durPr(k));
   const W = pr.seg.guion.palabras, ini = pr.seg.guion.inicios[k];
   const fin = (pr.seg.guion.inicios[k + 1] ?? W.length);
-  return fin > ini ? Math.min(1, Math.max(0, (pr.seg.cursor - ini) / (fin - ini))) : 0;
+  return fin > ini ? Math.min(1, Math.max(0, (pr.cab.pos - ini) / (fin - ini))) : 0;
 }
 
 function pintarReloj() {
@@ -884,7 +940,11 @@ function pintarReloj() {
 function irA(k) {
   pr.i = Math.max(0, Math.min(pr.partes.length - 1, k));
   pr.hecho = 0;
-  if (pr.seg) { pr.seg.irA(pr.i); pr.terminado = false; if (pr.voz) return seguirCursor(); }
+  if (pr.seg) {
+    pr.seg.irA(pr.i); pr.terminado = false;
+    Object.assign(pr.cab, { pos: pr.seg.cursor, extra: 0, tAvance: performance.now() });
+    if (pr.voz) { pintarLlenado(); return seguirCursor(); }
+  }
   pintarPrompter();
 }
 
@@ -895,7 +955,8 @@ function escuchar() {
   fuenteVoz.oir([...new Set(pr.partes.flatMap((p) => p.texto.split(/\s+/)).map((w) => w.replace(/[^\p{L}\p{N}]/gu, "")).filter((w) => w.length > 3))].slice(0, 200));
   clearInterval(pr.vigia);
   // Si te quedas callado en un pedazo [libre], se da por dicho y pasa al siguiente
-  pr.vigia = setInterval(() => { if (performance.now() - pr.ultimaVoz > 1700 && pr.seg.silencio()) seguirCursor(); }, 300);
+  pr.vigia = setInterval(() => { if (performance.now() - pr.ultimaVoz > 1700 && performance.now() > pr.cab.hablaHasta + 1200 && pr.seg.silencio()) { confirmar(pr.seg.cursor - 1, pr.seg.cursor); seguirCursor(); } }, 300);
+  arrancarCabezal();
   pintarPrompter();
 }
 
@@ -939,7 +1000,7 @@ function correrPrompter() {
 
 function pausarPrompter() {
   if (pr.cuenta) { clearInterval(pr.cuentaIntervalo); pr.cuenta = 0; $("#pr-cuenta").hidden = true; }
-  if (pr.voz && pr.corre) { fuenteVoz?.callar(); clearInterval(pr.vigia); oidoTexto("En pausa"); pintarNivel(0); }
+  if (pr.voz && pr.corre) { fuenteVoz?.callar(); clearInterval(pr.vigia); pararCabezal(); oidoTexto("En pausa"); pintarNivel(0); }
   pr.corre = false;
   cancelAnimationFrame(pr.raf);
   pintarPrompter();

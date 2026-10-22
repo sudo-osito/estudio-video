@@ -63,11 +63,11 @@ export function prepararGuion(textos, esc = (x) => x) {
 const VENTANA = 6; // hasta cuántas palabras se puede saltar hacia adelante
 
 /* Un paso: desde el cursor (la próxima palabra por decir), con lo oído en este tramo. Es puro: no cambia nada. */
-export function avanzar(guion, cursor, oidas) {
+export function avanzar(guion, cursor, oidas, previas = []) {
   const W = guion.palabras;
   let c = cursor;
   let retomas = 0;
-  const ultimas = [];
+  const ultimas = [...previas]; // el dictado cierra tramos muy seguido: la repetición puede venir partida en dos
   for (const o of oidas) {
     ultimas.push(o);
     if (ultimas.length > 3) ultimas.shift();
@@ -84,7 +84,7 @@ export function avanzar(guion, cursor, oidas) {
     const r = retoma(guion, c, ultimas);
     if (r >= 0) { c = r; retomas++; ultimas.length = 0; }
   }
-  return { cursor: c, retomas };
+  return { cursor: c, retomas, ultimas };
 }
 
 function buscar(W, desde, o) {
@@ -117,7 +117,8 @@ export function crearSeguidor(textos, esc) {
   let base = 0;
   let cursor = 0;
   let tomas = 0;
-  let hablaLibre = false; // se escuchó algo mientras estabas en un pedazo libre
+  let hablaLibre = false;
+  let ultimasBase = []; // se escuchó algo mientras estabas en un pedazo libre
   return {
     guion,
     get cursor() { return cursor; },
@@ -127,10 +128,10 @@ export function crearSeguidor(textos, esc) {
     terminado() { return cursor >= guion.palabras.length; },
     oir(texto, final) {
       const oidas = palabrasDe(texto);
-      const r = avanzar(guion, base, oidas);
+      const r = avanzar(guion, base, oidas, ultimasBase);
       if (oidas.length && guion.palabras[base]?.libre) hablaLibre = true;
       cursor = r.cursor;
-      if (final) { base = cursor; tomas += r.retomas; }
+      if (final) { base = cursor; tomas += r.retomas; ultimasBase = r.ultimas; }
       return { cursor, retomas: final ? r.retomas : 0 };
     },
     /* Si el último pedazo es libre y te quedaste en silencio, se da por dicho */
@@ -139,6 +140,6 @@ export function crearSeguidor(textos, esc) {
       base = cursor = cursor + 1; hablaLibre = false;
       return true;
     },
-    irA(p) { base = cursor = Math.max(0, guion.inicios[p] ?? 0); hablaLibre = false; },
+    irA(p) { base = cursor = Math.max(0, guion.inicios[p] ?? 0); hablaLibre = false; ultimasBase = []; },
   };
 }

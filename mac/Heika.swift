@@ -180,13 +180,16 @@ final class Oido {
     private var lectura: Task<Void, Never>?
     private var ultimoNivel = CACurrentMediaTime()
 
-    static func transcriptor() async -> SpeechTranscriber {
-        let idioma = await SpeechTranscriber.supportedLocale(equivalentTo: Locale(identifier: "es-CL")) ?? Locale(identifier: "es-ES")
-        return SpeechTranscriber(locale: idioma, transcriptionOptions: [], reportingOptions: [.volatileResults], attributeOptions: [])
+    /// Dictado a distancia (estás a un metro del Mac): medido en tiempo real, da una palabra cada ~0,25 s con 0,8 s de retraso.
+    /// El SpeechTranscriber sin «fastResults» no entregaba nada mientras hablabas, y con «fastResults» entregaba de a 3–5 palabras por segundo.
+    static func transcriptor() async -> DictationTranscriber {
+        let idioma = await DictationTranscriber.supportedLocale(equivalentTo: Locale(identifier: "es-CL")) ?? Locale(identifier: "es-ES")
+        return DictationTranscriber(locale: idioma, contentHints: [.farField], transcriptionOptions: [],
+                                    reportingOptions: [.volatileResults, .frequentFinalization], attributeOptions: [])
     }
 
     /// Baja el modelo de español la primera vez (lo maneja macOS; después funciona sin internet)
-    static func instalarModelo(_ t: SpeechTranscriber, progreso: @escaping (Double) -> Void) async throws {
+    static func instalarModelo(_ t: DictationTranscriber, progreso: @escaping (Double) -> Void) async throws {
         guard let pedido = try await AssetInventory.assetInstallationRequest(supporting: [t]) else { return }
         let observador = pedido.progress.observe(\.fractionCompleted) { p, _ in progreso(p.fractionCompleted) }
         defer { observador.invalidate() }
@@ -237,7 +240,7 @@ final class Oido {
 
     private func conectarMicrofono(de natural: AVAudioFormat, a formato: AVAudioFormat, _ c: AsyncStream<AnalyzerInput>.Continuation) throws {
         let convertidor = natural == formato ? nil : AVAudioConverter(from: natural, to: formato)
-        motor.inputNode.installTap(onBus: 0, bufferSize: 4096, format: natural) { [weak self] buf, _ in
+        motor.inputNode.installTap(onBus: 0, bufferSize: 1024, format: natural) { [weak self] buf, _ in
             self?.medir(buf)
             guard let convertidor else { c.yield(AnalyzerInput(buffer: buf)); return }
             let cabe = AVAudioFrameCount(Double(buf.frameLength) * formato.sampleRate / natural.sampleRate + 64)
@@ -254,10 +257,10 @@ final class Oido {
         try motor.start()
     }
 
-    /// Nivel del micrófono (0–1) unas 15 veces por segundo, para el medidor del teleprompter
+    /// Nivel del micrófono (0–1) unas 30 veces por segundo, para el medidor del teleprompter
     private func medir(_ buf: AVAudioPCMBuffer) {
         let ahora = CACurrentMediaTime()
-        guard ahora - ultimoNivel > 0.066, let datos = buf.floatChannelData?[0] else { return }
+        guard ahora - ultimoNivel > 0.03, let datos = buf.floatChannelData?[0] else { return }
         ultimoNivel = ahora
         var suma: Float = 0
         for i in 0..<Int(buf.frameLength) { suma += datos[i] * datos[i] }

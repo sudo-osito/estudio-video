@@ -1,0 +1,25 @@
+// Pruebas del motor que sigue la voz (web/seguir.js). Correr: node pruebas/seguir.prueba.mjs
+import { crearSeguidor } from "../web/seguir.js";
+const ok = (c, m) => { console.log(c ? "✓" : "✗", m); if (!c) process.exitCode = 1; };
+const g = ["Este video lo grabé en diez minutos. Todo lo demás lo hace un sistema que construí.", "Lo armé porque editar me quitaba horas que no tengo.", "Yo solo tengo que tener algo que contar."];
+let s = crearSeguidor(g);
+s.oir("Este video", false); ok(s.cursor === 2, "volátil avanza 2");
+s.oir("Este video lo grabe en 10", false); ok(s.cursor === 6, "número 10 = diez → " + s.cursor);
+s.oir("Este video lo grabé en 10 minutos todo lo demás lo hace un sistema que construí", true); ok(s.parrafo() === 1, "pasa al párrafo 2");
+s.oir("Lo armé porque editar me", true);
+s.oir("lo armé porque editar me quitaba horas que no tengo", true); ok(s.parrafo() === 2 && s.tomas === 1, "retoma detectada, tomas=" + s.tomas);
+const antes = s.cursor; s.oir("eh bueno o sea", true); ok(s.cursor === antes, "muletillas no mueven");
+s.oir("yo solo tengo que tener algo que contar", true); ok(s.terminado(), "termina");
+s = crearSeguidor(["Esto es Medula. [Qué hace, en una frase.]", "[Lo que viene.]", "Antes esto era un equipo. Ahora es un sistema."]);
+s.oir("esto es medula", true); ok(s.guion.palabras[s.cursor].libre, "llega al libre");
+s.oir("es una plataforma que ordena todo lo comercial", true); ok(s.parrafo() === 0, "habla libre sin saltar");
+ok(s.silencio() && s.parrafo() === 1, "silencio pasa al siguiente");
+s.oir("lo que viene son agentes", true); s.oir("antes esto era un equipo", true); ok(s.parrafo() === 2, "decir el guion salta el libre");
+s.oir("ahora es un sistema", true); ok(s.terminado(), "termina con libre");
+s = crearSeguidor(["La edición pasa sola: elige las tomas, corta, pone el color."]);
+s.oir("la edición pasa sola elige tomas corta", true); ok(s.cursor === 8, "salta 'las' omitida → " + s.cursor);
+s.oir("de el", true); ok(s.cursor === 8, "palabras cortas no saltan");
+s = crearSeguidor(["Lo armé porque editar me quitaba horas que no tengo."]);
+s.oir("Lo armé porque editar", true); s.oir("lo", true); s.oir("armé porque editar me quitaba", true); ok(s.tomas === 1 && s.cursor === 6, "retoma partida en tramos: tomas=" + s.tomas + " cursor=" + s.cursor);
+s = crearSeguidor(g.slice(0, 2));
+s.oir("Este video lo grabé desde 10 minutos todos los demás se lo hacen un sistema que construir realmente porque evitar me quitaba ahora que no tengo", true); ok(s.terminado(), "dictado real con errores llega al final → " + s.cursor + "/" + s.total);
