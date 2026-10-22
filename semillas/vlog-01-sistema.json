@@ -1,0 +1,56 @@
+{
+ "titulo": "El sistema que edita mis videos",
+ "formato": "Vlog cinematográfico · noche en la pieza",
+ "gancho": "Este video lo grabé en diez minutos. Todo lo demás lo hace un sistema que construí.",
+ "datos": {
+  "por_que": "Vlog cinematográfico (como las referencias de «para claude»): Max habla y lleva la historia; la noche en el piso 15, las pantallas y el color lo hacen premium. Muestra algo real y terminado (el sistema de videos) y genera confianza. Sentimiento: calma, orgullo, «esto ya funciona».",
+  "origen": "espacio (la pieza de noche, la ciudad) + objeto (el sistema)",
+  "duracion": "60–80 s",
+  "ganchos_alt": ["Ya no edito mis videos. Te muestro quién lo hace.", "Grabo diez minutos. Lo demás pasa solo."],
+  "grabar": {
+   "plano": "TODO horizontal en 4K a 24 fps (Ajustes → Cámara → Grabar video → 4K a 24 fps). Lo importante siempre en el centro: de ahí sale también la versión vertical.",
+   "lugar": "Tu pieza de noche: la ventana con la ciudad, el escritorio, la cama o sillón, la puerta.",
+   "luz": "Apaga la luz del techo. Una lámpara cálida de lado a tu cara + las pantallas encendidas + la ciudad detrás. Bloquea exposición y foco en tu cara (dedo sostenido hasta «Bloqueo AE/AF») y baja un poco el sol.",
+   "ropa": "Oscura y lisa (polerón o polera negra). Nada con logos grandes."
+  },
+  "beats": [
+   {"t": "GANCHO", "modo": "camara", "dice": "Este video lo grabé en diez minutos. Todo lo demás lo hace un sistema que construí.", "hace": "De pie junto a la ventana, la ciudad detrás. Mira a cámara tranquilo; pausa de un segundo entre las dos frases. Encima va el título HEIKA detrás tuyo, sobre la ciudad.", "plano": "Medio, a 1,5 m, tú al centro y la ciudad a los lados"},
+   {"t": "LLEGAR", "modo": "voz", "dice": "Llego a la casa, y antes de hacer cualquier cosa, abro esto.", "ve": "Tomas de llegada: la puerta abriéndose desde adentro, tus llaves en la mesa, la lámpara que se enciende (3 clips de 2–3 s). Termina tapando el lente con la mano para pasar a la siguiente toma."},
+   {"t": "HEIKA", "modo": "pantalla", "dice": "Heika. Ahí está lo que me toca grabar hoy: qué digo, cómo lo grabo y qué tomas necesita.", "ve": "Tu mano sosteniendo el celular con Heika abierta en el video de hoy (grabado con el iPhone de lado, sobre tu hombro, 6 s) + grabación de pantalla del celular bajando por el guion (10 s)."},
+   {"t": "POR QUÉ", "modo": "camara", "dice": "Lo armé porque editar me quitaba horas que no tengo. Yo quería grabar y contar cosas, no pasar la noche en una línea de tiempo.", "hace": "Sentado en el escritorio o el sillón, de lado a la lámpara. Habla como a un amigo; un gesto con la mano hacia el computador.", "plano": "Medio, sentado, pantallas encendidas detrás"},
+   {"t": "GRABO", "modo": "voz", "dice": "Así que grabo, con el teleprompter abajo del lente, en diez minutos.", "ve": "Tú poniendo el iPhone en el trípode y tocando grabar, filmado desde atrás y de lado (con el iPad, otro celular o el Mac). Si no hay segunda cámara: la toma de tu mano acomodando el trípode con el teléfono que graba."},
+   {"t": "SUBO", "modo": "pantalla", "dice": "Subo las tomas, aprieto un botón, y me voy a dormir.", "ve": "Grabación de pantalla del celular: subir el material y tocar «Listo para editar» (8 s). Luego una toma tuya apagando la lámpara (la habitación queda con la luz de la ciudad)."},
+   {"t": "LA EDICIÓN", "modo": "voz", "dice": "Mientras tanto, la edición pasa sola: elige las tomas, corta, pone el color, la música y los subtítulos.", "ve": "Lo grabo yo: After Effects armando este mismo video y el render avanzando."},
+   {"t": "OPTIMIZO", "modo": "camara", "dice": "Soy Max, cofundador de Optimizo. Esto es lo que hacemos: sistemas para que todo lo que se repite se haga solo.", "hace": "Cerca, mirada al lente, tranquilo. Un segundo quieto al final.", "plano": "Primer plano, la ciudad desenfocada detrás"},
+   {"t": "CIERRE", "modo": "camara", "dice": "Yo solo tengo que tener algo que contar.", "hace": "Vuelve a la ventana: lo dices mirando la ciudad, después giras al lente. Cierra saliendo del cuadro (deja la ciudad sola 3 s).", "plano": "Igual al gancho (para que el video pueda repetirse en loop)"}
+  ],
+  "tomas": [
+   {"id": "gancho", "grupo": "Tomas", "que": "Gancho en la ventana, 3 veces", "detalle": "«Este video lo grabé en diez minutos. Todo lo demás lo hace un sistema que construí.» De pie, ciudad detrás, tú al centro. Quédate quieto 2 s antes de hablar (ahí va el título detrás tuyo)."},
+   {"id": "por-que", "grupo": "Tomas", "que": "«Por qué lo armé», sentado, 2 veces", "detalle": "Escritorio o sillón, lámpara de lado, pantallas detrás."},
+   {"id": "optimizo", "grupo": "Tomas", "que": "«Soy Max, cofundador de Optimizo…», cerca, 2 veces", "detalle": "Primer plano, ciudad desenfocada detrás."},
+   {"id": "cierre", "grupo": "Tomas", "que": "Cierre en la ventana, 2 veces", "detalle": "Dilo mirando la ciudad, gira al lente y sal del cuadro. Deja correr 3 s la ciudad sola."},
+   {"id": "voz", "grupo": "Tomas", "que": "Las frases en off, solo voz", "detalle": "LLEGAR, HEIKA, GRABO, SUBO y LA EDICIÓN. En el teleprompter elige «Voz en off». Celular a un palmo de la boca, en un lugar sin eco (clóset o junto a la cama). Cada frase 2 veces."},
+   {"id": "llegada", "grupo": "Aparte", "que": "Llegada: puerta, llaves en la mesa, lámpara que se enciende", "detalle": "3 clips de 2–3 s, celular apoyado. En el último, tapa el lente con la mano al final (es la transición)."},
+   {"id": "celular", "grupo": "Aparte", "que": "Heika en tu mano, sobre tu hombro", "detalle": "6 s. Que se vea tu mano y la pantalla; la ciudad o la lámpara desenfocada al fondo."},
+   {"id": "pantalla-guion", "grupo": "Aparte", "que": "Grabación de pantalla: Heika → video de hoy → bajar por el guion", "detalle": "10 s, lento (centro de control → grabar pantalla)."},
+   {"id": "tripode", "grupo": "Aparte", "que": "Tú armando el trípode y tocando grabar", "detalle": "Desde atrás y de lado, con otra cámara si tienes; si no, solo tus manos acomodándolo."},
+   {"id": "pantalla-subir", "grupo": "Aparte", "que": "Grabación de pantalla: subir tomas y «Listo para editar»", "detalle": "8 s."},
+   {"id": "lampara", "grupo": "Aparte", "que": "Tú apagando la lámpara", "detalle": "Plano abierto de la pieza: al apagar, queda la luz de la ciudad. 5 s."},
+   {"id": "ciudad", "grupo": "Aparte", "que": "La ciudad sola desde la ventana", "detalle": "3 tomas de 6 s: una abierta (0,5×), una normal (1×) y una con la cámara pegada al vidrio moviéndose lento hacia un lado."},
+   {"id": "detalles", "grupo": "Aparte", "que": "Detalles de la noche", "detalle": "Tus manos en el teclado con la luz de la pantalla, la taza o vaso, el reflejo de la ciudad en el vidrio: 3–4 clips de 3 s."},
+   {"id": "transicion-oscuro", "grupo": "Aparte", "que": "Transición «paso a oscuro»", "detalle": "Mueve el celular desde la ventana hacia una pared o mueble oscuro hasta que quede negro (2 s). Y otra que salga de lo oscuro hacia el escritorio."},
+   {"id": "ambiente", "grupo": "Aparte", "que": "10 segundos de silencio en la pieza", "detalle": "Celular quieto, sin hablar."}
+  ],
+  "broll": [],
+  "recursos": [],
+  "props": ["Trípode", "Lámpara cálida", "Teleprompter en el Mac o iPad bajo el lente"],
+  "edicion": {
+   "estilo": "Vlog cinematográfico (referencias «para claude»): 16:9 maestro + 9:16 reencuadrado. Título HEIKA detrás de Max sobre la ciudad en el gancho. Overlay de identidad discreto. Color de noche moderno: piel cálida, sombras y ciudad azul-cian, rojo Heika solo en el título y la palabra clave. Cortes en medio beat en los montajes; transiciones con la mano tapando el lente y paso a oscuro.",
+   "subtitulos": "Inter Display Bold, blancos, bajo el mentón; palabra clave en rojo #ff0042",
+   "musica": "Canción real en tendencia, tranquila con pulso (te propongo 3 al editar)",
+   "efectos": ["Título detrás de Max con máscara de Vision", "Mano que tapa el lente → corte escondido", "Paso a oscuro hacia la escena del escritorio", "Pantallas de Heika flotando con profundidad", "Timelapse del render en After Effects"],
+   "ritmo": "Pausado cuando habla, rápido (medio beat) en los montajes de llegada y edición"
+  },
+  "post": {"texto": "Grabo diez minutos. Lo demás lo hace un sistema.", "hashtags": ["#vlog", "#inteligenciaartificial", "#emprendimiento", "#optimizo"], "sonido": "Te propongo 3 canciones al editar"}
+ }
+}
