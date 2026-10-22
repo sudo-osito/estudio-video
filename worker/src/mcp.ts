@@ -69,8 +69,8 @@ export async function mcp(req: Request, env: Env, autorizar: () => Promise<strin
           capabilities: { tools: { listChanged: false } },
           serverInfo: { name: "estudio", title: "Estudio · orgánicos de Max", version: "1.0.0" },
           instructions:
-            "Calendario de videos orgánicos de Max (TikTok e Instagram). Antes de escribir o cambiar guiones, lee cerebro/ del repo " +
-            "estudio-video (quién es Max hoy, narrativa, reglas, cómo se graba). Max graba y sube el material desde la página; cuando avisa, " +
+            "Calendario de videos orgánicos de Max (TikTok e Instagram). Antes de escribir o cambiar guiones, lee el vault de Obsidian ~/Obsidian Vaults/Estudio " +
+            "(Inicio.md; quién es Max hoy, lo que voy aprendiendo de Max, reglas, cómo se graba). Max graba y sube el material desde la página; cuando avisa, " +
             "usa «pendientes», baja el material con «enlace_descarga», pasa el video a «editando», edítalo con la skill de video y súbelo " +
             "como entrega (herramientas/subir.mjs del repo estudio-video) con el post listo; después pásalo a «entregado».",
         }));

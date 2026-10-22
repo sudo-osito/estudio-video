@@ -1,4 +1,4 @@
-# Tanda 2 (22-oct-2026): vlogs cinematográficos de proyectos grandes, sin trabajo extra para Max (cerebro/02, 11).
+# Tanda 2 (22-oct-2026): vlogs cinematográficos de proyectos grandes, sin trabajo extra para Max (vault Estudio: Narrativa, Lo que voy aprendiendo de Max).
 # Uso: python3 semillas/tanda-02.py → semillas/tanda-02.json; cargar con herramientas/sembrar.mjs.
 import json, pathlib
 
