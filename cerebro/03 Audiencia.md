@@ -5,9 +5,8 @@ hoy, aprender a construir y seguir a alguien que lo está haciendo de verdad. Co
 dueños de empresas y gente importante; no se les habla directo a ellos todavía.
 
 ## Qué les gusta
-- Ver algo que no sabían que se podía hacer («¿eso lo hizo una IA?»).
-- El proceso real, con errores incluidos.
-- Algo que puedan probar ellos mismos esa misma noche.
+- Ver algo grande que ya funciona y no sabían que se podía hacer.
+- Asomarse a la vida de alguien que está construyendo en serio.
 - Videos bonitos de ver: la estética también es contenido.
 
 ## Cómo se les habla

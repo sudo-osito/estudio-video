@@ -4,11 +4,9 @@ const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
 const PILARES = {
-  ia: { nombre: "Construyo con IA", var: "ia" },
-  anuncios: { nombre: "Anuncios que venden", var: "anuncios" },
-  diseno: { nombre: "Diseño que cobra caro", var: "diseno" },
-  optimizo: { nombre: "Por dentro", var: "optimizo" },
-  chile: { nombre: "Chile + IA", var: "chile" },
+  proyectos: { nombre: "Proyectos", var: "ia" },
+  vida: { nombre: "Vida", var: "optimizo" },
+  criterio: { nombre: "Criterio", var: "anuncios" },
 };
 const pilar = (k) => PILARES[k] ?? { nombre: k || "Sin pilar", var: null };
 const tono = (k) => { const p = pilar(k); return p.var ? `--evento:var(--p-${p.var});--evento-suave:var(--p-${p.var}-suave)` : "--evento:var(--texto-3);--evento-suave:var(--sup-2)"; };

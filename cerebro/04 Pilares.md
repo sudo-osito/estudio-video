@@ -1,12 +1,10 @@
 # Pilares (clave en la app → nombre)
 
-| Clave | Nombre | Para qué | Ejemplos |
+| Clave | Nombre | Qué muestra | Ejemplos |
 |---|---|---|---|
-| `ia` | Construyo con IA | «Miren lo que hice»: lo nuevo que se puede hacer | app contra el reloj, video con IA en 3 min, motor gráfico en 10 h, IA con memoria |
-| `optimizo` | Por dentro | Lo que construimos y cómo evoluciona, el reto, la forma de trabajar | María llamando, Medula, el setup, el punto del logo |
-| `anuncios` | Anuncios que venden | Aprendizajes de vender | ganchos, CPA, el anuncio feo que ganó |
-| `diseno` | Diseño que cobra caro | Su sello: lo que se ve vale | web barata, tipografías, apps que se mueven |
-| `chile` | Chile + IA | Humor seco y cercanía, para compartir | la IA no entiende el chileno, sketches |
+| `proyectos` | Proyectos | Un sistema grande y completo, funcionando, y cómo evoluciona | el sistema de videos, Medula, María y el flujo de Nexor, el cerebro |
+| `vida` | Vida | Vlog: su día, sus lugares, su forma de trabajar | una noche construyendo, el setup, un día de reuniones |
+| `criterio` | Criterio | Una idea con peso que sale de lo que está viviendo, dicha con calma | por qué un sistema y no una herramienta, qué aprendió al construir algo |
 
-Reparto sugerido por semana: 2–3 `ia`, 1 `optimizo`, 1 `anuncios`, 1 `diseno`, 1 `chile`.
-El pilar `condor` ya no existe (se reemplazó por `optimizo`).
+Mezcla sugerida: la mayoría `proyectos` y `vida`; `criterio` de vez en cuando y siempre anclado a algo real.
+Los pilares viejos (`ia`, `anuncios`, `diseno`, `chile`, `optimizo`, `condor`) ya no se usan.

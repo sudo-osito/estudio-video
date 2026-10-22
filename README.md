@@ -5,7 +5,7 @@ Calendario de orgánicos de Max (TikTok + Instagram), subida del material y cere
 - `web/` — la página (GitHub Pages): calendario, guion con teleprompter, subida por trozos, «Listo para editar», entrega.
 - `worker/` — API en Cloudflare (D1 = calendario, R2 = material) + MCP en `/mcp` para Claude. Misma llave `es_…`.
 - `cerebro/` — **leer antes de escribir guiones**: quién es Max hoy, narrativa, audiencia, pilares, voz, cómo se graba, reglas, datos reales (se abre como vault de Obsidian).
-- `semillas/` — tandas de ideas: `sembrar.mjs` carga las nuevas, `actualizar.mjs` reescribe las que ya existen. `guiones-v2.py` genera la tanda 1 con modo por párrafo.
+- `semillas/` — tandas de ideas: `sembrar.mjs` carga las nuevas, `actualizar.mjs` reescribe las que ya existen. `tanda-02.py` genera la tanda actual (vlogs de proyectos grandes); la del reto de 30 días quedó en `descartado/`.
 - `herramientas/subir.mjs` — sube la entrega editada al video.
 - `PLAN.md` — el plan del cerebro de video (biblioteca de sonido, música, kit visual, tubería).
 

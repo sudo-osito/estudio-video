@@ -7,7 +7,7 @@ estas notas.** Si algo de acá contradice un guion viejo, manda el cerebro.
 | Nota | Para qué |
 |---|---|
 | [[01 Quién es Max hoy]] | Cómo se presenta, qué hace, qué NO decir. **Lo primero.** |
-| [[02 Narrativa]] | La historia que cuenta la cuenta, la serie del reto y su arco de 30 días |
+| [[02 Narrativa]] | La historia que cuenta la cuenta: vlogs con peso de los proyectos grandes, sin retos |
 | [[03 Audiencia]] | A quién le habla y qué le duele |
 | [[04 Pilares]] | Los 5 temas, para qué sirve cada uno y ejemplos |
 | [[05 Voz en cámara]] | Cómo habla Max: palabras, ritmo, lo que suena a IA |
@@ -16,6 +16,7 @@ estas notas.** Si algo de acá contradice un guion viejo, manda el cerebro.
 | [[08 Datos reales]] | Historias, números y casos de verdad que Max va dejando. **Sin esto, los guiones quedan con [corchetes].** |
 | [[09 Banco de ideas]] | Ideas sueltas para las próximas tandas |
 | [[10 Estilo cinematográfico]] | Cómo se ve, suena y se siente: tranquilo en cámara, energía en la edición |
+| [[11 Lo que voy aprendiendo de Max]] | Cada idea o corrección de Max y la regla que deja. **Leer antes de proponer un video.** |
 | [[Bitácora]] | Qué cambió en el cerebro y por qué |
 
 ## Cómo se usa
@@ -30,6 +31,8 @@ estas notas.** Si algo de acá contradice un guion viejo, manda el cerebro.
 - Audiencia: primero una comunidad interesada en IA y emprendimiento.
 - Se puede mostrar lo que se está construyendo (Medula, el flujo de Nexor, María) y cómo evoluciona.
 - Tono tranquilo y auténtico; marca cinematográfica, con energía y sentimiento.
+- Vlogs de su vida y de los proyectos grandes; nada de retos, experimentos chicos ni trabajo extra para grabar.
+- El primer video muestra el sistema de videos completo.
 - Instagram en modo creador y TikTok cuenta personal: se puede usar música popular de la app.
 
 ## Por confirmar con Max

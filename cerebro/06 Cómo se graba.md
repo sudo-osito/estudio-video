@@ -13,6 +13,9 @@ Campos de cada párrafo: `t` (etiqueta), `modo`, `dice`, `hace`, `ve`, `plano`, 
 Campos del video: `recursos[{que, detalle}]` = lo que Max tiene que mandar (datos reales, capturas, archivos).
 
 ## Reglas
+- **Cero trabajo extra para Max.** Solo se le pide grabar lo que ya está pasando (su día, su pantalla, su voz).
+  Lo que yo puedo capturar o generar (la edición en marcha, gráficos, pantallas del sistema) lo hago yo: en `ve` se
+  escribe «lo grabo yo» y no se le pide a Max.
 - **El gancho es siempre el párrafo 1** y casi siempre `camara` (la cara engancha más que una pantalla).
 - **Un párrafo `camara` cada 2–3 párrafos** como máximo de distancia: si no, se pierde la persona.
 - **Usar `voz`/`pantalla` donde Max tendría que leer algo largo o mostrar algo:** así no se nota la lectura

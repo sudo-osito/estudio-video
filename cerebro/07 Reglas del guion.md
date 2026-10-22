@@ -3,9 +3,9 @@
 ## Gancho (0–3 s)
 - Una tensión, no un tema: resultado inesperado, error, número, confesión o pelea con una creencia.
 - Dicho con calma: la tensión está en lo que se dice y en la imagen, no en el volumen.
-- Concreto y en primera persona. «Le di mi trabajo a una IA por un día y rompió algo» > «La IA en el trabajo».
+- Concreto y en primera persona. «Este video lo grabé en dos minutos. Todo lo demás lo hizo un sistema.» > «Cómo automatizo mis videos».
 - 2 ganchos alternativos por video (`ganchos_alt`), distintos de verdad (no sinónimos).
-- Origen creativo con filo: chiste, persona, evento, espacio u objeto. Nada «bland».
+- Con peso: una afirmación tranquila sobre algo grande que ya existe. Nada «bland», nada tiktokero.
 
 ## Estructura
 Gancho → contexto en una frase → lo que pasó / el contenido (2–3 golpes) → remate o giro → cierre con pregunta o frase
@@ -20,4 +20,6 @@ citable. 30–75 s. El guion le da a la edición material para respirar: detalle
 - [ ] ¿Se puede decir cada frase de una respirada?
 - [ ] ¿El cierre es específico?
 - [ ] ¿Se parece a otro video de la tanda? Si dos se sienten iguales, cambiar el formato de uno.
+- [ ] ¿Es un reto, una lista, un tip suelto o un experimento chico? → fuera ([[11 Lo que voy aprendiendo de Max]]).
+- [ ] ¿Le pide a Max trabajo extra (construir, preparar, investigar)? → fuera.
 - [ ] ¿Sirve para la audiencia ([[03 Audiencia]])?
