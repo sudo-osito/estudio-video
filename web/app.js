@@ -198,6 +198,7 @@ function pintar() {
     if (s.animar === "izq") t.classList.add("atras");
   }
   $("#nav-mes").hidden = agenda;
+  $("#volver-hoy").hidden = agenda || s.mes === hoyTexto().slice(0, 7); // solo cuando estás mirando otro mes
   pintarLateral();
   pintarHoy();
   agenda ? pintarAgenda() : pintarMes();
