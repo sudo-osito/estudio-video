@@ -43,20 +43,24 @@ enum Marca {
     static let cruz = CGRect(x: 41, y: 39, width: 18, height: 22)
 }
 
-// MARK: - Animación de entrada
-// Sobre negro (como la referencia): un tallo cae, el otro sube, el travesaño se estira con rebote y
-// la barra con el degradado sale del travesaño hasta el borde. Cuando la página cargó, todo se disuelve en la app.
+// MARK: - Animación de entrada (es la única pantalla de carga)
+// Sobre negro: un tallo cae, el otro sube y el travesaño se estira con rebote. Debajo, una barra con el degradado
+// muestra la carga de verdad. Cuando la página está lista, la H vuela a su lugar en la barra lateral, se vuelve negra
+// y el fondo se disuelve: no hay una segunda pantalla de carga.
 
 final class Arranque: NSView {
     private var t0 = CACurrentMediaTime()
-    private var tSalida: Double?
+    private var tVuelo: Double?
     private var reloj: Timer?
-    var tFijo: Double?          // para dibujar un instante exacto (pruebas)
-    var paginaLista = false
+    private var mostrado: Double = 0           // avance de la barra que se ve (persigue al real, suave)
+    var tFijo: Double?                          // para dibujar un instante exacto (pruebas)
+    var avance: Double = 0                      // 0–1: cuánto cargó la página
+    var destino: CGRect?                        // dónde aterriza la H (caja de 100×100 del logo de la página)
+    var lista = false
     var alTerminar: (() -> Void)?
 
-    static let armado = 1.2
-    static let salida = 0.55
+    static let armado = 0.9
+    static let vuelo = 0.85
 
     override var isFlipped: Bool { true }
 
@@ -65,17 +69,17 @@ final class Arranque: NSView {
         let r = Timer(timeInterval: 1 / 120, repeats: true) { [weak self] _ in self?.cuadro() }
         RunLoop.main.add(r, forMode: .common)
         reloj = r
-        // Si la página tarda demasiado, igual se entra (la página tiene su propio «cargando»)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in self?.paginaLista = true }
+        // Si la página no avisa, igual se entra (solo se disuelve)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 8) { [weak self] in self?.lista = true }
     }
-
-    func saltar() { if tSalida == nil { tSalida = ahora } }
 
     private var ahora: Double { CACurrentMediaTime() - t0 }
 
     private func cuadro() {
-        if tSalida == nil, paginaLista, ahora >= Arranque.armado { tSalida = ahora }
-        if let s = tSalida, ahora - s >= Arranque.salida {
+        let meta = lista ? 1 : min(0.92, avance)
+        mostrado += (meta - mostrado) * (lista ? 0.16 : 0.06)
+        if tVuelo == nil, lista, ahora >= Arranque.armado, mostrado > 0.97 { tVuelo = ahora }
+        if let v = tVuelo, ahora - v >= Arranque.vuelo {
             reloj?.invalidate(); reloj = nil
             alTerminar?()
             return
@@ -83,54 +87,57 @@ final class Arranque: NSView {
         needsDisplay = true
     }
 
-    override func mouseDown(with event: NSEvent) { saltar() }
+    override func mouseDown(with event: NSEvent) { if lista { mostrado = 1 } }
 
     override func draw(_ dirtyRect: NSRect) {
         guard let ctx = NSGraphicsContext.current?.cgContext else { return }
         let t = tFijo ?? ahora
-        let s = tFijo != nil ? max(0, t - Arranque.armado - 0.3) : tSalida.map { t - $0 } ?? 0 // segundos de salida
-        Arranque.dibujar(ctx, tamano: bounds.size, t: t, salida: s)
+        let vuelo = tVuelo.map { (t - $0) / Arranque.vuelo } ?? 0
+        Arranque.dibujar(ctx, tamano: bounds.size, t: t, barra: mostrado, vuelo: vuelo, destino: destino)
     }
 
-    static func dibujar(_ ctx: CGContext, tamano: CGSize, t: Double, salida: Double) {
+    static func dibujar(_ ctx: CGContext, tamano: CGSize, t: Double, barra: Double, vuelo: Double, destino: CGRect?) {
         let W = tamano.width, H = tamano.height
-        let fuera = salidaSuave(min(1, salida / Arranque.salida))
+        let u = clamp(vuelo)
+        let fondo = 1 - suave(clamp((u - 0.12) / 0.7))
         ctx.saveGState()
-        ctx.setAlpha(1 - fuera)
-        ctx.setFillColor(color(0x0b0b0c))
+        ctx.setFillColor(color(0x0b0b0c).copy(alpha: fondo)!)
         ctx.fill(CGRect(origin: .zero, size: tamano))
 
-        let lado = min(150, max(96, min(W, H) * 0.17)) * (1 + 0.08 * fuera)
-        let k = lado / 100
-        let ox = W / 2 - 50 * k, oy = H / 2 - 50 * k
+        // La H: al centro mientras carga; en el vuelo va hacia el logo de la barra lateral
+        let lado = min(132, max(92, min(W, H) * 0.15))
+        let desde = CGRect(x: W / 2 - lado / 2, y: H / 2 - lado / 2 - 18, width: lado, height: lado)
+        let hasta = destino ?? desde.insetBy(dx: lado * 0.1, dy: lado * 0.1)
+        let m = suave(u)
+        let caja = CGRect(x: desde.minX + (hasta.minX - desde.minX) * m, y: desde.minY + (hasta.minY - desde.minY) * m,
+                          width: desde.width + (hasta.width - desde.width) * m, height: desde.height + (hasta.height - desde.height) * m)
+        let k = caja.width / 100
+        let gris = 1 - (1 - 0.043) * suave(clamp((u - 0.25) / 0.6)) // blanco → tinta
+        let alfaH: CGFloat = destino == nil ? 1 - m : 1
 
-        // La barra: sale del travesaño y corre hasta el borde (mientras espera la página, el degradado se mueve)
-        let pb = suave(clamp((t - 0.72) / 0.5))
-        if pb > 0 {
-            let x0 = ox + 59 * k
-            let ancho = (W - x0) * pb
-            let barra = CGRect(x: x0 - 1, y: oy + 39 * k, width: ancho + 1, height: 22 * k)
+        // La barra de carga, centrada bajo la H; se apaga al despegar
+        let alfaBarra = CGFloat(clamp((t - 0.45) / 0.3)) * (1 - CGFloat(clamp(u / 0.2)))
+        if alfaBarra > 0 {
+            let ancho: CGFloat = 220, alto: CGFloat = 3
+            let pista = CGRect(x: W / 2 - ancho / 2, y: desde.maxY + 40, width: ancho, height: alto)
             ctx.saveGState()
-            ctx.clip(to: barra)
+            ctx.setAlpha(alfaBarra)
+            ctx.addPath(CGPath(roundedRect: pista, cornerWidth: 1.5, cornerHeight: 1.5, transform: nil))
+            ctx.setFillColor(CGColor(gray: 1, alpha: 0.12)); ctx.fillPath()
+            let lleno = CGRect(x: pista.minX, y: pista.minY, width: ancho * CGFloat(min(1, max(0, barra))), height: alto)
+            ctx.addPath(CGPath(roundedRect: lleno, cornerWidth: 1.5, cornerHeight: 1.5, transform: nil)); ctx.clip()
             let srgb = CGColorSpace(name: CGColorSpace.sRGB)
             let gradiente = CGGradient(colorsSpace: srgb, colors: DEGRADADO.map { color($0.1) } as CFArray, locations: DEGRADADO.map { $0.0 })!
-            ctx.drawLinearGradient(gradiente, start: CGPoint(x: x0, y: 0), end: CGPoint(x: W, y: 0), options: [])
-            // Mientras espera la página, un brillo recorre la barra como un cabezal de reproducción
-            if t > 1.2 {
-                let x = x0 + (W - x0 + 320) * CGFloat((t - 1.2).truncatingRemainder(dividingBy: 1.6) / 1.6) - 160
-                let blanco = [CGColor(gray: 1, alpha: 0), CGColor(gray: 1, alpha: 0.45), CGColor(gray: 1, alpha: 0)] as CFArray
-                let brillo = CGGradient(colorsSpace: srgb, colors: blanco, locations: [0, 0.5, 1])!
-                ctx.drawLinearGradient(brillo, start: CGPoint(x: x - 160, y: 0), end: CGPoint(x: x + 160, y: 0), options: [])
-            }
+            ctx.drawLinearGradient(gradiente, start: CGPoint(x: pista.minX, y: 0), end: CGPoint(x: pista.maxX, y: 0), options: [])
             ctx.restoreGState()
         }
 
-        ctx.setFillColor(CGColor(gray: 1, alpha: 1))
+        ctx.setFillColor(CGColor(gray: gris, alpha: 1))
         func pieza(_ camino: CGPath, dy: CGFloat, alfa: CGFloat) {
             guard alfa > 0 else { return }
             ctx.saveGState()
-            ctx.setAlpha((1 - fuera) * alfa)
-            ctx.translateBy(x: ox, y: oy + dy * k)
+            ctx.setAlpha(alfa * alfaH)
+            ctx.translateBy(x: caja.minX, y: caja.minY + dy * k)
             ctx.scaleBy(x: k, y: k)
             ctx.addPath(camino); ctx.fillPath()
             ctx.restoreGState()
@@ -142,7 +149,9 @@ final class Arranque: NSView {
         if pc > 0 {
             let c = Marca.cruz
             let ancho = c.width * pc
-            ctx.fill(CGRect(x: ox + (c.midX - ancho / 2) * k, y: oy + c.minY * k, width: ancho * k, height: c.height * k))
+            ctx.saveGState(); ctx.setAlpha(alfaH)
+            ctx.fill(CGRect(x: caja.minX + (c.midX - ancho / 2) * k, y: caja.minY + c.minY * k, width: ancho * k, height: c.height * k))
+            ctx.restoreGState()
         }
         ctx.restoreGState()
     }
@@ -150,7 +159,6 @@ final class Arranque: NSView {
     static func clamp(_ x: Double) -> Double { min(1, max(0, x)) }
     static func salir(_ x: Double) -> CGFloat { CGFloat(1 - pow(1 - x, 4)) }
     static func suave(_ x: Double) -> CGFloat { CGFloat(x < 0.5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2) }
-    static func salidaSuave(_ x: Double) -> CGFloat { CGFloat(x * x * (3 - 2 * x)) }
     static func resorte(_ x: Double) -> CGFloat { x <= 0 ? 0 : CGFloat(1 - exp(-6 * x) * cos(10 * x)) }
 }
 
@@ -292,6 +300,17 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
     let oido = Oido()
     var candado: IOPMAssertionID = 0
     let captura = ProcessInfo.processInfo.environment["HEIKA_CAPTURA"]
+    var progreso: NSKeyValueObservation?
+
+    /// La H llegó a su lugar: la página muestra su logo y las cargas siguientes ya no lo esconden
+    func aterrizo() {
+        arranque?.removeFromSuperview(); arranque = nil
+        progreso = nil
+        js("document.documentElement.classList.remove('aterrizando')")
+        let c = web.configuration.userContentController
+        c.removeAllUserScripts()
+        c.addUserScript(WKUserScript(source: "document.documentElement.classList.add('nativo');", injectionTime: .atDocumentStart, forMainFrameOnly: true))
+    }
 
     func applicationDidFinishLaunching(_ n: Notification) {
         armarMenus()
@@ -299,7 +318,8 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
         let usuario = WKUserContentController()
         usuario.add(self, name: "heika")
         // La página sabe que vive en el Mac: deja espacio a los semáforos y habilita la voz
-        usuario.addUserScript(WKUserScript(source: "document.documentElement.classList.add('nativo');", injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        // La primera carga además esconde la H del logo de la página: la H nativa aterriza ahí
+        usuario.addUserScript(WKUserScript(source: "document.documentElement.classList.add('nativo','aterrizando');", injectionTime: .atDocumentStart, forMainFrameOnly: true))
         if captura != nil, let llave = ProcessInfo.processInfo.environment["HEIKA_LLAVE"] { // solo en pruebas
             usuario.addUserScript(WKUserScript(source: "localStorage.setItem('estudio:llave', \(String(reflecting: llave)));", injectionTime: .atDocumentStart, forMainFrameOnly: true))
             // una ventana tapada no anima: en la foto se ve el estado final
@@ -335,7 +355,8 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
 
         arranque = Arranque(frame: contenido.bounds)
         arranque.autoresizingMask = [.width, .height]
-        arranque.alTerminar = { [weak self] in self?.arranque.removeFromSuperview() }
+        arranque.alTerminar = { [weak self] in self?.aterrizo() }
+        progreso = web.observe(\.estimatedProgress) { [weak self] w, _ in self?.arranque?.avance = 0.15 + 0.6 * w.estimatedProgress }
         contenido.addSubview(arranque)
         ventana.contentView = contenido
 
@@ -357,6 +378,12 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
         switch tipo {
         case "oir": oido.empezar(frases: d["frases"] as? [String] ?? [])
         case "callar": oido.callar()
+        case "lista": // la página pintó sus datos (o la entrada) y dice dónde está su logo
+            if captura != nil { print("lista:", d["x"] ?? "-", d["y"] ?? "-", d["alto"] ?? "-") }
+            if let x = d["x"] as? Double, let y = d["y"] as? Double, let alto = d["alto"] as? Double, alto > 0 {
+                arranque?.destino = CGRect(x: x, y: y, width: alto, height: alto)
+            }
+            arranque?.lista = true
         case "pantalla": pantalla(d["on"] as? Bool ?? false)
         case "privado": ventana.sharingType = (d["on"] as? Bool ?? false) ? .none : .readOnly // el teleprompter no sale en grabaciones de pantalla
         default: break
@@ -378,13 +405,12 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
 
     // MARK: Navegación: la app es una sola página; lo demás se abre en el navegador
 
-    func webView(_ w: WKWebView, didFinish n: WKNavigation!) { arranque?.paginaLista = true }
 
     func webView(_ w: WKWebView, didFail n: WKNavigation!, withError e: Error) { sinConexion(e) }
     func webView(_ w: WKWebView, didFailProvisionalNavigation n: WKNavigation!, withError e: Error) { sinConexion(e) }
 
     func sinConexion(_ e: Error) {
-        arranque?.paginaLista = true
+        arranque?.lista = true
         let html = "<body style='margin:0;display:grid;place-items:center;height:100vh;background:#f6f3f1;font:15px -apple-system;color:#0b0b0c'><div style='text-align:center'><h2 style='font-weight:600'>Sin conexión</h2><p style='color:#777'>Heika necesita internet para traer el calendario.</p><button onclick='location.href=\(String(reflecting: URL_HEIKA.absoluteString))' style='font:inherit;padding:10px 18px;border-radius:999px;border:0;background:#0b0b0c;color:#fff'>Reintentar</button></div></body>"
         web.loadHTMLString(html, baseURL: nil)
     }
@@ -392,7 +418,7 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
     func webView(_ w: WKWebView, decidePolicyFor a: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if a.shouldPerformDownload { return decisionHandler(.download) }
         if let url = a.request.url, a.navigationType == .linkActivated || a.targetFrame == nil,
-           !(url.host == URL_HEIKA.host && url.path == URL_HEIKA.path) {
+           !(url.host == URL_HEIKA.host && url.path.hasPrefix(URL_HEIKA.path)) {
             NSWorkspace.shared.open(url)
             return decisionHandler(.cancel)
         }
@@ -467,7 +493,8 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
     func capturar(en carpeta: String) {
         try? FileManager.default.createDirectory(atPath: carpeta, withIntermediateDirectories: true)
         let tamano = CGSize(width: 1360, height: 860)
-        for t in [0.15, 0.35, 0.6, 0.9, 1.3, 1.7] {
+        let destino = CGRect(x: 36, y: 64, width: 30, height: 30)
+        for (t, vuelo) in [(0.15, 0.0), (0.35, 0.0), (0.7, 0.0), (1.1, 0.0), (1.4, 0.35), (1.6, 0.65)] {
             let rep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(tamano.width), pixelsHigh: Int(tamano.height), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0)!
             NSGraphicsContext.saveGraphicsState()
             let g = NSGraphicsContext(bitmapImageRep: rep)!
@@ -475,11 +502,11 @@ final class App: NSObject, NSApplicationDelegate, WKScriptMessageHandler, WKNavi
             let ctx = g.cgContext
             ctx.setFillColor(FONDO.cgColor); ctx.fill(CGRect(origin: .zero, size: tamano))
             ctx.translateBy(x: 0, y: tamano.height); ctx.scaleBy(x: 1, y: -1)
-            Arranque.dibujar(ctx, tamano: tamano, t: t, salida: max(0, t - 1.5))
+            Arranque.dibujar(ctx, tamano: tamano, t: t, barra: min(1, t / 1.1), vuelo: vuelo, destino: destino)
             NSGraphicsContext.restoreGraphicsState()
             try? rep.representation(using: .png, properties: [:])?.write(to: URL(fileURLWithPath: "\(carpeta)/arranque-\(t).png"))
         }
-        arranque.removeFromSuperview()
+        arranque.removeFromSuperview(); arranque = nil
         ventana.orderBack(nil) // detrás de todo, sin activar la app
         DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
             self.web.takeSnapshot(with: nil) { img, _ in

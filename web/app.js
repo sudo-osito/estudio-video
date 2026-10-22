@@ -112,10 +112,21 @@ function avisar(texto) {
 
 /* ── Entrada ── */
 function salir() { guardarLocal("estudio:llave", null); s.llave = null; mostrarEntrada(); }
+/* En el Mac, la animación nativa es la pantalla de carga: se le avisa dónde quedó el logo para que la H aterrice ahí */
+function avisarLista(selector) {
+  if (!nativo) return;
+  // con un temporizador y no con requestAnimationFrame: si la ventana arranca tapada, rAF no corre
+  setTimeout(() => {
+    const r = $(selector)?.getBoundingClientRect();
+    nativo("lista", r ? { x: r.x, y: r.y, alto: r.height } : {});
+  }, 60);
+}
+
 function mostrarEntrada(error) {
   $("#cargando").classList.add("fuera");
   $("#app").hidden = true;
   $("#entrada").hidden = false;
+  avisarLista(".entrada-logo svg");
   $("#error-llave").hidden = !error;
   $("#error-llave").textContent = error || "";
 }
@@ -136,6 +147,7 @@ async function cargar() {
   setTimeout(() => $("#app").classList.remove("entra"), 1600);
   s.animar = "entra";
   pintar();
+  avisarLista(".lat-logo svg");
   const id = new URLSearchParams(location.hash.slice(1)).get("v");
   if (id && !s.sel) abrir(id);
 }

@@ -771,3 +771,8 @@ html.nativo .barra { padding-top: 36px; }
 html.nativo .cajon { top: 38px; }
 html.nativo .pr-arriba { padding-top: 34px; }
 html.nativo .pestanas-movil { display: none; }
+/* La animación nativa del Mac reemplaza a «cargando»; su H aterriza en el logo, que espera escondido y quieto */
+html.nativo .cargando { display: none; }
+html.nativo.aterrizando .lat-logo .l-h, html.nativo.aterrizando .entrada-logo .l-h { opacity: 0; }
+html.nativo .logo.armar .l-pieza { animation: none; }
+html.nativo .app.entra .lateral, html.nativo .entrada-caja { animation: none; }
