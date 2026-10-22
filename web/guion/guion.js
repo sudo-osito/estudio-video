@@ -108,6 +108,14 @@ const DEMOS = {
     { id: "pantalla-3d", titulo: "Pantalla del sistema en 3D", uso: "Para mostrar el Estudio, Medula o el flujo de María: la pantalla gira y se asienta en el espacio.",
       pasos: () => [[0, (p) => poner(p, `<img class="foto desenfocada" src="${IMG("nave2")}" alt="">`)], [0.3, (p) => { ver(poner(p, `<div class="pantalla-3d"><img src="${IMG("estudio")}" alt=""></div>`).firstChild); sonar("whoosh"); }]] },
   ],
+  "identidad": [
+    { id: "id-rec", titulo: "Cámara REC", uso: "Como @ghostrideneeko: punto rojo, lugar, fecha y hora en las esquinas, durante todo el video. Se siente vlog real.",
+      pasos: () => [[0, (p) => fondo(p, "nave")], [0.2, (p) => { const h = new Date(); const hora = `${String(h.getHours()).padStart(2, "0")}:${String(h.getMinutes()).padStart(2, "0")}`; ver(poner(p, `<div class="hud"><div class="marco"></div><span class="esq rec" style="top:9%;left:9%">REC</span><span class="esq" style="top:9%;right:9%">4K · 24</span><span class="esq" style="bottom:24%;left:9%">SANTIAGO</span><span class="esq" style="bottom:24%;right:9%">${hora}</span></div>`).firstChild); }]] },
+    { id: "id-sello", titulo: "Sello de la serie", uso: "Arriba al centro, chico y espaciado: el nombre de la serie y el número del capítulo. Como «a short street film by…».",
+      pasos: () => [[0, (p) => fondo(p, "teclado")], [0.3, (p) => ver(poner(p, `<div class="hud"><div class="sello">MAX PINO <b>·</b> 023<small>construyendo optimizo</small></div></div>`).firstChild)]] },
+    { id: "id-lugar", titulo: "Lugar y hora", uso: "Al entrar a cada lugar, una línea de acento con el sitio y la hora. Como el «9:30am · day 01/100» de @byjxson.",
+      pasos: () => [[0, (p) => fondo(p, "nave2")], [0.3, (p) => ver(poner(p, `<div class="hud"><div class="lugar">La oficina<small>14:07 · Santiago</small></div></div>`).firstChild)]] },
+  ],
   "golpes": [
     { id: "zoom-punch", titulo: "Zoom punch", uso: "En los beats fuertes (cada 4). Acercamiento seco de 12 % y vuelta. Con bombo.",
       pasos: () => [[0, (p) => fondo(p, "teclado")], [0.5, (p) => golpeSeco(p)], [0.5 + 4 * BEAT, (p) => golpeSeco(p)]] },
@@ -231,6 +239,7 @@ const vista = new IntersectionObserver((es) => es.forEach((x) => { if (x.isInter
 
 pintarDemos("texto", $("#demos-texto"));
 pintarDemos("encuadre", $("#demos-encuadre"));
+pintarDemos("identidad", $("#demos-identidad"));
 pintarDemos("golpes", $("#demos-golpes"));
 pintarLetras(); pintarColores(); pintarLinea(); pintarSonidos(); pintarCuenta();
 document.querySelectorAll("[data-demo]").forEach((p) => vista.observe(p));
