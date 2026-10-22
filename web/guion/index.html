@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guion visual · Videos de Max</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter+Tight:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guion.css">
+</head>
+<body>
+<header class="barra">
+  <a class="marca" href="#inicio"><span class="punto"></span>Guion visual <em>· videos de Max</em></a>
+  <nav class="indice" aria-label="Capítulos">
+    <a href="#reglas">Reglas</a><a href="#letras">Letras</a><a href="#color">Color</a><a href="#texto">Texto</a>
+    <a href="#encuadres">Encuadres</a><a href="#golpes">Golpes</a><a href="#ritmo">Ritmo</a><a href="#sonido">Sonido</a><a href="#zonas">Zonas</a>
+  </nav>
+  <button class="pulso" id="pulso" aria-pressed="false" title="Escuchar el pulso de 89 BPM con las animaciones">
+    <span class="ondas"><i></i><i></i><i></i></span><b>Pulso</b>
+  </button>
+</header>
+
+<main>
+  <!-- PORTADA -->
+  <section class="portada" id="inicio">
+    <div class="portada-texto">
+      <p class="eti">Laboratorio · v0.1 · 22-oct-2026</p>
+      <h1>Tranquilo en cámara.<br><span class="acento">La energía la pone la edición.</span></h1>
+      <p class="bajada">Todo el lenguaje de los videos de Max funcionando antes de editar: letras, color, texto que golpea, tarjetas, cortes al beat, sonido y zonas seguras. Marca 👍 o 👎 en cada pieza; con tus votos y tus referencias se arma la versión final.</p>
+      <div class="acciones"><a class="boton primario" href="#reglas">Recorrer el guion</a><button class="boton" id="ver-elecciones">Mis elecciones <span id="cuenta-votos">0</span></button></div>
+    </div>
+    <div class="telefono grande" id="reel" aria-label="Reel de muestra">
+      <div class="pantalla"><div class="escena-reel" id="escena-reel"></div></div>
+      <div class="reel-pie"><span id="reel-t">0.0 s</span><button class="mini" data-repetir="reel">↺ Repetir</button></div>
+    </div>
+  </section>
+
+  <!-- REGLAS -->
+  <section class="capitulo" id="reglas">
+    <header class="cap-cabeza"><span class="num">01</span><h2>Reglas</h2><p>Lo que aprendimos de la prueba «Aquí se construye». La v1 «se sentía película vieja»; la v2 va por acá.</p></header>
+    <div class="dos-columnas">
+      <div class="lista si"><h3>Sí</h3><ul>
+        <li>Letras <b>bold sans</b>, grandes, en mayúsculas, que golpean palabra por palabra.</li>
+        <li>Color <b>vivo y contrastado</b>; un solo acento fuerte.</li>
+        <li>Cortes <b>al beat</b> de la canción; algo se mueve siempre.</li>
+        <li>Golpes en los momentos clave: <b>zoom punch, sacudida, destello</b>.</li>
+        <li>Material horizontal como <b>tarjetas flotantes</b> sobre el mismo clip desenfocado.</li>
+        <li>Max tranquilo: <b>la edición pone la energía</b>, no la voz.</li>
+      </ul></div>
+      <div class="lista no"><h3>No</h3><ul>
+        <li>Barras de cine, serif elegante, grano de película.</li>
+        <li>Color desaturado o «triste», cámara lenta melancólica.</li>
+        <li>Fundidos largos a negro, nada que se quede quieto.</li>
+        <li>Texto sobre la cara o encima de la interfaz de la app.</li>
+        <li>Efectos de meme, emojis, subtítulos amarillos tiktokeros.</li>
+        <li>Música genérica de biblioteca.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- LETRAS -->
+  <section class="capitulo" id="letras">
+    <header class="cap-cabeza"><span class="num">02</span><h2>Letras</h2><p>Una letra de titular (golpes, finales) y una de apoyo (subtítulos, datos). Vota la que más te represente.</p></header>
+    <div class="grilla-letras" id="grilla-letras"></div>
+  </section>
+
+  <!-- COLOR -->
+  <section class="capitulo" id="color">
+    <header class="cap-cabeza"><span class="num">03</span><h2>Color</h2><p>Base negra y blanca, un acento que marca la palabra importante. El acento tiñe también los brillos.</p></header>
+    <div class="grilla-color" id="grilla-color"></div>
+  </section>
+
+  <!-- TEXTO -->
+  <section class="capitulo" id="texto">
+    <header class="cap-cabeza"><span class="num">04</span><h2>Texto que golpea</h2><p>Los estilos de texto animado. Cada uno con su regla de uso.</p></header>
+    <div class="grilla-demos" id="demos-texto"></div>
+  </section>
+
+  <!-- ENCUADRES -->
+  <section class="capitulo" id="encuadres">
+    <header class="cap-cabeza"><span class="num">05</span><h2>Encuadres</h2><p>Cómo se ponen las tomas en 9:16. Lo horizontal nunca va en una franja chica.</p></header>
+    <div class="grilla-demos" id="demos-encuadre"></div>
+  </section>
+
+  <!-- GOLPES -->
+  <section class="capitulo" id="golpes">
+    <header class="cap-cabeza"><span class="num">06</span><h2>Golpes y transiciones</h2><p>Los momentos que despiertan. Se usan en los beats fuertes, no en todos.</p></header>
+    <div class="grilla-demos" id="demos-golpes"></div>
+  </section>
+
+  <!-- RITMO -->
+  <section class="capitulo" id="ritmo">
+    <header class="cap-cabeza"><span class="num">07</span><h2>Ritmo</h2><p>La estructura de la prueba v2 (15 s, «Flashing Lights» a 89 BPM): un corte cada 0,67 s y golpes cada 4 beats. Es la plantilla de los cortos.</p></header>
+    <div class="linea-tiempo" id="linea-tiempo"></div>
+  </section>
+
+  <!-- SONIDO -->
+  <section class="capitulo" id="sonido">
+    <header class="cap-cabeza"><span class="num">08</span><h2>Sonido</h2><p>Cada imagen tiene su sonido. Acá van aproximados para que sientas el rol; en el video se usan los de la biblioteca (Sonniss, Freesound, Mixkit).</p></header>
+    <div class="grilla-sonido" id="grilla-sonido"></div>
+  </section>
+
+  <!-- ZONAS -->
+  <section class="capitulo" id="zonas">
+    <header class="cap-cabeza"><span class="num">09</span><h2>Zonas seguras</h2><p>Lo que tapa TikTok/Instagram y dónde va cada cosa. La cara manda: el texto nunca la toca.</p></header>
+    <div class="zonas-caja">
+      <div class="telefono"><div class="pantalla"><img src="img/nave.jpg" alt="" class="foto completa"><div class="zona arriba">Barra de la app</div><div class="zona derecha">Botones</div><div class="zona abajo">Nombre, texto y música</div><div class="zona cara">Cara</div><div class="zona texto-ok">Texto aquí</div></div></div>
+      <ul class="reglas-zonas">
+        <li><b>Arriba (0–10 %)</b>: nada importante; lo tapa la barra de la app.</li>
+        <li><b>Derecha (últimos 14 %)</b>: botones de me gusta, comentar, compartir.</li>
+        <li><b>Abajo (últimos 22 %)</b>: nombre, descripción y canción.</li>
+        <li><b>Texto grande</b>: centro, entre el 30 % y el 70 % de la altura.</li>
+        <li><b>Subtítulos con la cara en pantalla</b>: bajo el mentón, alrededor del 72–78 %.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="pie">Estudio · guion visual de los videos de Max · v0.1 · Se completa con las referencias de Max.</footer>
+</main>
+
+<aside class="elecciones" id="elecciones" hidden>
+  <header><h3>Mis elecciones</h3><button class="mini" id="cerrar-elecciones">Cerrar</button></header>
+  <pre id="texto-elecciones"></pre>
+  <button class="boton primario ancho" id="copiar-elecciones">Copiar para mandárselo a Claude</button>
+</aside>
+<div class="aviso" id="aviso" hidden></div>
+
+<script src="guion.js"></script>
+</body>
+</html>
