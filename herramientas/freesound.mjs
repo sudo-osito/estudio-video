@@ -6,7 +6,8 @@
 //   node herramientas/freesound.mjs codigo <código>                       → cambia el código de la autorización por el token
 //   node herramientas/freesound.mjs bajar "<búsqueda>" [n=20] [--max-dur 30]
 //
-// Los originales (calidad completa) exigen OAuth2: Max autoriza la app una vez con su cuenta y el token se renueva solo.
+// Sin autorización OAuth2 (lo normal): se usa la clave de API y se baja la versión «preview-hq» (MP3 de alta calidad),
+// suficiente para redes. Con OAuth2 (config → autorizar → codigo) baja los originales y el token se renueva solo.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -48,15 +49,21 @@ if (accion === "config") {
   const carpeta = path.join(BIB, "sonidos/freesound", q.replace(/[^\w áéíóúñ-]+/gi, "").trim().replace(/\s+/g, "-"));
   fs.mkdirSync(carpeta, { recursive: true });
   const filtro = `license:"Creative Commons 0" duration:[0 TO ${maxDur}] type:(wav OR aiff OR flac OR mp3)`; // .ogg no lo lee macOS
-  const campos = "id,name,license,duration,type,avg_rating,num_downloads,username";
-  const r = await (await pedir(`${API}/search/text/?query=${encodeURIComponent(q)}&filter=${encodeURIComponent(filtro)}&sort=rating_desc&fields=${campos}&page_size=${Math.min(n, 150)}`)).json();
+  const conOAuth = Boolean(leerCred().access_token);
+  const campos = "id,name,license,duration,type,avg_rating,num_downloads,username,previews";
+  const clave = conOAuth ? "" : `&token=${leerCred().client_secret}`;
+  // El buscador exige todas las palabras: se quitan las de relleno («on», «from»…) o la búsqueda queda en cero.
+  const consulta = q.split(/\s+/).filter((w) => !/^(on|from|of|the|a|an|in|at|to|with|and)$/i.test(w)).join(" ");
+  const buscar = `${API}/search/text/?query=${encodeURIComponent(consulta)}&filter=${encodeURIComponent(conOAuth ? filtro : filtro.replace(/ type:\(.*\)/, ""))}&sort=score&fields=${campos}&page_size=${Math.min(n, 150)}${clave}`;
+  const r = await (conOAuth ? await pedir(buscar) : await fetch(buscar)).json();
   let ok = 0;
   for (const s of r.results ?? []) {
-    const nombre = `${s.name.replace(/\.[a-z0-9]+$/i, "").replace(/[/\\:*?"<>|]+/g, " ").trim().slice(0, 70)} - ${s.id}.${s.type || "wav"}`;
+    const ext = conOAuth ? s.type || "wav" : "mp3";
+    const nombre = `${s.name.replace(/\.[a-z0-9]+$/i, "").replace(/[/\\:*?"<>|]+/g, " ").trim().slice(0, 70)} - ${s.id}.${ext}`;
     const destino = path.join(carpeta, nombre);
     if (fs.existsSync(destino)) continue;
     try {
-      const audio = Buffer.from(await (await pedir(`${API}/sounds/${s.id}/download/`)).arrayBuffer());
+      const audio = Buffer.from(await (conOAuth ? await pedir(`${API}/sounds/${s.id}/download/`) : await fetch(s.previews["preview-hq-mp3"])).arrayBuffer());
       fs.writeFileSync(destino, audio);
       ok++;
       console.log(`ok · ${nombre} (${s.duration.toFixed(1)} s · ${s.username})`);
