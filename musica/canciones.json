@@ -5,7 +5,12 @@
   "cancion": "On the Nature of Daylight",
   "donde": "Arrival, Shutter Island",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Max Richter - On the Nature of Daylight.m4a",
+  "apple": "https://music.apple.com/us/album/on-the-nature-of-daylight/1368089903?i=1368090483&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/58/ec/d7/58ecd75d-8df8-c05f-5e1a-b144292c6493/17UM1IM64259.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 372,
+  "apple_titulo": "Max Richter, Louisa Fuller, Natalia Bonner, John Metcalfe, Philip Sheppard & Chris Worsey - On The Nature Of Daylight"
  },
  {
   "emocion": "calma",
@@ -13,7 +18,12 @@
   "cancion": "Saman",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Ólafur Arnalds - Saman.m4a",
+  "apple": "https://music.apple.com/us/album/saman/1390704147?i=1390704156&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/9b/20/71/9b20711d-7ffe-2b59-4bae-6d6f614a1451/18UMGIM24750.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 132,
+  "apple_titulo": "Ólafur Arnalds - saman"
  },
  {
   "emocion": "calma",
@@ -21,7 +31,12 @@
   "cancion": "Says",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Nils Frahm - Says.m4a",
+  "apple": "https://music.apple.com/us/album/says/1453571326?i=1453571333&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9f/40/da/9f40da77-e818-f6f8-b252-d02a2ed7c89f/4050486115855_cover.jpg/100x100bb.jpg",
+  "duracion_s": 498,
+  "apple_titulo": "Nils Frahm - Says"
  },
  {
   "emocion": "calma",
@@ -29,7 +44,12 @@
   "cancion": "Experience",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Ludovico Einaudi - Experience.m4a",
+  "apple": "https://music.apple.com/us/album/experience/1895400316?i=6763617215&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/00/67/4d/00674de6-920b-3315-c49b-8ee957d4b56f/26UMGIM50707.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 412,
+  "apple_titulo": "Ludovico Einaudi - Experience"
  },
  {
   "emocion": "asombro",
@@ -37,7 +57,12 @@
   "cancion": "Time",
   "donde": "Inception",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Hans Zimmer - Time.m4a",
+  "apple": "https://music.apple.com/us/album/time/380349905?i=380350246&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2b/62/eb/2b62ebd7-aa99-988a-0fee-714162f6fbeb/093624965008.jpg/100x100bb.jpg",
+  "duracion_s": 276,
+  "apple_titulo": "Hans Zimmer - Time"
  },
  {
   "emocion": "asombro",
@@ -45,7 +70,12 @@
   "cancion": "Cornfield Chase",
   "donde": "Interstellar",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Hans Zimmer - Cornfield Chase.m4a",
+  "apple": "https://music.apple.com/us/album/cornfield-chase/1533983552?i=1533984393&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/5b/73/f45b735a-8d7a-9713-b217-0f8e1593c28b/794043201943.jpg/100x100bb.jpg",
+  "duracion_s": 127,
+  "apple_titulo": "Hans Zimmer - Cornfield Chase"
  },
  {
   "emocion": "asombro",
@@ -53,7 +83,12 @@
   "cancion": "Outro",
   "donde": "Muy usada en tráileres",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/M83 - Outro.m4a",
+  "apple": "https://music.apple.com/us/album/outro/828259375?i=828259403&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/100x100bb.jpg",
+  "duracion_s": 247,
+  "apple_titulo": "M83 - Outro"
  },
  {
   "emocion": "asombro",
@@ -61,7 +96,12 @@
   "cancion": "A Moment Apart",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/ODESZA - A Moment Apart.m4a",
+  "apple": "https://music.apple.com/us/album/a-moment-apart/1240361817?i=1240362777&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/eb/d4/22/ebd422d1-b959-dd5d-b395-f9413044cff1/5054429119183.png/100x100bb.jpg",
+  "duracion_s": 234,
+  "apple_titulo": "ODESZA - A Moment Apart"
  },
  {
   "emocion": "asombro",
@@ -69,7 +109,12 @@
   "cancion": "Emerald Rush",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/Jon Hopkins - Emerald Rush.m4a",
+  "apple": "https://music.apple.com/us/album/emerald-rush/1349736537?i=1349736993&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ae/33/32/ae333275-2208-3583-fdc1-ef74ed9af028/dj.ttteesyy.jpg/100x100bb.jpg",
+  "duracion_s": 337,
+  "apple_titulo": "Jon Hopkins - Emerald Rush"
  },
  {
   "emocion": "tension",
@@ -77,7 +122,12 @@
   "cancion": "Hand Covers Bruise",
   "donde": "The Social Network",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Trent Reznor & Atticus Ross - Hand Covers Bruise.m4a",
+  "apple": "https://music.apple.com/us/album/hand-covers-bruise/395740920?i=395740925&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c8/d6/ab/c8d6abf5-f991-429f-a47d-c3ee25777343/859704488368_cover.jpg/100x100bb.jpg",
+  "duracion_s": 259,
+  "apple_titulo": "Trent Reznor & Atticus Ross - Hand Covers Bruise"
  },
  {
   "emocion": "tension",
@@ -85,7 +135,12 @@
   "cancion": "Bad Kingdom",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/Moderat - Bad Kingdom.m4a",
+  "apple": "https://music.apple.com/us/album/bad-kingdom/694651681?i=694651788&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/cf/38/db/cf38db57-e822-32ee-eccf-a9783b5fe692/4250783614918_1448.jpg/100x100bb.jpg",
+  "duracion_s": 263,
+  "apple_titulo": "Moderat - Bad Kingdom"
  },
  {
   "emocion": "tension",
@@ -93,7 +148,12 @@
   "cancion": "Everything In Its Right Place",
   "donde": "Vanilla Sky",
   "propuesta": "Claude 22-oct",
-  "estilo": "indie"
+  "estilo": "indie",
+  "muestra": "indie/Radiohead - Everything In Its Right Place.m4a",
+  "apple": "https://music.apple.com/us/album/everything-in-its-right-place/1097862870?i=1097863108&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bd/8e/13/bd8e1358-b367-a689-cb84-cebd0b067dc4/634904078263.png/100x100bb.jpg",
+  "duracion_s": 251,
+  "apple_titulo": "Radiohead - Everything In Its Right Place"
  },
  {
   "emocion": "tension",
@@ -101,7 +161,12 @@
   "cancion": "Veridis Quo",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/Daft Punk - Veridis Quo.m4a",
+  "apple": "https://music.apple.com/us/album/veridis-quo/697194953?i=697196125&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fd/4a/77/fd4a77db-0ebc-d043-41a2-f32fa1bb0fb4/dj.qrikkdwj.jpg/100x100bb.jpg",
+  "duracion_s": 345,
+  "apple_titulo": "Daft Punk - Veridis Quo"
  },
  {
   "emocion": "epica-tranquila",
@@ -109,7 +174,12 @@
   "cancion": "Your Hand in Mine",
   "donde": "Friday Night Lights",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Explosions in the Sky - Your Hand in Mine.m4a",
+  "apple": "https://music.apple.com/us/album/your-hand-in-mine/318951781?i=318951791&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/82/ea/6c/82ea6c96-4f61-9b4a-9fad-ce4bbef9f6ed/mzi.fntrndfr.tif/100x100bb.jpg",
+  "duracion_s": 497,
+  "apple_titulo": "Explosions In the Sky - Your Hand In Mine"
  },
  {
   "emocion": "epica-tranquila",
@@ -117,7 +187,12 @@
   "cancion": "Innerbloom",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/RÜFÜS DU SOL - Innerbloom.m4a",
+  "apple": "https://music.apple.com/us/album/innerbloom/1058740883?i=1058740894&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/aa/5f/d8/aa5fd889-4c2e-7e24-e8b2-428beaf9d4fe/SWEATA009.jpg/100x100bb.jpg",
+  "duracion_s": 578,
+  "apple_titulo": "RÜFÜS DU SOL - Innerbloom"
  },
  {
   "emocion": "epica-tranquila",
@@ -125,7 +200,12 @@
   "cancion": "Delilah (pull me out of this)",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/Fred again.. - Delilah (pull me out of this).m4a",
+  "apple": "https://music.apple.com/us/album/delilah-pull-me-out-of-this/1640463893?i=1640463908&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b0/9c/b7/b09cb72c-cca9-5d66-bc9d-a9b5e5f86b22/5054197236389.jpg/100x100bb.jpg",
+  "duracion_s": 251,
+  "apple_titulo": "Fred again.. & Delilah Montagu - Delilah (pull me out of this)"
  },
  {
   "emocion": "dia",
@@ -133,7 +213,12 @@
   "cancion": "Kerala",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/Bonobo - Kerala.m4a",
+  "apple": "https://music.apple.com/us/album/kerala/1169245868?i=1169246072&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/be/f1/d0/bef1d063-ed73-bd7d-3899-2217762cdcda/5054429005721.png/100x100bb.jpg",
+  "duracion_s": 238,
+  "apple_titulo": "Bonobo - Kerala"
  },
  {
   "emocion": "dia",
@@ -141,7 +226,12 @@
   "cancion": "Awake",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/Tycho - Awake.m4a",
+  "apple": "https://music.apple.com/us/album/awake/793928184?i=793928278&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/7b/b8/d6/7bb8d640-dfdc-1473-3948-4060af9a3819/804297820828.jpg/100x100bb.jpg",
+  "duracion_s": 284,
+  "apple_titulo": "Tycho - Awake"
  },
  {
   "emocion": "dia",
@@ -149,7 +239,12 @@
   "cancion": "María También",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "indie"
+  "estilo": "indie",
+  "muestra": "indie/Khruangbin - María También.m4a",
+  "apple": "https://music.apple.com/us/album/maria-tambi%C3%A9n/1299241642?i=1299241645&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/17/67/2e/17672e3b-9d01-2d5e-9b43-38f44b40f654/656605145365.jpg/100x100bb.jpg",
+  "duracion_s": 191,
+  "apple_titulo": "Khruangbin - Maria También"
  },
  {
   "emocion": "noche",
@@ -157,7 +252,12 @@
   "cancion": "Nightcall",
   "donde": "Drive",
   "propuesta": "Claude 22-oct",
-  "estilo": "electronica"
+  "estilo": "electronica",
+  "muestra": "electronica/Kavinsky - Nightcall.m4a",
+  "apple": "https://music.apple.com/us/album/nightcall/1442447952?i=1442447970&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c1/2d/fe/c12dfe8f-cdf6-e179-d69a-8ec35f760266/00602537248681.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 258,
+  "apple_titulo": "Kavinsky - Nightcall"
  },
  {
   "emocion": "noche",
@@ -165,7 +265,12 @@
   "cancion": "En la ciudad de la furia",
   "donde": "Para la vista de la ciudad desde el piso 15",
   "propuesta": "Claude 22-oct",
-  "estilo": "latino"
+  "estilo": "latino",
+  "muestra": "latino/Soda Stereo - En la ciudad de la furia.m4a",
+  "apple": "https://music.apple.com/us/album/en-la-ciudad-de-la-furia/321882524?i=321882569&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/f0/1e/df/f01edf85-25f1-c245-1c18-bb0f1165740d/mzi.qaxmucxr.jpg/100x100bb.jpg",
+  "duracion_s": 346,
+  "apple_titulo": "Soda Stereo - En la Ciudad de la Furia"
  },
  {
   "emocion": "noche",
@@ -173,7 +278,12 @@
   "cancion": "Tears in Rain",
   "donde": "Blade Runner",
   "propuesta": "Claude 22-oct",
-  "estilo": "cine"
+  "estilo": "cine",
+  "muestra": "cine/Vangelis - Tears in Rain.m4a",
+  "apple": "https://music.apple.com/us/album/tears-in-rain/73327394?i=73327392&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ce/4a/79/ce4a7928-167f-2838-f9ec-6b987400ec5d/s06.beplfgoj.jpg/100x100bb.jpg",
+  "duracion_s": 181,
+  "apple_titulo": "Vangelis - Tears In Rain"
  },
  {
   "emocion": "noche",
@@ -181,7 +291,12 @@
   "cancion": "Apocalypse",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "indie"
+  "estilo": "indie",
+  "muestra": "indie/Cigarettes After Sex - Apocalypse.m4a",
+  "apple": "https://music.apple.com/us/album/apocalypse/1217977525?i=1217977755&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b3/5e/0f/b35e0fbe-2370-fc48-0f0c-977525e93bf2/720841214601_Cover.jpg/100x100bb.jpg",
+  "duracion_s": 290,
+  "apple_titulo": "Cigarettes After Sex - Apocalypse"
  },
  {
   "emocion": "noche",
@@ -189,7 +304,12 @@
   "cancion": "Intro",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "indie"
+  "estilo": "indie",
+  "muestra": "indie/The xx - Intro.m4a",
+  "apple": "https://music.apple.com/us/album/intro/1850810462?i=1850810463&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/28/44/8e/28448e14-19be-438b-bc9b-8c1d3f68f578/609008295069.png/100x100bb.jpg",
+  "duracion_s": 128,
+  "apple_titulo": "The xx - Intro"
  },
  {
   "emocion": "nostalgia",
@@ -197,7 +317,12 @@
   "cancion": "Supersymmetry",
   "donde": "Her",
   "propuesta": "Claude 22-oct",
-  "estilo": "indie"
+  "estilo": "indie",
+  "muestra": "indie/Arcade Fire - Supersymmetry.m4a",
+  "apple": "https://music.apple.com/us/album/supersymmetry/1439818072?i=1439818089&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/42/51/88/42518825-5e28-fb70-17b2-f2c2d33ee3da/886447165850.jpg/100x100bb.jpg",
+  "duracion_s": 677,
+  "apple_titulo": "Arcade Fire - Supersymmetry"
  },
  {
   "emocion": "nostalgia",
@@ -205,7 +330,12 @@
   "cancion": "Holocene",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "indie"
+  "estilo": "indie",
+  "apple": "https://www.deezer.com/track/75812668",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/1457f0d27076538d484625fa706541b7/250x250-000000-80-0-0.jpg",
+  "duracion_s": 337,
+  "muestra": "indie/Bon Iver - Holocene.mp3",
+  "apple_titulo": "Bon Iver - Holocene"
  },
  {
   "emocion": "nostalgia",
@@ -213,7 +343,12 @@
   "cancion": "Puente",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "latino"
+  "estilo": "latino",
+  "muestra": "latino/Gustavo Cerati - Puente.m4a",
+  "apple": "https://music.apple.com/us/album/puente/304792998?i=304793008&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/23/e8/92/23e892a3-6194-2a6a-93aa-fa9010566824/mzi.aqelopve.jpg/100x100bb.jpg",
+  "duracion_s": 274,
+  "apple_titulo": "Gustavo Cerati - Puente"
  },
  {
   "emocion": "nostalgia",
@@ -221,7 +356,12 @@
   "cancion": "Tren al sur",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "latino"
+  "estilo": "latino",
+  "muestra": "latino/Los Prisioneros - Tren al sur.m4a",
+  "apple": "https://music.apple.com/us/album/tren-al-sur/723798638?i=723798834&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/19/61/33/196133ce-3e20-c948-879a-f0cacc397fbb/00077774236553.jpg/100x100bb.jpg",
+  "duracion_s": 337,
+  "apple_titulo": "Los Prisioneros - Tren al Sur"
  },
  {
   "emocion": "calma",
@@ -229,7 +369,12 @@
   "cancion": "Good News",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Mac Miller - Good News.m4a",
+  "apple": "https://music.apple.com/us/album/good-news/1494022962?i=1494022968&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/23/39/38/23393826-762f-ec76-dc1e-9344f647c958/093624905981.jpg/100x100bb.jpg",
+  "duracion_s": 342,
+  "apple_titulo": "Mac Miller - Good News"
  },
  {
   "emocion": "calma",
@@ -237,7 +382,12 @@
   "cancion": "Pink + White",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Frank Ocean - Pink + White.m4a",
+  "apple": "https://music.apple.com/us/album/pink-white/1146195596?i=1146195714&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/45/68/bb4568f3-68cd-619d-fbcb-4e179916545d/BlondCover-Final.jpg/100x100bb.jpg",
+  "duracion_s": 185,
+  "apple_titulo": "Frank Ocean - Pink + White"
  },
  {
   "emocion": "calma",
@@ -245,7 +395,12 @@
   "cancion": "Get You",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Daniel Caesar - Get You.m4a",
+  "apple": "https://music.apple.com/us/album/get-you-feat-kali-uchis/1799080774?i=1799080775&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b6/cd/1a/b6cd1a5b-83af-a1e2-0ad7-ea530fcf2522/859722261219.jpg/100x100bb.jpg",
+  "duracion_s": 278,
+  "apple_titulo": "Daniel Caesar - Get You (feat. Kali Uchis)"
  },
  {
   "emocion": "dia",
@@ -253,7 +408,12 @@
   "cancion": "Money Trees",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Kendrick Lamar - Money Trees.m4a",
+  "apple": "https://music.apple.com/us/album/money-trees-feat-jay-rock/1440860389?i=1440860400&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/36/86/ec/3686ec99-dec4-0a01-8b74-2d8a9a0263a7/12UMGIM52988.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 387,
+  "apple_titulo": "Kendrick Lamar - Money Trees (feat. Jay Rock)"
  },
  {
   "emocion": "dia",
@@ -261,7 +421,12 @@
   "cancion": "See You Again",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Tyler, The Creator - See You Again.mp3",
+  "apple_titulo": "Tyler, The Creator - See You Again (feat. Kali Uchis)",
+  "apple": "https://www.deezer.com/track/384157591",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/a7a16b8f63b1ec0e9fbd327619966737/250x250-000000-80-0-0.jpg",
+  "duracion_s": 180
  },
  {
   "emocion": "dia",
@@ -269,7 +434,12 @@
   "cancion": "Redbone",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "apple": "https://www.deezer.com/track/3025966451",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/57ae3715e73c0486616bab8c2d6c6159/250x250-000000-80-0-0.jpg",
+  "duracion_s": 326,
+  "muestra": "pop-eeuu/Childish Gambino - Redbone.mp3",
+  "apple_titulo": "Childish Gambino - Redbone"
  },
  {
   "emocion": "noche",
@@ -277,7 +447,12 @@
   "cancion": "Blinding Lights",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/The Weeknd - Blinding Lights.m4a",
+  "apple": "https://music.apple.com/us/album/blinding-lights/1499385848?i=1499386265&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2b/b9/fe/2bb9fef5-d7f3-8345-25a9-db0e79fde4e4/20UMGIM11048.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 200,
+  "apple_titulo": "The Weeknd - Blinding Lights"
  },
  {
   "emocion": "noche",
@@ -285,7 +460,12 @@
   "cancion": "Nights",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "apple": "https://www.deezer.com/track/717273922",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/f798a866107715dd6dc1049e498ce21f/250x250-000000-80-0-0.jpg",
+  "duracion_s": 307,
+  "muestra": "pop-eeuu/Frank Ocean - Nights.mp3",
+  "apple_titulo": "Frank Ocean - Nights"
  },
  {
   "emocion": "noche",
@@ -293,7 +473,12 @@
   "cancion": "BUTTERFLY EFFECT",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Travis Scott - BUTTERFLY EFFECT.m4a",
+  "apple": "https://music.apple.com/us/album/butterfly-effect/1421241217?i=1421243623&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/100x100bb.jpg",
+  "duracion_s": 191,
+  "apple_titulo": "Travis Scott - BUTTERFLY EFFECT"
  },
  {
   "emocion": "epica-tranquila",
@@ -301,7 +486,12 @@
   "cancion": "Runaway",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Kanye West - Runaway.m4a",
+  "apple": "https://music.apple.com/us/album/runaway-feat-pusha-t/1443160553?i=1443160699&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d1/74/da/d174dacf-5782-dfe2-19f7-ce037dcd0237/00602527584935.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 548,
+  "apple_titulo": "Kanye West & Pusha T - Runaway (feat. Pusha T)"
  },
  {
   "emocion": "epica-tranquila",
@@ -309,7 +499,12 @@
   "cancion": "Pursuit of Happiness",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Kid Cudi - Pursuit of Happiness.m4a",
+  "apple": "https://music.apple.com/us/album/pursuit-of-happiness-nightmare-feat-mgmt-ratatat/1443483575?i=1443484271&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/e1/cb/32/e1cb3268-1ba1-2c11-2f47-92ee469fac6a/09UMGIM33420.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 295,
+  "apple_titulo": "Kid Cudi - Pursuit of Happiness (Nightmare) [feat. MGMT & Ratatat]"
  },
  {
   "emocion": "epica-tranquila",
@@ -317,7 +512,12 @@
   "cancion": "PRIDE.",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Kendrick Lamar - PRIDE..m4a",
+  "apple": "https://music.apple.com/us/album/pride/1440881722?i=1440882161&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ab/16/ef/ab16efe9-e7f1-66ec-021c-5592a23f0f9e/17UMGIM88793.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 275,
+  "apple_titulo": "Kendrick Lamar - PRIDE."
  },
  {
   "emocion": "asombro",
@@ -325,7 +525,12 @@
   "cancion": "Flashing Lights",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Kanye West - Flashing Lights.m4a",
+  "apple": "https://music.apple.com/us/album/flashing-lights/1442845779?i=1442846712&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/25/2d/39252d65-2d50-b991-0962-f7a98a761271/00602517483507.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 237,
+  "apple_titulo": "Kanye West - Flashing Lights"
  },
  {
   "emocion": "asombro",
@@ -333,7 +538,12 @@
   "cancion": "LOVE.",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Kendrick Lamar - LOVE..m4a",
+  "apple": "https://music.apple.com/us/album/love-feat-zacari/1440881722?i=1440882172&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ab/16/ef/ab16efe9-e7f1-66ec-021c-5592a23f0f9e/17UMGIM88793.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 213,
+  "apple_titulo": "Kendrick Lamar - LOVE. (FEAT. ZACARI.)"
  },
  {
   "emocion": "tension",
@@ -341,7 +551,12 @@
   "cancion": "DNA.",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Kendrick Lamar - DNA..m4a",
+  "apple": "https://music.apple.com/us/album/dna/1440881722?i=1440881990&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ab/16/ef/ab16efe9-e7f1-66ec-021c-5592a23f0f9e/17UMGIM88793.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 186,
+  "apple_titulo": "Kendrick Lamar - DNA."
  },
  {
   "emocion": "tension",
@@ -349,7 +564,12 @@
   "cancion": "goosebumps",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/Travis Scott - goosebumps.m4a",
+  "apple": "https://music.apple.com/us/album/goosebumps/1151481435?i=1151481750&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b8/e5/27/b8e527c8-aaf4-c7b7-5562-c479458ed7d9/886446092645.jpg/100x100bb.jpg",
+  "duracion_s": 244,
+  "apple_titulo": "Travis Scott - goosebumps"
  },
  {
   "emocion": "nostalgia",
@@ -357,7 +577,12 @@
   "cancion": "Snooze",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/SZA - Snooze.m4a",
+  "apple": "https://music.apple.com/us/album/snooze/1658650093?i=1658650499&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/62/93/13/6293132e-20ff-67ab-3d1f-96bb6797a6ba/196589564955.jpg/100x100bb.jpg",
+  "duracion_s": 202,
+  "apple_titulo": "SZA - Snooze"
  },
  {
   "emocion": "nostalgia",
@@ -365,7 +590,12 @@
   "cancion": "Love Yourz",
   "donde": "",
   "propuesta": "Claude 22-oct",
-  "estilo": "pop-eeuu"
+  "estilo": "pop-eeuu",
+  "muestra": "pop-eeuu/J. Cole - Love Yourz.m4a",
+  "apple": "https://music.apple.com/us/album/love-yourz/1600772499?i=1600773052&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ee/28/67/ee286794-6c33-a8c2-5c37-c04f1cb5e8a6/21UM1IM54415.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 211,
+  "apple_titulo": "J. Cole - Love Yourz"
  },
  {
   "estilo": "japonesa",
@@ -373,7 +603,12 @@
   "artista": "Mariya Takeuchi",
   "cancion": "Plastic Love",
   "donde": "City pop clásico, vuelve una y otra vez en TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Mariya Takeuchi - Plastic Love.mp3",
+  "apple_titulo": "Mariya Takeuchi - Plastic Love",
+  "apple": "https://www.deezer.com/track/1169627962",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/d6b79564fe1a2e12a0345b16ba3897b7/250x250-000000-80-0-0.jpg",
+  "duracion_s": 294
  },
  {
   "estilo": "japonesa",
@@ -381,7 +616,12 @@
   "artista": "Miki Matsubara",
   "cancion": "Mayonaka no Door (Stay With Me)",
   "donde": "City pop, viral en TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Miki Matsubara - Mayonaka no Door (Stay With Me).m4a",
+  "apple": "https://music.apple.com/us/album/mayonaka-no-door-stay-with-me-2008-remastered/1858846505?i=1858846510&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/eb/b1/06ebb16a-7e31-5818-4be9-684cb57622dc/PA00204086_0_234544_jacket.jpg/100x100bb.jpg",
+  "duracion_s": 312,
+  "apple_titulo": "Miki Matsubara - Mayonaka No Door ~Stay with Me (2008 Remastered)"
  },
  {
   "estilo": "japonesa",
@@ -389,7 +629,8 @@
   "artista": "Tatsuro Yamashita",
   "cancion": "Ride on Time",
   "donde": "City pop",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "sin_muestra": true
  },
  {
   "estilo": "japonesa",
@@ -397,7 +638,12 @@
   "artista": "Anri",
   "cancion": "Last Summer Whisper",
   "donde": "City pop",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Anri - Last Summer Whisper.m4a",
+  "apple": "https://music.apple.com/us/album/last-summer-whisper/6775340859?i=6775340860&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/85/ee/ac/85eeac60-e8dc-88b9-15c4-59f251475444/823375208259_Cover.jpg/100x100bb.jpg",
+  "duracion_s": 305,
+  "apple_titulo": "Anri - Last Summer Whisper"
  },
  {
   "estilo": "japonesa",
@@ -405,7 +651,12 @@
   "artista": "Fujii Kaze",
   "cancion": "Shinunoga E-Wa",
   "donde": "Viral global",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Fujii Kaze - Shinunoga E-Wa.m4a",
+  "apple": "https://music.apple.com/us/album/shinunoga-e-wa/1505498769?i=1505498792&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/96/4e/5b/964e5b6e-4766-63ba-7e50-9f8a5bd0569e/20UMGIM17280.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 186,
+  "apple_titulo": "Fujii Kaze - Shinunoga E-Wa"
  },
  {
   "estilo": "japonesa",
@@ -413,7 +664,12 @@
   "artista": "Kenshi Yonezu",
   "cancion": "KICK BACK",
   "donde": "Chainsaw Man",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Kenshi Yonezu - KICK BACK.m4a",
+  "apple": "https://music.apple.com/us/album/kick-back/1648272179?i=1648272180&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/4e/a8/75/4ea875d1-bdb6-9b83-185a-646391cbffbd/4547366589849.jpg/100x100bb.jpg",
+  "duracion_s": 193,
+  "apple_titulo": "Kenshi Yonezu - KICK BACK"
  },
  {
   "estilo": "japonesa",
@@ -421,7 +677,12 @@
   "artista": "Kenshi Yonezu",
   "cancion": "Lemon",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Kenshi Yonezu - Lemon.m4a",
+  "apple": "https://music.apple.com/us/album/lemon/1537460610?i=1537460612&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/86/b0/9d/86b09d63-367a-563a-1e24-d5d62c220ac8/jacket_SRCL09749B00Z_550.jpg/100x100bb.jpg",
+  "duracion_s": 256,
+  "apple_titulo": "Kenshi Yonezu - Lemon"
  },
  {
   "estilo": "japonesa",
@@ -429,7 +690,12 @@
   "artista": "RADWIMPS",
   "cancion": "Sparkle",
   "donde": "Your Name",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/RADWIMPS - Sparkle.m4a",
+  "apple": "https://music.apple.com/us/album/sparkle/1523038202?i=1523038689&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fa/1d/26/fa1d26c2-f6fa-b317-ef04-d23931e2441a/859755977873_cover.jpg/100x100bb.jpg",
+  "duracion_s": 410,
+  "apple_titulo": "RADWIMPS - Sparkle"
  },
  {
   "estilo": "japonesa",
@@ -437,7 +703,12 @@
   "artista": "Joe Hisaishi",
   "cancion": "One Summer's Day",
   "donde": "El viaje de Chihiro",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Joe Hisaishi - One Summer's Day.m4a",
+  "apple": "https://music.apple.com/jp/album/one-summers-day-from-spirited-away/1485854555?i=1485854955&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0a/0c/85/0a0c8531-746f-370e-db4d-29cc3cb20030/19UMGIM98620.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 243,
+  "apple_titulo": "Joe Hisaishi - One Summer's Day (from \"Spirited Away\")"
  },
  {
   "estilo": "japonesa",
@@ -445,7 +716,12 @@
   "artista": "Ryuichi Sakamoto",
   "cancion": "Merry Christmas Mr. Lawrence",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Ryuichi Sakamoto - Merry Christmas Mr. Lawrence.m4a",
+  "apple": "https://music.apple.com/jp/album/merry-christmas-mr-lawrence/81901964?i=81901909&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/59/2d/5a/592d5a79-585e-7851-f7ca-9097951134d8/mzi.vnsahvsb.jpg/100x100bb.jpg",
+  "duracion_s": 282,
+  "apple_titulo": "RYUICHI SAKAMOTO - Merry Christmas Mr. Lawrence"
  },
  {
   "estilo": "japonesa",
@@ -453,7 +729,12 @@
   "artista": "Nujabes",
   "cancion": "Aruarian Dance",
   "donde": "Samurai Champloo; base del lo-fi hip hop",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Nujabes - Aruarian Dance.m4a",
+  "apple": "https://music.apple.com/jp/album/aruarian-dance/1721842998?i=1721843001&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/be/59/2b/be592b54-496f-bd59-9e46-49fa2f45a717/VICL-61411.jpg/100x100bb.jpg",
+  "duracion_s": 250,
+  "apple_titulo": "Nujabes - aruarian dance"
  },
  {
   "estilo": "japonesa",
@@ -461,7 +742,12 @@
   "artista": "Nujabes",
   "cancion": "Feather",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Nujabes - Feather.m4a",
+  "apple": "https://music.apple.com/jp/album/feather-feat-cise-starr-akin-from-cyne/1078923064?i=1078923526&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ad/18/6b/ad186b39-cd19-fa4d-abe0-bf6860cd8d9d/POCS-30003_jkt.jpg/100x100bb.jpg",
+  "duracion_s": 176,
+  "apple_titulo": "Nujabes - Feather (feat. Cise Starr & Akin from CYNE)"
  },
  {
   "estilo": "japonesa",
@@ -469,7 +755,12 @@
   "artista": "YOASOBI",
   "cancion": "Idol",
   "donde": "Oshi no Ko",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/YOASOBI - Idol.m4a",
+  "apple": "https://music.apple.com/jp/album/idol/1688334284?i=1688334537&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/dc/2d/40/dc2d407b-2ca0-d41e-6ccb-0fd625abf8f0/197188911638.jpg/100x100bb.jpg",
+  "duracion_s": 213,
+  "apple_titulo": "YOASOBI - Idol"
  },
  {
   "estilo": "japonesa",
@@ -477,7 +768,12 @@
   "artista": "Joji",
   "cancion": "Glimpse of Us",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "japonesa/Joji - Glimpse of Us.m4a",
+  "apple": "https://music.apple.com/jp/album/glimpse-of-us/1776741467?i=1776741889&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e4/f6/bd/e4f6bd1d-c969-026d-bb63-f32c77649474/54391890016.jpg/100x100bb.jpg",
+  "duracion_s": 233,
+  "apple_titulo": "Joji - Glimpse of Us"
  },
  {
   "estilo": "phonk",
@@ -485,7 +781,12 @@
   "artista": "Kordhell",
   "cancion": "Murder In My Mind",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "apple": "https://www.deezer.com/track/1617024092",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/63390e141158f4cfd0b30b86040a0218/250x250-000000-80-0-0.jpg",
+  "duracion_s": 145,
+  "muestra": "phonk/Kordhell - Murder In My Mind.mp3",
+  "apple_titulo": "Kordhell - Murder In My Mind"
  },
  {
   "estilo": "phonk",
@@ -493,7 +794,12 @@
   "artista": "DVRST",
   "cancion": "Close Eyes",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "apple": "https://www.deezer.com/track/1413655312",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/927d033421b24eb3ba981d8551cdcbde/250x250-000000-80-0-0.jpg",
+  "duracion_s": 132,
+  "muestra": "phonk/DVRST - Close Eyes.mp3",
+  "apple_titulo": "DVRST - Close Eyes"
  },
  {
   "estilo": "phonk",
@@ -501,7 +807,12 @@
   "artista": "INTERWORLD",
   "cancion": "METAMORPHOSIS",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "apple": "https://www.deezer.com/track/1655692952",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/983ca9673268b4ad9f3b49317ab8a0ee/250x250-000000-80-0-0.jpg",
+  "duracion_s": 142,
+  "apple_titulo": "Interworld - METAMORPHOSIS",
+  "muestra": "phonk/INTERWORLD - METAMORPHOSIS.mp3"
  },
  {
   "estilo": "phonk",
@@ -509,7 +820,12 @@
   "artista": "INTERWORLD",
   "cancion": "RAPTURE",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "phonk/INTERWORLD - RAPTURE.mp3",
+  "apple_titulo": "Interworld - RAPTURE",
+  "apple": "https://www.deezer.com/track/1786395457",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/4a9f5bcd0fa6f98d6a7eacfb7a344dd3/250x250-000000-80-0-0.jpg",
+  "duracion_s": 164
  },
  {
   "estilo": "phonk",
@@ -517,7 +833,12 @@
   "artista": "MoonDeity",
   "cancion": "NEON BLADE",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "phonk/MoonDeity - NEON BLADE.mp3",
+  "apple_titulo": "MoonDeity - NEON BLADE",
+  "apple": "https://www.deezer.com/track/1776184957",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/55178061b8813959cbcba89cbc6f631e/250x250-000000-80-0-0.jpg",
+  "duracion_s": 265
  },
  {
   "estilo": "phonk",
@@ -525,7 +846,12 @@
   "artista": "PlayaPhonk",
   "cancion": "PHONKY TOWN",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "phonk/PlayaPhonk - PHONKY TOWN.mp3",
+  "apple_titulo": "Playaphonk - Phonky Town",
+  "apple": "https://www.deezer.com/track/1449834282",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/de30f65052bd85ca7822c04da512e54b/250x250-000000-80-0-0.jpg",
+  "duracion_s": 141
  },
  {
   "estilo": "phonk",
@@ -533,7 +859,8 @@
   "artista": "Kaito Shoma",
   "cancion": "Scopin",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "sin_muestra": true
  },
  {
   "estilo": "phonk",
@@ -541,7 +868,12 @@
   "artista": "Ghostface Playa",
   "cancion": "Why Not",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "apple": "https://www.deezer.com/track/1693120027",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/64d1206ce9d6591baf09a2e49c666ae6/250x250-000000-80-0-0.jpg",
+  "duracion_s": 165,
+  "apple_titulo": "Ghostface Playa - Why Not",
+  "muestra": "phonk/Ghostface Playa - Why Not.mp3"
  },
  {
   "estilo": "phonk",
@@ -549,7 +881,12 @@
   "artista": "Hensonn",
   "cancion": "Sahara",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "apple": "https://www.deezer.com/track/1543584272",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/dee4b75b543c75d1afef6f001399e084/250x250-000000-80-0-0.jpg",
+  "duracion_s": 170,
+  "muestra": "phonk/Hensonn - Sahara.mp3",
+  "apple_titulo": "Hensonn - Sahara"
  },
  {
   "estilo": "pop-eeuu",
@@ -557,7 +894,12 @@
   "artista": "Djo",
   "cancion": "End of Beginning",
   "donde": "Clásico de TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Djo - End of Beginning.m4a",
+  "apple": "https://music.apple.com/us/album/end-of-beginning/1632447652?i=1632448108&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9d/58/bb/9d58bb3a-c6b5-4c3d-fbba-50872d2712f4/5056494917336.jpg/100x100bb.jpg",
+  "duracion_s": 159,
+  "apple_titulo": "Djo - End of Beginning"
  },
  {
   "estilo": "pop-eeuu",
@@ -565,7 +907,12 @@
   "artista": "Arctic Monkeys",
   "cancion": "I Wanna Be Yours",
   "donde": "Clásico de TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Arctic Monkeys - I Wanna Be Yours.m4a",
+  "apple": "https://music.apple.com/us/album/i-wanna-be-yours/663097964?i=663098065&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/9c/b5/699cb5d6-115c-ff73-9d26-e57ea4350d72/887828031795.png/100x100bb.jpg",
+  "duracion_s": 184,
+  "apple_titulo": "Arctic Monkeys - I Wanna Be Yours"
  },
  {
   "estilo": "pop-eeuu",
@@ -573,7 +920,12 @@
   "artista": "The Neighbourhood",
   "cancion": "Sweater Weather",
   "donde": "Clásico de TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/The Neighbourhood - Sweater Weather.m4a",
+  "apple": "https://music.apple.com/us/album/sweater-weather/635016635?i=635016640&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/71/00/287100fb-5c31-0195-5343-e6b3625886d0/886443969834.jpg/100x100bb.jpg",
+  "duracion_s": 240,
+  "apple_titulo": "The Neighbourhood - Sweater Weather"
  },
  {
   "estilo": "pop-eeuu",
@@ -581,7 +933,12 @@
   "artista": "Glass Animals",
   "cancion": "Heat Waves",
   "donde": "Clásico de TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Glass Animals - Heat Waves.m4a",
+  "apple": "https://music.apple.com/us/album/heat-waves/1508562310?i=1508562516&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/da/8b/77/da8b7731-6f4f-eacf-5e74-8b23389eefa1/20UMGIM03371.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 239,
+  "apple_titulo": "Glass Animals - Heat Waves"
  },
  {
   "estilo": "pop-eeuu",
@@ -589,7 +946,12 @@
   "artista": "Tame Impala",
   "cancion": "The Less I Know the Better",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Tame Impala - The Less I Know the Better.mp3",
+  "apple_titulo": "Tame Impala - The Less I Know The Better",
+  "apple": "https://www.deezer.com/track/103052662",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/de5b9b704cd4ec36f8bf49beb3e17ba2/250x250-000000-80-0-0.jpg",
+  "duracion_s": 217
  },
  {
   "estilo": "pop-eeuu",
@@ -597,7 +959,12 @@
   "artista": "Steve Lacy",
   "cancion": "Bad Habit",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Steve Lacy - Bad Habit.m4a",
+  "apple": "https://music.apple.com/us/album/bad-habit/6788150539?i=6788150545&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/cf/77/41cf7744-535f-3679-0ca6-c1b8d3f98c8f/196874557266.jpg/100x100bb.jpg",
+  "duracion_s": 232,
+  "apple_titulo": "Steve Lacy - Bad Habit"
  },
  {
   "estilo": "pop-eeuu",
@@ -605,7 +972,12 @@
   "artista": "Lana Del Rey",
   "cancion": "Say Yes to Heaven",
   "donde": "Clásico de TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Lana Del Rey - Say Yes to Heaven.m4a",
+  "apple": "https://music.apple.com/us/album/say-yes-to-heaven/1688315711?i=1688315813&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/20/8e/b2208e82-df49-5897-139d-39f4cdbc91a9/23UMGIM48049.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 209,
+  "apple_titulo": "Lana Del Rey - Say Yes To Heaven"
  },
  {
   "estilo": "pop-eeuu",
@@ -613,7 +985,12 @@
   "artista": "Billie Eilish",
   "cancion": "BIRDS OF A FEATHER",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Billie Eilish - BIRDS OF A FEATHER.m4a",
+  "apple": "https://music.apple.com/us/album/birds-of-a-feather/1739659134?i=1739659142&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 210,
+  "apple_titulo": "Billie Eilish - BIRDS OF A FEATHER"
  },
  {
   "estilo": "pop-eeuu",
@@ -621,7 +998,12 @@
   "artista": "Benson Boone",
   "cancion": "Beautiful Things",
   "donde": "",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Benson Boone - Beautiful Things.m4a",
+  "apple": "https://music.apple.com/us/album/beautiful-things/1724488123?i=1724488124&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/f4/92/54f49210-e260-b519-ebbd-f4f40ee710cd/054391342751.jpg/100x100bb.jpg",
+  "duracion_s": 180,
+  "apple_titulo": "Benson Boone - Beautiful Things"
  },
  {
   "estilo": "pop-eeuu",
@@ -629,7 +1011,12 @@
   "artista": "Gigi Perez",
   "cancion": "Sailor Song",
   "donde": "Clásico de TikTok",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "pop-eeuu/Gigi Perez - Sailor Song.m4a",
+  "apple": "https://music.apple.com/us/album/sailor-song/1770187509?i=1770187510&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/25/d4/96/25d49699-acc0-401f-a7cc-d7697339a474/24UM1IM03751.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 212,
+  "apple_titulo": "Gigi Perez - Sailor Song"
  },
  {
   "estilo": "tendencia",
@@ -637,7 +1024,12 @@
   "artista": "girl in red",
   "cancion": "We Fell in Love in October",
   "donde": "Tendencia de octubre 2026",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "tendencia/girl in red - We Fell in Love in October.m4a",
+  "apple": "https://music.apple.com/us/album/we-fell-in-love-in-october/1441416633?i=1441416638&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/08/dd/cd/08ddcdac-2d09-c7eb-d2ab-6b3849b04a02/5054526166202.jpg/100x100bb.jpg",
+  "duracion_s": 184,
+  "apple_titulo": "girl in red - we fell in love in october"
  },
  {
   "estilo": "tendencia",
@@ -645,7 +1037,12 @@
   "artista": "Róisín Murphy",
   "cancion": "Ramalama (Bang Bang)",
   "donde": "Tendencia de Halloween 2026",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "tendencia/Róisín Murphy - Ramalama (Bang Bang).m4a",
+  "apple": "https://music.apple.com/us/album/ramalama-bang-bang/1436326288?i=1436326300&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/31/7e/9f/317e9ffd-1422-cb4e-7ac4-bd03f48208bf/0886443963238.jpg/100x100bb.jpg",
+  "duracion_s": 215,
+  "apple_titulo": "Róisín Murphy - Ramalama (Bang Bang)"
  },
  {
   "estilo": "tendencia",
@@ -653,7 +1050,12 @@
   "artista": "Ingrid Michaelson",
   "cancion": "Be OK",
   "donde": "Tendencia de octubre 2026",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "tendencia/Ingrid Michaelson - Be OK.m4a",
+  "apple": "https://music.apple.com/us/album/be-ok/1511264247?i=1511264706&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/b3/41/dcb341d6-3710-f9b6-27ac-ac95fd16c835/20UMGIM24195.rgb.jpg/100x100bb.jpg",
+  "duracion_s": 148,
+  "apple_titulo": "Ingrid Michaelson - Be OK"
  },
  {
   "estilo": "tendencia",
@@ -661,7 +1063,12 @@
   "artista": "Noah Preminger & Max Light",
   "cancion": "Sunset in Girona",
   "donde": "Tendencia de octubre 2026",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "tendencia/Noah Preminger & Max Light - Sunset in Girona.m4a",
+  "apple": "https://music.apple.com/us/album/sunset-in-girona/1861042685?i=1861042766&uo=4",
+  "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/90/ad/f3/90adf3ff-dad9-c9b3-b95e-ea33ce8ea59e/19951.jpg/100x100bb.jpg",
+  "duracion_s": 281,
+  "apple_titulo": "Noah Preminger & Max Light - Sunset in Girona"
  },
  {
   "estilo": "tendencia",
@@ -669,6 +1076,11 @@
   "artista": "SouthMemphisHypeman",
   "cancion": "DIP ON EM",
   "donde": "Creciendo en octubre 2026",
-  "propuesta": "Claude 22-oct"
+  "propuesta": "Claude 22-oct",
+  "muestra": "tendencia/SouthMemphisHypeman - DIP ON EM.mp3",
+  "apple_titulo": "SouthMemphisHypeman - DIP ON EM",
+  "apple": "https://www.deezer.com/track/3729096882",
+  "portada": "https://cdn-images.dzcdn.net/images/cover/9397e0b4c2363d084d8ae5ccd8a23fd2/250x250-000000-80-0-0.jpg",
+  "duracion_s": 142
  }
 ]
